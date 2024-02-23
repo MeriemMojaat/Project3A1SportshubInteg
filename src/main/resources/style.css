@@ -1,0 +1,83 @@
+/* Root element */
+
+.root {
+    -fx-background-image: url("backg.jpg"); /* Add background image */
+    -fx-background-size: cover; /* Ensure background image covers entire area */
+    -fx-background-repeat: no-repeat; /* Prevent background image from repeating */
+}
+
+/* Button style */
+.button {
+
+    -fx-background-color:#004AAD; /* Green background */
+    -fx-text-fill: white; /* White text */
+    -fx-font-family: "Arial ";
+    -fx-font-size: 16px; /* Increase font size */
+    -fx-padding: 10px 20px; /* Increase padding */
+    -fx-background-radius: 25px; /* Increase border radius for rounded corners */
+    -fx-border-radius: 25px; /* Rounded corners */
+    /* Animation */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-transition: scale 0.3s;
+}
+
+
+.button:hover {
+    /* Hover effect */
+    -fx-background-color: #004AAD; /* Darker green background on hover */
+
+    /* Animation */
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+.button:pressed {
+    /* Pressed effect */
+    -fx-background-color: #004AAD; /* Even darker green background when pressed */
+}
+
+/* Label style */
+.label {
+    -fx-font-size: 18px; /* Increase font size */
+    -fx-font-weight: bold; /* Apply bold font weight */
+}
+
+/* Text field style */
+.text-field {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-font-size: 16px; /* Font size */
+    -fx-padding: 8px; /* Padding */
+    -fx-background-radius: 10px; /* Increase border radius for rounded corners */
+    -fx-border-width: 2px; /* Increase border width */
+}
+
+/* Table view style */
+.table-view {
+    -fx-background-color: grey; /* Set table background to transparent */
+}
+
+/* Table cell style */
+.table-cell {
+    -fx-font-size: 16px; /* Font size */
+}
+
+/* Table row cell style for odd rows */
+.table-row-cell:odd {
+    -fx-background-color: #f8f8f8; /* Light gray background for odd rows */
+}
+
+/* Table view text color */
+.table-view .table-cell {
+    -fx-text-fill: #333333; /* Dark text color */
+    -fx-font-family: "Arial"; /* Change font family */
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    -fx-animation: fadeIn 0.5s;
+}
