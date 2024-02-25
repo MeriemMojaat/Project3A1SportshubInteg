@@ -126,8 +126,29 @@ public class workoutcategoryService implements IService <workoutcategory>{
             }
             return workoutcategory;
         }
-        public List<workoutcategory> displaySorted(String sortBy) throws SQLException {
-            String query = "SELECT category_name, cat_description FROM `workoutcategory` ORDER BY ";
+    public List<workoutcategory> searchcategory(String searchCriteria) throws SQLException {
+        List<workoutcategory> events = new ArrayList<>();
+        String query = "SELECT * FROM workoutcategory WHERE category_name LIKE ? ";
+
+        try (PreparedStatement statement = con.prepareStatement(query)) {
+            statement.setString(1, "%" + searchCriteria + "%");
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                workoutcategory cat = new workoutcategory(
+                        resultSet.getString("category_name"),
+                        resultSet.getString("cat_description"),
+                        resultSet.getString("cat_image")
+                );
+                events.add(cat);
+            }
+        }
+
+        return events;
+    }
+
+    public List<workoutcategory> displaySorted(String sortBy) throws SQLException {
+            String query = "SELECT category_name, cat_description, cat_image FROM `workoutcategory` ORDER BY ";
 
             switch (sortBy) {
                 case "category_name":

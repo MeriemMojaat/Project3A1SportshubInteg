@@ -1,5 +1,7 @@
 package tn.esprit.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -43,6 +42,8 @@ public class ShowWorkouts {
 
     @FXML
     private Button workout;
+    @FXML
+    private TextField SearchWKid;
 
     private int id_category;
     private int WorkoutID;
@@ -53,12 +54,19 @@ public class ShowWorkouts {
 
     @FXML
     void initialize() {
-        try {
-            // Assuming you have the categoryId stored somewhere, pass it here
-            displayWorkouts(id_category);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+        SearchWKid.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()) {
+                try {
+                    displayWorkouts(id_category); // Revert to original state if search field is cleared
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                // Trigger the search operation when text changes
+                SearchWKid(null); // Pass null or any appropriate event parameter
+            }
+        });
     }
 
     public void setCategoryId(int id_category) {
@@ -203,38 +211,70 @@ public class ShowWorkouts {
             alert.setContentText(message);
             alert.showAndWait();
         }
-    private int retrieveCategoryId() {
-        try {
-            List<workoutcategory> categories = categoryService.display();
-            if (!categories.isEmpty()) {
-                // For demonstration, let's assume the first category
-                return categories.get(0).getId_category();
-            } else {
-                // Handle the case when no categories are available
-                return -1; // Or any default value you prefer
-            }
-        } catch (Exception e) {
-            // Handle the exception appropriately
-            e.printStackTrace();
-            return -1; // Return a default value or handle the error accordingly
-        }
-    }
 
     @FXML
-    void addworkout(ActionEvent event) {
+    void SearchWKid(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddWorkout.fxml"));
-            Parent root = loader.load();
+            String searchCriteria = SearchWKid.getText();
+            if (searchCriteria.isEmpty()) {
+                displayWorkouts(id_category); // Revert to original state if search field is empty
+            } else {
 
-            AddWorkout addWorkoutController = loader.getController();
-            addWorkoutController.setCategoryId(retrieveCategoryId());
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception e) {
-            // Handle the exception appropriately
-            e.printStackTrace();
+                List<workouts> workout = bs.searchworkout(searchCriteria);
+                ObservableList<workouts> observableList = FXCollections.observableList(workout);
+                updateVBoxWorkout(workout); // Update the UI with search results
+            }
+        } catch (SQLException | IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
     }
+
+    private void updateVBoxWorkout(List<workouts> workout) {
+        // Clear existing content in the scroll pane
+        scrollpane.setContent(null);
+
+        // Create a new VBox to hold all event boxes
+        VBox vBox = new VBox();
+        vBox.setSpacing(20);
+        vBox.setPadding(new Insets(20));
+
+        // Initialize row and column counters for layout
+        int column = 0;
+
+        // Create an HBox to hold events for each row
+        HBox currentRowHBox = new HBox();
+        currentRowHBox.setSpacing(20);
+
+        // Iterate over the list of events and create event boxes
+        for (workouts category : workout) {
+            // Create event box for the current event
+            VBox catBox = createWorkoutBox(category);
+
+            // Add the event box to the current row HBox
+            currentRowHBox.getChildren().add(catBox);
+
+            // Increment column counter
+            column++;
+
+            // If the column count reaches 3, reset it and add the current row HBox to the VBox
+            if (column == 3) {
+                vBox.getChildren().add(currentRowHBox);
+                currentRowHBox = new HBox(); // Reset the row HBox for the next row
+                currentRowHBox.setSpacing(20);
+                column = 0; // Reset column counter
+            }
+        }
+
+        // If there are remaining events in the last row, add them to the VBox
+        if (!currentRowHBox.getChildren().isEmpty()) {
+            vBox.getChildren().add(currentRowHBox);
+        }
+
+        // Set the VBox as the content of the scroll pane
+        scrollpane.setContent(vBox);
+    }
+
 }

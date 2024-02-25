@@ -70,14 +70,6 @@ public class AddWorkout {
         this.id_category = id_category;
     }
 
-
-    private void showAlert(String title, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
     /*
     private void gotolistworkout(ActionEvent event, int idCategory) {
         try {
@@ -133,34 +125,3 @@ public class AddWorkout {
         alert.showAndWait();
     }
     }
-
-
-
-
-
-    /*public void AddWorkout(javafx.event.ActionEvent actionEvent) {
-        try {
-            // Retrieve the category ID
-
-            int categoryId;
-            setCategoryId(id_category);
-
-            // Load the AddWorkout.fxml file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddWorkout.fxml"));
-            Parent root = loader.load();
-
-            // Get the controller of the loaded AddWorkout.fxml file
-            AddWorkout addWorkoutController = loader.getController();
-
-            // Set the category ID in the AddWorkout controller
-            addWorkoutController.setCategoryId(id_category);
-
-            // Show the AddWorkout stage
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-     */

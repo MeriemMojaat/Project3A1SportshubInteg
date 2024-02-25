@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="593.0" prefWidth="767.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ShowCategory">
    <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="652.0" prefWidth="858.0" stylesheets="@style.css">
+      <AnchorPane layoutX="5.0" layoutY="14.0" prefHeight="652.0" prefWidth="858.0" stylesheets="@style.css">
          <children>
-            <VBox layoutX="-11.0" layoutY="-3.0" prefHeight="662.0" prefWidth="180.0" style="-fx-background-color: #004AAD;" />
-            <HBox layoutX="-10.0" layoutY="-17.0" prefHeight="112.0" prefWidth="877.0" style="-fx-background-color: #004AAD;">
-               <children>
-                  <ImageView fitHeight="114.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@icons/logo.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
             <ImageView fitHeight="37.0" fitWidth="40.0" layoutX="9.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@icons/user.png" />
@@ -52,13 +42,19 @@
                   <Image url="@icons/tournament.png" />
                </image>
             </ImageView>
-            <ScrollPane fx:id="scrollpane" layoutX="186.0" layoutY="113.0" prefHeight="434.0" prefWidth="680.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-              </content>
-            </ScrollPane>
+            <ScrollPane fx:id="scrollpane" layoutX="193.0" layoutY="119.0" prefHeight="438.0" prefWidth="628.0" />
             <Button layoutX="230.0" layoutY="575.0" mnemonicParsing="false" onAction="#AddCategory" text="Add a category" />
+            <ImageView fitHeight="114.0" fitWidth="112.0" layoutX="7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/logo.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="420.0" layoutY="573.0" mnemonicParsing="false" onAction="#addworkout" text="Add a workout" />
+            <ComboBox fx:id="combosortCategory" layoutX="659.0" layoutY="44.0" onAction="#sortTableView" prefWidth="150.0" />
+            <TextField fx:id="SearchCatId" layoutX="331.0" layoutY="36.0" onAction="#SearchCatId" />
+
          </children>
       </AnchorPane>
+
    </children>
 </AnchorPane>

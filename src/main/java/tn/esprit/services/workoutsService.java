@@ -17,8 +17,6 @@ public class workoutsService implements IService <workouts> {
     }
 
 
-
-
     @Override
     public void add(workouts workouts) throws SQLException {
         String query = "INSERT INTO `workouts`( `workout_name`, `wk_description`, `wk_intensity`, `wk_image`, `coach_id`, `id_category`) VALUES (?,?,?,?,?,?)";
@@ -64,13 +62,13 @@ public class workoutsService implements IService <workouts> {
     }
 
     @Override
-    public  List<workouts> display() throws SQLException {
+    public List<workouts> display() throws SQLException {
         String query = "SELECT id_workout, workout_name, wk_description , wk_intensity, wk_image, coach_id, id_category  FROM `workouts`";
         stm = con.createStatement();
         ResultSet res = stm.executeQuery(query);
         List<workouts> workouts = new ArrayList<>();
         while (res.next()) {
-            workouts e = new workouts (
+            workouts e = new workouts(
                     res.getInt("id_workout"),
                     res.getString("workout_name"),
                     res.getString("wk_description"),
@@ -128,6 +126,7 @@ public class workoutsService implements IService <workouts> {
 
         return workouts;
     }
+
     public List<workouts> displaySorted(String sortBy) throws SQLException {
         String query = "SELECT workout_name, wk_description,wk_intensity FROM `workouts` ORDER BY ";
 
@@ -161,6 +160,7 @@ public class workoutsService implements IService <workouts> {
         }
         return workouts;
     }
+
     public int getWKNamecatCount(String workout_name) throws SQLException {
         String query = "SELECT COUNT(*) FROM workouts WHERE workout_name = ?";
         PreparedStatement statement = con.prepareStatement(query);
@@ -173,6 +173,7 @@ public class workoutsService implements IService <workouts> {
         }
 
     }
+
     public List<workouts> displayByCategory(int id_category) throws SQLException {
         List<workouts> workoutsList = new ArrayList<>();
         String query = "SELECT * FROM workouts WHERE id_category = ?";
@@ -220,6 +221,7 @@ public class workoutsService implements IService <workouts> {
         }
         return workout;
     }
+
     public List<String> getCategoryNames() throws SQLException {
         List<String> userNames = new ArrayList<>();
         String query = "SELECT category_name FROM workoutcategory"; // Corrected column name to 'username'
@@ -231,6 +233,7 @@ public class workoutsService implements IService <workouts> {
         }
         return userNames;
     }
+
     public int getcatIdByName(String userName) throws SQLException {
         int userId = -1; // Default value indicating not found
         String query = "SELECT id_category FROM workoutcategory WHERE category_name = ?";
@@ -243,5 +246,29 @@ public class workoutsService implements IService <workouts> {
             }
         }
         return userId;
+    }
+
+    public List<workouts> searchworkout(String searchCriteria) throws SQLException {
+        List<workouts> wk = new ArrayList<>();
+        String query = "SELECT * FROM workouts WHERE workout_name LIKE ? OR wk_intensity LIKE ? ";
+
+        try (PreparedStatement statement = con.prepareStatement(query)) {
+            statement.setString(1, "%" + searchCriteria + "%");
+            statement.setString(2, "%" + searchCriteria + "%");
+
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                workouts cat = new workouts(
+                        resultSet.getString("workout_name"),
+                        resultSet.getString("wk_description"),
+                        resultSet.getString("wk_intensity"),
+                        resultSet.getString("wk_image"),
+                        resultSet.getInt("coach_id")
+                );
+                wk.add(cat);
+            }
+        }
+        return wk;
     }
 }

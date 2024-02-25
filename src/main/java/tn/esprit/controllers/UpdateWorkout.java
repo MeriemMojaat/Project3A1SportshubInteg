@@ -74,8 +74,6 @@ public class UpdateWorkout {
             String Intensity = intensity.getText();
             String Image = workoutimage.getText();
             String CoachID = coachid.getText();
-            String CategoryID = categoryid.getText();
-
 
 
             // Update the event object with the new data
@@ -84,7 +82,6 @@ public class UpdateWorkout {
             workoutsToUpdate.setWk_intensity(Intensity);
             workoutsToUpdate.setWk_image(Image);
             workoutsToUpdate.setCoach_id(Integer.parseInt(CoachID));
-            workoutsToUpdate.setId_category(Integer.parseInt(CategoryID));
 
             // Update the event in the database
             es.update(workoutsToUpdate);
@@ -92,7 +89,7 @@ public class UpdateWorkout {
             // Show success message
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
-            alert.setContentText("Event updated successfully");
+            alert.setContentText("workout updated successfully");
             alert.showAndWait();}
         catch (SQLException e)
         {
@@ -110,7 +107,6 @@ public class UpdateWorkout {
         intensity.setText(workouts.getWk_intensity());
         workoutimage.setText(workouts.getWk_image());
         coachid.setText(String.valueOf(workouts.getCoach_id()));
-        categoryid.setText(String.valueOf(workouts.getId_category()));
 
     }
 

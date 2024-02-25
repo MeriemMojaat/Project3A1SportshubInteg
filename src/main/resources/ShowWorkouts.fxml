@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
+<?import javafx.scene.control.TextField?>
 <AnchorPane prefHeight="559.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ShowWorkouts">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="593.0" prefWidth="767.0" stylesheets="@style.css">
@@ -60,7 +61,8 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                   </ScrollPane>
-                  <Button layoutX="230.0" layoutY="575.0" mnemonicParsing="false" onAction="#addworkout" text="Add a workout" />
+                  <TextField fx:id="SearchWKid" layoutX="331.0" layoutY="36.0" onAction="#SearchWKid" />
+
                </children>
             </AnchorPane>
          </children>
