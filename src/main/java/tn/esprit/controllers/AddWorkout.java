@@ -25,6 +25,14 @@ public class AddWorkout {
     private TextField intensity;
     @FXML
     private ComboBox<String> categoryComboBox;
+    @FXML
+    private ComboBox<String> CoachComboBox;
+    @FXML
+    private RadioButton EasyRadioBtn;
+    @FXML
+    private RadioButton MediumRadioBtn;
+    @FXML
+    private RadioButton HardRadioBtn;
 
     @FXML
     private Button tournement;
@@ -69,6 +77,14 @@ public class AddWorkout {
     public void setCategoryId(int id_category) {
         this.id_category = id_category;
     }
+    private void populateCoachNames() {
+        try {
+            List<String> userNames = workoutsService.getCoachNames();
+            CoachComboBox.getItems().addAll(userNames);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     /*
     private void gotolistworkout(ActionEvent event, int idCategory) {
@@ -93,7 +109,7 @@ public class AddWorkout {
     }
     @FXML
     private void initialize() {
-        populateUserNames();
+        populateUserNames();populateCoachNames();
     }
     @FXML
     void AddWorkout(ActionEvent event) {
@@ -105,8 +121,16 @@ public class AddWorkout {
                 showAlert(Alert.AlertType.ERROR, "Error", "Invalid user selected.", "Please select a valid user.");
                 return;
             }
+            String CoachName = CoachComboBox.getValue();
+            int coachd = workoutsService.getCoachIdByName(CoachName);
 
-            workouts newBooking = new workouts(workoutname.getText(), workoutdescription.getText(),intensity.getText(),workoutimage.getText(),Integer.parseInt(coachid.getText()),userId);
+            if (coachd == -1) {
+                showAlert(Alert.AlertType.ERROR, "Error", "Invalid user selected.", "Please select a valid user.");
+                return;
+            }
+            String intensity = EasyRadioBtn.isSelected() ? "Easy" : (MediumRadioBtn.isSelected() ? "Medium" : HardRadioBtn.isSelected() ? "Easy" :null);
+
+            workouts newBooking = new workouts(workoutname.getText(), workoutdescription.getText(),intensity,workoutimage.getText(),coachd,userId);
             workoutsService.add(newBooking);
             showAlert(Alert.AlertType.INFORMATION, "Confirmation", "A new workout is added", null);
         } catch (SQLException e) {

@@ -1,13 +1,11 @@
 package tn.esprit.controllers;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import tn.esprit.entities.workoutcategory;
 import tn.esprit.entities.workouts;
 import tn.esprit.services.workoutcategoryService;
@@ -15,6 +13,7 @@ import tn.esprit.services.workoutsService;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UpdateWorkout {
 
@@ -50,13 +49,41 @@ public class UpdateWorkout {
 
     @FXML
     private TextField workoutname;
+    @FXML
+    private ComboBox<String> categoryComboBox;
+    @FXML
+    private ComboBox<String> CoachComboBox;
+    @FXML
+    private RadioButton EasyRadioBtn;
+    @FXML
+    private RadioButton MediumRadioBtn;
+    @FXML
+    private RadioButton HardRadioBtn;
 
 
     private workouts workoutsToUpdate; // Store the event to be updated
     private final workoutsService es = new workoutsService();
 
 
-
+    @FXML
+    private void initialize() {
+        try {
+            populateCoachNames();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void populateCoachNames() throws SQLException {
+        List<String> userNames = es.getCoachNames();
+        CoachComboBox.setItems(FXCollections.observableArrayList(userNames));
+    }
+    private void showAlert (String title, String message, Alert.AlertType alertType){
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
     @FXML
     void gotolistworkout(ActionEvent event) throws IOException {
         Parent root= FXMLLoader.load(getClass().getResource("/ShowWorkouts.fxml"));
@@ -71,17 +98,17 @@ public class UpdateWorkout {
             // Retrieve updated data from the form fields
             String name = workoutname.getText();
             String description = workoutdescription.getText();
-            String Intensity = intensity.getText();
+            String intensity = EasyRadioBtn.isSelected() ? "Easy" : (MediumRadioBtn.isSelected() ? "Medium" : HardRadioBtn.isSelected() ? "Easy" :null);
             String Image = workoutimage.getText();
-            String CoachID = coachid.getText();
-
+            String userName = CoachComboBox.getValue(); // Get selected user name
+            int userId = es.getcatIdByName(userName);
 
             // Update the event object with the new data
             workoutsToUpdate.setWorkout_name(name);
             workoutsToUpdate.setWk_description(description);
-            workoutsToUpdate.setWk_intensity(Intensity);
+            workoutsToUpdate.setWk_intensity(intensity);
             workoutsToUpdate.setWk_image(Image);
-            workoutsToUpdate.setCoach_id(Integer.parseInt(CoachID));
+            workoutsToUpdate.setCoach_id(userId);
 
             // Update the event in the database
             es.update(workoutsToUpdate);
@@ -104,9 +131,17 @@ public class UpdateWorkout {
         this.workoutsToUpdate = workouts;
         workoutname.setText(workouts.getWorkout_name());
         workoutdescription.setText(workouts.getWk_description());
-        intensity.setText(workouts.getWk_intensity());
+        if ("Easy".equals(workouts.getWk_intensity())) {
+            EasyRadioBtn.setSelected(true);
+        } else if ("Medium".equals(workouts.getWk_intensity())) {
+            MediumRadioBtn.setSelected(true);
+        } { HardRadioBtn.setSelected(true);  }
+
         workoutimage.setText(workouts.getWk_image());
-        coachid.setText(String.valueOf(workouts.getCoach_id()));
+
+        if (workouts.getCoach_id() != 0) {
+            CoachComboBox.setValue(String.valueOf(workouts.getCoach_id()));
+        }
 
     }
 

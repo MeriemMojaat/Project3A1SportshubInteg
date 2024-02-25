@@ -53,30 +53,4 @@ public class AddwkCategory {
 
     }
 
-
-   /* @FXML
-    void event(ActionEvent event) {
-
-    }
-
-    @FXML
-    void tournement(ActionEvent event) {
-
-    }
-
-    @FXML
-    void trade(ActionEvent event) {
-
-    }
-
-    @FXML
-    void user(ActionEvent event) {
-
-    }
-
-    @FXML
-    void workout(ActionEvent event) {
-
-    }*/
-
 }

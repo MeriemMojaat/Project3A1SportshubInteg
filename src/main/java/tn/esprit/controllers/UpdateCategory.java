@@ -71,7 +71,7 @@ public class UpdateCategory {
             // Show success message
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
-            alert.setContentText("Event updated successfully");
+            alert.setContentText("workout updated successfully");
             alert.showAndWait();}
         catch (SQLException e)
         {
@@ -83,13 +83,20 @@ public class UpdateCategory {
     }
 
     public void setCategoryData(workoutcategory workoutcategory) {
-        this.CategoryToUpdate = workoutcategory;
 
+        this.CategoryToUpdate = workoutcategory;
 
         categoryname.setText(workoutcategory.getCategory_name());
         categorydescription.setText(workoutcategory.getCat_description());
         categoryimage.setText(workoutcategory.getCat_image());
 
+    }
+    private void showAlert (String title, String message, Alert.AlertType alertType){
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 }

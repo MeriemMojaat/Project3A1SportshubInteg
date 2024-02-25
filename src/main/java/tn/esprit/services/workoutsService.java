@@ -246,6 +246,48 @@ public class workoutsService implements IService <workouts> {
             }
         }
         return userId;
+
+    }
+    public String getUserNameById(int userId) throws SQLException {
+        String userName = null;
+        String query = "SELECT category_name FROM workoutcategory WHERE id_category = ?";
+        try (PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, userId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    userName = rs.getString("category_name");
+                }
+            }
+        }
+        return userName;
+    }
+
+
+    public List<String> getCoachNames() throws SQLException {
+        List<String> userNames = new ArrayList<>();
+        String query = "SELECT coach_name FROM coach"; // Corrected column name to 'username'
+        try (PreparedStatement ps = con.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                userNames.add(rs.getString("coach_name"));
+            }
+        }
+        return userNames;
+    }
+
+
+    public int getCoachIdByName(String userName) throws SQLException {
+        int userId = -1; // Default value indicating not found
+        String query = "SELECT coach_id FROM coach WHERE coach_name = ?";
+        try (PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setString(1, userName);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    userId = rs.getInt("coach_id");
+                }
+            }
+        }
+        return userId;
     }
 
     public List<workouts> searchworkout(String searchCriteria) throws SQLException {

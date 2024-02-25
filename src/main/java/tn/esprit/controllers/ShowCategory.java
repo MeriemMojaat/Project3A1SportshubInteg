@@ -124,7 +124,7 @@ public class ShowCategory {
         listworkoutsButtonBox.setAlignment(Pos.CENTER_RIGHT);
 
         // Create labels for the event details
-        Label nameLabel = new Label("Name: " + category_name);
+        Label nameLabel = new Label("Name: " +  category_name);
         Label descriptionLabel = new Label("Description: " + cat_description);
         Label imageLabel = new Label("Image: " + cat_image);
         eventBox.getChildren().addAll(
