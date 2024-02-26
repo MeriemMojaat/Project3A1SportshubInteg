@@ -1,5 +1,6 @@
 package tn.esprit.services;
 
+import javafx.scene.control.Alert;
 import tn.esprit.entities.workoutcategory;
 import tn.esprit.utils.myDataBase;
 
@@ -18,6 +19,17 @@ public class workoutcategoryService implements IService <workoutcategory>{
     public static boolean isValidCategoryName(String categoryName) {
         return categoryName.length() <= 10;
     }
+    private boolean isAlphaNumeric(String str) {
+        return str != null && str.matches("^[a-zA-Z]+$");
+    }
+
+
+    private void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 
 
 
@@ -27,6 +39,9 @@ public class workoutcategoryService implements IService <workoutcategory>{
 
         if (!isValidCategoryName(workoutcategory.getCategory_name())) {
             throw new IllegalArgumentException("You shouldn't exceed 10 characters .");
+        }
+        if (!isAlphaNumeric(workoutcategory.getCategory_name())) {
+            throw new IllegalArgumentException("The name must be alphanumeric .");
         }
 
             PreparedStatement ps = con.prepareStatement(query);

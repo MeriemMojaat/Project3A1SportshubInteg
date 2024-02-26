@@ -104,10 +104,6 @@ public class AddWorkout {
         }
     }*/
     @FXML
-    void gotolistworkout(ActionEvent event) {
-
-    }
-    @FXML
     private void initialize() {
         populateUserNames();populateCoachNames();
     }

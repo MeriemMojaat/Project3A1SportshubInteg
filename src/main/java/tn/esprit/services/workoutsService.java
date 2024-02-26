@@ -1,5 +1,6 @@
 package tn.esprit.services;
 
+import javafx.scene.control.Alert;
 import tn.esprit.entities.workoutcategory;
 import tn.esprit.entities.workouts;
 import tn.esprit.utils.myDataBase;
@@ -16,10 +17,28 @@ public class workoutsService implements IService <workouts> {
         con = myDataBase.getInstance().getCon();
     }
 
+    public static boolean isValidCategoryName(String categoryName) {
+        return categoryName.length() <= 10;
+    }
+    private boolean isAlphaNumeric(String str) {
+        return str != null && str.matches("^[a-zA-Z]+$");
+
+    }
+
+
+
+
+
 
     @Override
     public void add(workouts workouts) throws SQLException {
         String query = "INSERT INTO `workouts`( `workout_name`, `wk_description`, `wk_intensity`, `wk_image`, `coach_id`, `id_category`) VALUES (?,?,?,?,?,?)";
+        if (!isValidCategoryName(workouts.getWorkout_name())) {
+            throw new IllegalArgumentException("You shouldn't exceed 10 characters .");
+        }
+        if (!isAlphaNumeric(workouts.getWorkout_name())) {
+            throw new IllegalArgumentException("The name must be alphanumeric .");
+        }
 
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, workouts.getWorkout_name());
@@ -30,6 +49,12 @@ public class workoutsService implements IService <workouts> {
         ps.setInt(6, workouts.getId_category());
         ps.executeUpdate();
         System.out.println("workout added!");
+    }
+    private void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     @Override

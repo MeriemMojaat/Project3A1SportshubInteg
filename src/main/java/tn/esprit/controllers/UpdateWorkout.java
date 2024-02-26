@@ -86,7 +86,7 @@ public class UpdateWorkout {
     }
     @FXML
     void gotolistworkout(ActionEvent event) throws IOException {
-        Parent root= FXMLLoader.load(getClass().getResource("/ShowWorkouts.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("/ShowCategory.fxml"));
         workoutname.getScene().setRoot(root);
         System.out.println("Previous");
     }

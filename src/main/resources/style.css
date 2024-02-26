@@ -1,7 +1,7 @@
 /* Root element */
 
 .root {
-    -fx-background-image: url("backg.jpg"); /* Add background image */
+    -fx-background-image: url("download.jpg"); /* Add background image */
     -fx-background-size: cover; /* Ensure background image covers entire area */
     -fx-background-repeat: no-repeat; /* Prevent background image from repeating */
 }
@@ -25,7 +25,7 @@
 
 .button:hover {
     /* Hover effect */
-    -fx-background-color: #004AAD; /* Darker green background on hover */
+    -fx-background-color: #6495ED; /* Darker green background on hover */
 
     /* Animation */
     -fx-scale-x: 1.1;
@@ -33,7 +33,7 @@
 }
 .button:pressed {
     /* Pressed effect */
-    -fx-background-color: #004AAD; /* Even darker green background when pressed */
+    -fx-background-color: #6495ED; /* Even darker green background when pressed */
 }
 
 /* Label style */
