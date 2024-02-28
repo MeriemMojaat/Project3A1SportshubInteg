@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -17,6 +18,10 @@ import javafx.stage.Stage;
 import tn.esprit.entities.workoutcategory;
 import tn.esprit.entities.workouts;
 import tn.esprit.services.workoutcategoryService;
+import javafx.scene.image.ImageView;
+import javafx.scene.control.Label;
+
+
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -126,9 +131,21 @@ public class ShowCategory {
         // Create labels for the event details
         Label nameLabel = new Label("Name: " +  category_name);
         Label descriptionLabel = new Label("Description: " + cat_description);
-        Label imageLabel = new Label("Image: " + cat_image);
+        ImageView imageView = new ImageView();
+        imageView.setFitWidth(150); // Set the preferred width of the image
+        imageView.setPreserveRatio(true);
+
+        // Load and set the image from its URL
+        if (cat_image != null && !cat_image.isEmpty()) {
+            try {
+                Image image = new Image(cat_image);
+                imageView.setImage(image);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
         eventBox.getChildren().addAll(
-                nameLabel, descriptionLabel, imageLabel,buttonBox,listworkoutsButtonBox
+                nameLabel, descriptionLabel, imageView,buttonBox,listworkoutsButtonBox
         );
 
         return eventBox;
