@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.updatetrade">
+   <children>
+      <TextField fx:id="LOCATION" layoutX="227.0" layoutY="118.0" opacity="0.52" promptText="location" />
+      <TextField fx:id="TRADESTATUS" layoutX="227.0" layoutY="179.0" opacity="0.53" promptText="trade status" />
+      <TextField fx:id="NAME" layoutX="227.0" layoutY="236.0" opacity="0.53" promptText="name" />
+      <Button layoutX="280.0" layoutY="298.0" mnemonicParsing="false" onAction="#update" text="update" />
+      <ImageView fitHeight="83.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons/logoo.png" />
+         </image>
+      </ImageView>
+      <ComboBox fx:id="Id_UserName" layoutX="250.0" layoutY="70.0" opacity="0.76" prefWidth="150.0" promptText="NAME USERS" />
+   </children>
+</AnchorPane>

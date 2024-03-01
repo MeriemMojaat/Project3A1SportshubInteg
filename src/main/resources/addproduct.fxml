@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="576.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.addproduct">
+   <children>
+      <Button layoutX="223.0" layoutY="471.0" mnemonicParsing="false" onAction="#add" text="add" />
+      <TextField fx:id="QUANTITY" layoutX="207.0" layoutY="150.0" opacity="0.5" promptText="quantity" />
+      <Button layoutX="319.0" layoutY="471.0" mnemonicParsing="false" onAction="#back" text="back" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="80.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons/logoo.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="DESCRIPTION" layoutX="201.0" layoutY="288.0" prefHeight="163.0" prefWidth="200.0" promptText="DESCRIPTION" />
+      <TextField fx:id="IMAGE" layoutX="207.0" layoutY="33.0" opacity="0.51" promptText="image" />
+      <RadioButton fx:id="gym" layoutX="307.0" layoutY="253.0" mnemonicParsing="false" text="GYM products" />
+      <RadioButton fx:id="balls" layoutX="257.0" layoutY="220.0" mnemonicParsing="false" text="Balls" />
+      <RadioButton fx:id="clothes" layoutX="164.0" layoutY="220.0" mnemonicParsing="false" text="Clothes" />
+      <RadioButton fx:id="swimming" layoutX="195.0" layoutY="253.0" mnemonicParsing="false" text="Swimming" />
+      <RadioButton fx:id="bicycles" layoutX="336.0" layoutY="220.0" mnemonicParsing="false" text="Bicycles " />
+      <RadioButton fx:id="used" layoutX="312.0" layoutY="105.0" mnemonicParsing="false" text="used" textFill="WHITE" />
+      <RadioButton fx:id="New" layoutX="213.0" layoutY="105.0" mnemonicParsing="false" text="new" textFill="WHITE" />
+   </children>
+</AnchorPane>

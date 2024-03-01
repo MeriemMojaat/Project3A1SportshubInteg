@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Accept a payment</title>
+    <meta name="description" content="A demo of a payment on Stripe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Adjust Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://js.stripe.com; connect-src 'self' https://api.stripe.com https://merchant-ui-api.stripe.com" />
+    <!-- Include Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="client.js" defer></script>
+    <style>
+        /* Add your custom styles here */
+        #payment-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        #payment-element {
+            margin-bottom: 20px;
+        }
+        #submit {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #submit:hover {
+            background-color: #0056b3;
+        }
+        .spinner {
+            display: none; /* Hide the spinner */
+        }
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Display a payment form -->
+<form id="payment-form">
+    <div id="card-number" class="form-row">
+        <!-- Placeholder for card number -->
+    </div>
+    <div id="card-expiry" class="form-row">
+        <!-- Placeholder for expiry month -->
+    </div>
+    <div id="card-cvc" class="form-row">
+        <!-- Placeholder for CVC -->
+    </div>
+    <button id="submit">
+        <span id="button-text">Pay now</span>
+        <span class="spinner" id="spinner"></span>
+    </button>
+    <div id="payment-message" class="hidden"></div>
+</form>
+</body>
+</html>
