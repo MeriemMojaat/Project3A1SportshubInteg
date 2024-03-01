@@ -28,7 +28,8 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 
 
-
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
@@ -107,51 +108,60 @@ public class ShowCategory {
         }
     }
 
-    private VBox createCategoryBox(workoutcategory workoutcat) {
+
+;
+
+// Other imports...
+
+    private VBox createCategoryBox(workoutcategory workoutCat) {
         VBox eventBox = new VBox();
         eventBox.setStyle("-fx-background-color: #AED6F1; -fx-border-color: #94cdf5; -fx-padding: 30px; -fx-spacing: 10px;");
         eventBox.setSpacing(10);
-        String category_name = workoutcat.getCategory_name();
-        String cat_description = workoutcat.getCat_description();
-        String cat_image = workoutcat.getCat_image();
+
+        String categoryName = workoutCat.getCategory_name();
+        String catDescription = workoutCat.getCat_description();
+        String catImageUrl = workoutCat.getCat_image();
+
         // Create delete button
-        eventBox.getProperties().put("id_category", workoutcat.getId_category());
+        eventBox.getProperties().put("id_category", workoutCat.getId_category());
 
         Button deleteButton = new Button("Delete");
         deleteButton.setOnAction(workoutcategory -> handleDeleteCategory(workoutcategory));
 
         Button updateButton = new Button("Update");
-        updateButton.setOnAction(event -> handleUpdateCategory(event, workoutcat.getId_category()));
-        
-        Button listworkoutsButton = new Button("list of workouts");
-        listworkoutsButton.setOnAction(event -> handlelistworkouts(event, workoutcat.getId_category()));
+        updateButton.setOnAction(event -> handleUpdateCategory(event, workoutCat.getId_category()));
 
+        Button listWorkoutsButton = new Button("List of Workouts");
+        listWorkoutsButton.setOnAction(event -> handlelistworkouts(event,  workoutCat.getId_category()));
 
         HBox buttonBox = new HBox(deleteButton, updateButton);
         buttonBox.setAlignment(Pos.CENTER_RIGHT);
 
-
-        HBox listworkoutsButtonBox = new HBox(listworkoutsButton);
-        listworkoutsButtonBox.setAlignment(Pos.CENTER_RIGHT);
+        HBox listWorkoutsButtonBox = new HBox(listWorkoutsButton);
+        listWorkoutsButtonBox.setAlignment(Pos.CENTER_RIGHT);
 
         // Create labels for the event details
-        Label nameLabel = new Label("Name: " +  category_name);
-        Label descriptionLabel = new Label("Description: " + cat_description);
+        Label nameLabel = new Label("Name: " + categoryName);
+        Label descriptionLabel = new Label("Description: " + catDescription);
+
         ImageView imageView = new ImageView();
         imageView.setFitWidth(150); // Set the preferred width of the image
         imageView.setPreserveRatio(true);
 
         // Load and set the image from its URL
-        if (cat_image != null && !cat_image.isEmpty()) {
-            try {
-                Image image = new Image(cat_image);
+        try {
+            if (catImageUrl != null && !catImageUrl.isEmpty()) {
+                Image image = new Image(catImageUrl);
                 imageView.setImage(image);
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle the exception, e.g., display an error message
+            System.err.println("Error loading image for category: " + categoryName);
         }
+
         eventBox.getChildren().addAll(
-                nameLabel, descriptionLabel, imageView,buttonBox,listworkoutsButtonBox
+                nameLabel, descriptionLabel, imageView, buttonBox, listWorkoutsButtonBox
         );
 
         return eventBox;

@@ -13,12 +13,18 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.MediaException;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import tn.esprit.entities.workoutcategory;
 import tn.esprit.entities.workouts;
 import tn.esprit.services.workoutcategoryService;
 import tn.esprit.services.workoutsService;
+import javafx.scene.media.Media;
 
+
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -111,41 +117,38 @@ public class ShowWorkouts {
             String workout_name = workout.getWorkout_name();
             String wk_description = workout.getWk_description();
             String wk_intensity = workout.getWk_intensity();
-            String wk_image = workout.getWk_image();
-           int coach_id = workout.getCoach_id();
-         /*   int id_category = workout.getId_category();*/
+            String wk_video_url = workout.getWk_image();
+            int coach_id = workout.getCoach_id();
+
+            // Create VideoPlayerBox
+            VideoPlayerBox videoPlayerBox = new VideoPlayerBox(wk_video_url);
 
             // Create delete button
             eventBox.getProperties().put("id_workout", workout.getId_workout());
-
             Button deleteButton = new Button("Delete");
             deleteButton.setOnAction(workouts -> handleDeleteWorkout(workouts));
-
             Button updateButton = new Button("Update");
             updateButton.setOnAction(event -> handleUpdateWorkout(event, workout.getId_workout()));
-
             HBox buttonBox = new HBox(deleteButton, updateButton);
             buttonBox.setAlignment(Pos.CENTER_RIGHT);
+
+            // Create like and dislike buttons
             Button likeButton = new Button("Like");
             likeButton.setOnAction(event -> handleLike(id_workout));
-
             Button dislikeButton = new Button("Dislike");
             dislikeButton.setOnAction(event -> handleDislike(id_workout));
-
             HBox ratingBox = new HBox(likeButton, dislikeButton);
             ratingBox.setAlignment(Pos.CENTER_RIGHT);
-
 
             // Create labels for the event details
             Label nameLabel = new Label("Name: " + workout_name);
             Label descriptionLabel = new Label("Description: " + wk_description);
             Label intensityLabel = new Label("Intensity: " + wk_intensity);
-            Label imageLabel = new Label("Image: " + wk_image);
             Label coachidLabel = new Label("CoachID: " + coach_id);
-           /* Label categoryidLabel = new Label("Category: " + id_category);*/
 
+            // Add components to eventBox
             eventBox.getChildren().addAll(
-                    nameLabel, descriptionLabel,intensityLabel ,imageLabel,coachidLabel, buttonBox,ratingBox
+                    nameLabel, descriptionLabel, intensityLabel, videoPlayerBox, coachidLabel, buttonBox, ratingBox
             );
 
             return eventBox;
