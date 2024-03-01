@@ -8,7 +8,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="545.0" prefWidth="765.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AddWorkout">
    <children>
@@ -30,6 +32,9 @@
             <RadioButton fx:id="EasyRadioBtn" layoutX="252.0" layoutY="364.0" mnemonicParsing="false" text="Easy" />
             <RadioButton fx:id="MediumRadioBtn" layoutX="321.0" layoutY="364.0" mnemonicParsing="false" text="Medium" />
             <RadioButton fx:id="HardRadioBtn" layoutX="403.0" layoutY="364.0" mnemonicParsing="false" text="Hard" />
+            <Text fx:id="videoTitle" layoutX="595.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="videoTitle" />
+            <Button layoutX="555.0" layoutY="249.0" mnemonicParsing="false" onAction="#uploadVideo" text="upload video" />
+            <MediaView fx:id="videoThumbnail" fitHeight="200.0" fitWidth="200.0" layoutX="534.0" layoutY="20.0" />
          </children>
       </AnchorPane>
    </children>

@@ -332,10 +332,27 @@ public class workoutsService implements IService <workouts> {
                         resultSet.getString("wk_intensity"),
                         resultSet.getString("wk_image"),
                         resultSet.getInt("coach_id")
+
                 );
                 wk.add(cat);
             }
         }
         return wk;
+    }
+
+    public void incrementLikeCount(int id_workout) throws SQLException {
+        String query = "UPDATE workouts SET like_count = like_count + 1 WHERE id_workout = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setInt(1, id_workout);
+        ps.executeUpdate();
+        System.out.println("Liked workout with ID: " + id_workout);
+    }
+
+    public void incrementDislikeCount(int id_workout) throws SQLException {
+        String query = "UPDATE workouts SET dislike_count = dislike_count + 1 WHERE id_workout = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setInt(1, id_workout);
+        ps.executeUpdate();
+        System.out.println("Disliked workout with ID: " + id_workout);
     }
 }

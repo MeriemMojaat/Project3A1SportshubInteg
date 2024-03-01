@@ -6,23 +6,30 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.esprit.entities.workoutcategory;
 import tn.esprit.entities.workouts;
 import tn.esprit.services.workoutcategoryService;
 import tn.esprit.services.workoutsService;
+import tn.esprit.services.videoService;
+import javafx.scene.media.MediaView;
+import javafx.scene.media.*;
 
+
+
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 public class AddWorkout {
 
-    @FXML
-    private Button event;
 
-    @FXML
-    private TextField intensity;
+
     @FXML
     private ComboBox<String> categoryComboBox;
     @FXML
@@ -34,17 +41,6 @@ public class AddWorkout {
     @FXML
     private RadioButton HardRadioBtn;
 
-    @FXML
-    private Button tournement;
-
-    @FXML
-    private Button trade;
-
-    @FXML
-    private Button user;
-
-    @FXML
-    private Button workout;
 
     @FXML
     private TextArea workoutdescription;
@@ -60,9 +56,47 @@ public class AddWorkout {
     @FXML
     private int id_category;
 
+    private String videoPath;
+    /*@FXML
+    private ImageView videoThumbnail;*/
+    @FXML
+    private MediaView videoThumbnail;
+    @FXML
+    private Text videoTitle;
+
     private workoutsService workoutsService = new workoutsService();
     private workoutcategoryService wc = new workoutcategoryService();
     private int currentCategoryId; // This variable holds the ID of the current category
+
+    private final videoService videoService = new videoService();
+    @FXML
+    void uploadVideo(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Video File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Video Files", "*.mp4", "*.avi", "*.mov"));
+        File selectedFile = fileChooser.showOpenDialog(videoThumbnail.getScene().getWindow());
+        if (selectedFile != null) {
+            // Retrieve the selected video file's path
+            String videoPath = selectedFile.getAbsolutePath();
+            System.out.println("Selected video file: " + videoPath);
+
+            Media media = new Media(selectedFile.toURI().toString());
+
+
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+            // Bind the MediaPlayer to the MediaView
+            videoThumbnail.setMediaPlayer(mediaPlayer);
+
+            // Set the dimensions of the MediaView (optional)
+            videoThumbnail.setFitWidth(400); // Set your desired width
+            videoThumbnail.setFitHeight(300); // Set your desired height
+
+            String cloudinaryUrl = videoService.uploadVideo(videoPath);
+
+        }
+    }
 
     // Method to set the ID of the current category
     private void populateUserNames() {
@@ -110,6 +144,7 @@ public class AddWorkout {
     @FXML
     void AddWorkout(ActionEvent event) {
         try {
+
             String categName = categoryComboBox.getValue();
             int userId = workoutsService.getcatIdByName(categName);
 

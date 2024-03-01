@@ -33,8 +33,7 @@ public class AddwkCategory {
 
     private final workoutcategoryService cs = new workoutcategoryService();
 
-    @FXML
-    private TextField foodName;
+
 
     @FXML
     private ImageView ImageView;

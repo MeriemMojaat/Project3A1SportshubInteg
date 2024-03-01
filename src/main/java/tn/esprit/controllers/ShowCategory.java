@@ -20,6 +20,12 @@ import tn.esprit.entities.workouts;
 import tn.esprit.services.workoutcategoryService;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
+import tn.esprit.services.CloudinaryService;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import java.io.File;
+import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 
 

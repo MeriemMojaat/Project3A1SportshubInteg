@@ -104,6 +104,7 @@ public class ShowWorkouts {
     }
 
         private VBox createWorkoutBox (workouts workout){
+            int id_workout = workout.getId_workout();
             VBox eventBox = new VBox();
             eventBox.setStyle("-fx-background-color: #AED6F1; -fx-border-color: #94cdf5; -fx-padding: 30px; -fx-spacing: 10px;");
             eventBox.setSpacing(10);
@@ -125,6 +126,15 @@ public class ShowWorkouts {
 
             HBox buttonBox = new HBox(deleteButton, updateButton);
             buttonBox.setAlignment(Pos.CENTER_RIGHT);
+            Button likeButton = new Button("Like");
+            likeButton.setOnAction(event -> handleLike(id_workout));
+
+            Button dislikeButton = new Button("Dislike");
+            dislikeButton.setOnAction(event -> handleDislike(id_workout));
+
+            HBox ratingBox = new HBox(likeButton, dislikeButton);
+            ratingBox.setAlignment(Pos.CENTER_RIGHT);
+
 
             // Create labels for the event details
             Label nameLabel = new Label("Name: " + workout_name);
@@ -135,11 +145,49 @@ public class ShowWorkouts {
            /* Label categoryidLabel = new Label("Category: " + id_category);*/
 
             eventBox.getChildren().addAll(
-                    nameLabel, descriptionLabel,intensityLabel ,imageLabel,coachidLabel, buttonBox
+                    nameLabel, descriptionLabel,intensityLabel ,imageLabel,coachidLabel, buttonBox,ratingBox
             );
 
             return eventBox;
         }
+    @FXML
+    void handleLike(int id_workout) {
+        try {
+            // Perform action to increment like count for the specified workout ID
+            bs.incrementLikeCount(id_workout);
+            showAlert("Liked", "Liked workout with ID: " + id_workout, Alert.AlertType.INFORMATION);
+        } catch (SQLException e) {
+            showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    // Add event handler for the dislike button
+    @FXML
+    void handleDislike(int id_workout) {
+        try {
+            // Perform action to increment dislike count for the specified workout ID
+            bs.incrementDislikeCount(id_workout);
+            showAlert("Disliked", "Disliked workout with ID: " + id_workout, Alert.AlertType.INFORMATION);
+        } catch (SQLException e) {
+            showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+
+    // Helper method to retrieve workout ID from the event source
+    private int getWorkoutIdFromEvent(ActionEvent event) {
+        if (event.getSource() instanceof Button) {
+            Button clickedButton = (Button) event.getSource();
+
+            // Retrieve the parent VBox containing the workout details
+            VBox parentVBox = (VBox) clickedButton.getParent();
+
+            // Retrieve the workout ID associated with the VBox
+            int id_workout = (int) parentVBox.getProperties().get("id_workout");
+            return id_workout;
+        }
+        return -1; // Default value indicating no workout ID found
+    }
 
         private void handleUpdateWorkout (ActionEvent event,int WorkoutID){
             try {
