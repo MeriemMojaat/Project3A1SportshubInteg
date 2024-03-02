@@ -133,6 +133,9 @@ public class ShowCategory {
 
         Button listWorkoutsButton = new Button("List of Workouts");
         listWorkoutsButton.setOnAction(event -> handlelistworkouts(event,  workoutCat.getId_category()));
+        Button addworkoutButton = new Button("Add workout");
+        addworkoutButton.setOnAction(event -> handleAddworkout(event, workoutCat.getId_category()));
+
 
         HBox buttonBox = new HBox(deleteButton, updateButton);
         buttonBox.setAlignment(Pos.CENTER_RIGHT);
@@ -161,10 +164,26 @@ public class ShowCategory {
         }
 
         eventBox.getChildren().addAll(
-                nameLabel, descriptionLabel, imageView, buttonBox, listWorkoutsButtonBox
+                nameLabel, descriptionLabel, imageView, buttonBox, addworkoutButton,listWorkoutsButtonBox
         );
 
         return eventBox;
+    }
+    private void handleAddworkout(ActionEvent event, int eventId) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddWorkout.fxml"));
+            Parent root = loader.load();
+
+            AddWorkout addBookingController = loader.getController();
+            addBookingController.setEventId(eventId);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to load AddBooking page", Alert.AlertType.ERROR);
+        }
     }
 
     private void handlelistworkouts(ActionEvent event, int idCategory) {
@@ -281,23 +300,23 @@ public class ShowCategory {
         }
     }
 
-    @FXML
-    void addworkout(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddWorkout.fxml"));
-            Parent root = loader.load();
-
-            AddWorkout addWorkoutController = loader.getController();
-            addWorkoutController.setCategoryId(retrieveCategoryId());
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception e) {
-            // Handle the exception appropriately
-            e.printStackTrace();
-        }
-    }
+//    @FXML
+//    void addworkout(ActionEvent event) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddWorkout.fxml"));
+//            Parent root = loader.load();
+//
+//            AddWorkout addWorkoutController = loader.getController();
+//            addWorkoutController.setCategoryId(retrieveCategoryId());
+//
+//            Stage stage = new Stage();
+//            stage.setScene(new Scene(root));
+//            stage.show();
+//        } catch (Exception e) {
+//            // Handle the exception appropriately
+//            e.printStackTrace();
+//        }
+//    }
     @FXML
     void sortTableView(ActionEvent event) {
         try {

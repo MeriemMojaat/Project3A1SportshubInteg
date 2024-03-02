@@ -17,10 +17,11 @@ import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
+import tn.esprit.entities.Feedback;
 import tn.esprit.entities.workoutcategory;
 import tn.esprit.entities.workouts;
-import tn.esprit.services.workoutcategoryService;
-import tn.esprit.services.workoutsService;
+import tn.esprit.services.*;
 import javafx.scene.media.Media;
 
 
@@ -28,6 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class ShowWorkouts {
 
@@ -37,25 +39,18 @@ public class ShowWorkouts {
     @FXML
     private ScrollPane scrollpane;
 
-    @FXML
-    private Button tournement;
 
-    @FXML
-    private Button trade;
-
-    @FXML
-    private Button user;
-
-    @FXML
-    private Button workout;
     @FXML
     private TextField SearchWKid;
+
 
     private int id_category;
     private int WorkoutID;
 
     private final workoutsService bs = new workoutsService();
     private workoutcategoryService categoryService = new workoutcategoryService();
+    FeedbackDao feedbackDao = new FeedbackDaoImpl();
+    FeedbackService feedbackService = new FeedbackService(feedbackDao);
 
 
     @FXML
@@ -118,7 +113,7 @@ public class ShowWorkouts {
             String wk_description = workout.getWk_description();
             String wk_intensity = workout.getWk_intensity();
             String wk_video_url = workout.getWk_image();
-            int coach_id = workout.getCoach_id();
+          //  int coach_id = workout.getCoach_id();
 
             // Create VideoPlayerBox
             VideoPlayerBox videoPlayerBox = new VideoPlayerBox(wk_video_url);
@@ -132,32 +127,46 @@ public class ShowWorkouts {
             HBox buttonBox = new HBox(deleteButton, updateButton);
             buttonBox.setAlignment(Pos.CENTER_RIGHT);
 
-            // Create like and dislike buttons
-            Button likeButton = new Button("Like");
-            likeButton.setOnAction(event -> handleLike(id_workout));
-            Button dislikeButton = new Button("Dislike");
+
+
+
+            Button likeButton = new Button("👍");
+            likeButton.setOnAction(event -> submitFeedback(id_workout));
+            Button dislikeButton = new Button("👎");
             dislikeButton.setOnAction(event -> handleDislike(id_workout));
             HBox ratingBox = new HBox(likeButton, dislikeButton);
             ratingBox.setAlignment(Pos.CENTER_RIGHT);
+
+
 
             // Create labels for the event details
             Label nameLabel = new Label("Name: " + workout_name);
             Label descriptionLabel = new Label("Description: " + wk_description);
             Label intensityLabel = new Label("Intensity: " + wk_intensity);
-            Label coachidLabel = new Label("CoachID: " + coach_id);
+           // Label coachidLabel = new Label("CoachID: " + coach_id);
 
             // Add components to eventBox
             eventBox.getChildren().addAll(
-                    nameLabel, descriptionLabel, intensityLabel, videoPlayerBox, coachidLabel, buttonBox, ratingBox
+                    nameLabel, descriptionLabel, intensityLabel,ratingBox, videoPlayerBox, buttonBox
             );
 
             return eventBox;
         }
+
+
+
+
+
     @FXML
-    void handleLike(int id_workout) {
+    void submitFeedback(int id_workout) {
         try {
             // Perform action to increment like count for the specified workout ID
+            Feedback feedback = new Feedback();
             bs.incrementLikeCount(id_workout);
+           // feedback.setUserid(getCurrentUserId()); // Set the user ID
+            feedback.setId_workout(id_workout); // Set the workout ID
+            feedback.setLike_count(1);
+            feedbackDao.saveFeedback(feedback);
             showAlert("Liked", "Liked workout with ID: " + id_workout, Alert.AlertType.INFORMATION);
         } catch (SQLException e) {
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);

@@ -19,7 +19,6 @@
                   <Image url="@icons/logo.png" />
                </image>
             </ImageView>
-            <Button layoutX="420.0" layoutY="573.0" mnemonicParsing="false" onAction="#addworkout" text="Add a workout" />
             <ComboBox fx:id="combosortCategory" layoutX="659.0" layoutY="44.0" onAction="#sortTableView" prefWidth="150.0" promptText="Sort" />
             <TextField fx:id="SearchCatId" layoutX="331.0" layoutY="36.0" onAction="#SearchCatId" promptText="Search" />
 

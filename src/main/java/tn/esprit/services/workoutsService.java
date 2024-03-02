@@ -314,7 +314,19 @@ public class workoutsService implements IService <workouts> {
         }
         return userId;
     }
-
+    public int getUserIdByName(String userName) throws SQLException {
+        int userId = -1; // Default value indicating not found
+        String query = "SELECT userid FROM user WHERE name_user = ?";
+        try (PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setString(1, userName);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    userId = rs.getInt("userid");
+                }
+            }
+        }
+        return userId;
+    }
     public List<workouts> searchworkout(String searchCriteria) throws SQLException {
         List<workouts> wk = new ArrayList<>();
         String query = "SELECT * FROM workouts WHERE workout_name LIKE ? OR wk_intensity LIKE ? ";
@@ -341,7 +353,7 @@ public class workoutsService implements IService <workouts> {
     }
 
     public void incrementLikeCount(int id_workout) throws SQLException {
-        String query = "UPDATE workouts SET like_count = like_count + 1 WHERE id_workout = ?";
+        String query = "UPDATE feedback SET like_count = like_count + 1 WHERE id_workout = ?";
         PreparedStatement ps = con.prepareStatement(query);
         ps.setInt(1, id_workout);
         ps.executeUpdate();
@@ -349,7 +361,7 @@ public class workoutsService implements IService <workouts> {
     }
 
     public void incrementDislikeCount(int id_workout) throws SQLException {
-        String query = "UPDATE workouts SET dislike_count = dislike_count + 1 WHERE id_workout = ?";
+        String query = "UPDATE feedback SET dislike_count = dislike_count + 1 WHERE id_workout = ?";
         PreparedStatement ps = con.prepareStatement(query);
         ps.setInt(1, id_workout);
         ps.executeUpdate();

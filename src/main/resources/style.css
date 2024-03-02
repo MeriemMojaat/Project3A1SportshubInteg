@@ -1,83 +1,169 @@
-/* Root element */
-
-.root {
-    -fx-background-image: url("download.jpg"); /* Add background image */
-    -fx-background-size: cover; /* Ensure background image covers entire area */
-    -fx-background-repeat: no-repeat; /* Prevent background image from repeating */
+.root{
+    -fx-background-color:#EAEEF4;
+    -fx-font-family: "Century Gothic Bold";
 }
 
-/* Button style */
-.button {
+.combo-box{
+    -fx-background-color:#EAEEF4;
+    -fx-font-family: "Century Gothic Bold";
+}
+.text-field{
+    -fx-background-color:#EAEEF4;
+    -fx-font-family: "Century Gothic Bold";
+}
+.date-picker{
+    -fx-background-color:#EAEEF4;
+    -fx-font-family: "Century Gothic Bold";
+}
+.text-area{
+    -fx-background-color:#EAEEF4;
+    -fx-font-family: "Century Gothic Bold";
+}
+.side_ankerpane{
+    -fx-background-color:#353A56;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+}
+.inner_pane{
+    -fx-background-color:#748CF1;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #748CF1;
 
-    -fx-background-color:#004AAD; /* Green background */
-    -fx-text-fill: white; /* White text */
-    -fx-font-family: "Arial ";
+}
+.most_inner_pane{
+    -fx-background-color:#6780E2;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #748CF1;
+}
+
+#btn_workbench{
+    -fx-background-color:#141313;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-border-style: solid;
+    -fx-border-color: #141313;
+}
+.btn_workbench11{
+    -fx-background-color:#353A56;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-border-style: solid;
+    -fx-border-color: #353A56;
+}
+.pane_1{
+    -fx-background-color:#748CF1;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #748CF1;
+}
+.progress{
+    -fx-background-color:#ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #ffffff;
+}
+.pane_11{
+    -fx-background-color:#ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #ffffff;
+}
+.pane_111{
+    -fx-background-color:#FD9999;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #FD9999;
+
+}
+.pane_1111{
+    -fx-background-color:#353A56;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #353A56;
+}
+/* Styling for the root HBox */
+.root {
+    -fx-spacing: 10;
+}
+
+/* Styling for the side AnchorPane */
+.side_ankerpane {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 10;
+}
+
+/* Styling for the main Pane */
+.pane {
+    -fx-background-color: #EAEEF4;
+    -fx-padding: 10;
+}
+
+/* Styling for the labels */
+.label {
+    -fx-font-family: "Century Gothic";
+}
+
+.label.title {
+    -fx-font-size: 34.0;
+    -fx-text-fill: #333333;
+}
+
+.label.description {
+    -fx-font-size: 15.0;
+    -fx-text-fill: #666666;
+}
+
+.label.today {
+    -fx-font-size: 15.0;
+    -fx-font-weight: bold;
+    -fx-text-fill: #9a9292;
+}
+.button-bar{
+    -fx-background-color: #748CF1;
+
+}
+/* Styling for the buttons */
+.button {
+    -fx-background-color: #748CF1;
+    -fx-padding: 5 10;
     -fx-font-size: 16px; /* Increase font size */
     -fx-padding: 10px 20px; /* Increase padding */
     -fx-background-radius: 25px; /* Increase border radius for rounded corners */
     -fx-border-radius: 25px; /* Rounded corners */
-    /* Animation */
-    -fx-scale-x: 1;
-    -fx-scale-y: 1;
-    -fx-transition: scale 0.3s;
 }
-
 
 .button:hover {
-    /* Hover effect */
-    -fx-background-color: #6495ED; /* Darker green background on hover */
-
-    /* Animation */
-    -fx-scale-x: 1.1;
-    -fx-scale-y: 1.1;
-}
-.button:pressed {
-    /* Pressed effect */
-    -fx-background-color: #6495ED; /* Even darker green background when pressed */
+    -fx-background-color: #748CF1;
 }
 
-/* Label style */
-.label {
-    -fx-font-size: 18px; /* Increase font size */
-    -fx-font-weight: bold; /* Apply bold font weight */
+/* Styling for the panes */
+.pane_1 {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-padding: 10;
 }
 
-/* Text field style */
-.text-field {
-    -fx-background-color: #ffffff; /* White background */
-    -fx-font-size: 16px; /* Font size */
-    -fx-padding: 8px; /* Padding */
-    -fx-background-radius: 10px; /* Increase border radius for rounded corners */
-    -fx-border-width: 2px; /* Increase border width */
-}
-
-/* Table view style */
-.table-view {
-    -fx-background-color: grey; /* Set table background to transparent */
-}
-
-/* Table cell style */
-.table-cell {
-    -fx-font-size: 16px; /* Font size */
-}
-
-/* Table row cell style for odd rows */
-.table-row-cell:odd {
-    -fx-background-color: #f8f8f8; /* Light gray background for odd rows */
-}
-
-/* Table view text color */
-.table-view .table-cell {
-    -fx-text-fill: #333333; /* Dark text color */
-    -fx-font-family: "Arial"; /* Change font family */
-}
-
-/* Custom animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.fade-in {
-    -fx-animation: fadeIn 0.5s;
+.pane_11 {
+    /* Add specific styles for pane_11 if needed */
 }

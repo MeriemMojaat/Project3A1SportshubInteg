@@ -52,9 +52,12 @@ public class AddWorkout {
 
     @FXML
     private TextField coachid;
+    private int eventId;
+    public void setEventId(int eventId) {
+        this.categoryId = eventId;
 
-    @FXML
-    private int id_category;
+    }
+    private int categoryId;
 
     private String videoPath;
     /*@FXML
@@ -117,7 +120,7 @@ public class AddWorkout {
     }
 
     public void setCategoryId(int id_category) {
-        this.id_category = id_category;
+        this.categoryId = id_category;
     }
     private void populateCoachNames() {
         try {
@@ -147,7 +150,7 @@ public class AddWorkout {
     }*/
     @FXML
     private void initialize() {
-        populateUserNames();populateCoachNames();
+       populateCoachNames();
     }
     @FXML
     void AddWorkout(ActionEvent event) {
@@ -162,13 +165,7 @@ public class AddWorkout {
             // Set the video path in the workoutsService
             newWorkout.setWk_image(cloudinaryUrl);
 
-            String categName = categoryComboBox.getValue();
-            int userId = workoutsService.getcatIdByName(categName);
 
-            if (userId == -1) {
-                showAlert(Alert.AlertType.ERROR, "Error", "Invalid user selected.", "Please select a valid user.");
-                return;
-            }
             String CoachName = CoachComboBox.getValue();
             int coachd = workoutsService.getCoachIdByName(CoachName);
 
@@ -178,7 +175,7 @@ public class AddWorkout {
             }
             String intensity = EasyRadioBtn.isSelected() ? "Easy" : (MediumRadioBtn.isSelected() ? "Medium" : HardRadioBtn.isSelected() ? "Easy" :null);
 
-            workouts newBooking = new workouts(workoutname.getText(), workoutdescription.getText(),intensity,cloudinaryUrl,coachd,userId);
+            workouts newBooking = new workouts(workoutname.getText(), workoutdescription.getText(),intensity,cloudinaryUrl,coachd,categoryId);
             workoutsService.add(newBooking);
             showAlert(Alert.AlertType.INFORMATION, "Confirmation", "A new workout is added", null);
         } catch (SQLException e) {
