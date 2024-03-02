@@ -1,4 +1,4 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,24 +15,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import tn.esprit.entities.workoutcategory;
-import tn.esprit.entities.workouts;
+import tn.esprit.Entities.workoutcategory;
 import tn.esprit.services.workoutcategoryService;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
-import tn.esprit.services.CloudinaryService;
-import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
-import java.io.File;
-import javafx.stage.Stage;
-import javafx.scene.image.Image;
 
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ShowCategory {
@@ -124,6 +114,7 @@ public class ShowCategory {
 
         // Create delete button
         eventBox.getProperties().put("id_category", workoutCat.getId_category());
+
 
         Button deleteButton = new Button("Delete");
         deleteButton.setOnAction(workoutcategory -> handleDeleteCategory(workoutcategory));

@@ -1,4 +1,4 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,23 +13,15 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.MediaException;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-import org.controlsfx.control.Rating;
-import tn.esprit.entities.Feedback;
-import tn.esprit.entities.workoutcategory;
-import tn.esprit.entities.workouts;
+import tn.esprit.Entities.FeedbackWorkout;
+import tn.esprit.Entities.workouts;
 import tn.esprit.services.*;
-import javafx.scene.media.Media;
 
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 public class ShowWorkouts {
 
@@ -113,7 +105,7 @@ public class ShowWorkouts {
             String wk_description = workout.getWk_description();
             String wk_intensity = workout.getWk_intensity();
             String wk_video_url = workout.getWk_image();
-          //  int coach_id = workout.getCoach_id();
+            //int coach_id = workout.getCoach_id();
 
             // Create VideoPlayerBox
             VideoPlayerBox videoPlayerBox = new VideoPlayerBox(wk_video_url);
@@ -126,8 +118,6 @@ public class ShowWorkouts {
             updateButton.setOnAction(event -> handleUpdateWorkout(event, workout.getId_workout()));
             HBox buttonBox = new HBox(deleteButton, updateButton);
             buttonBox.setAlignment(Pos.CENTER_RIGHT);
-
-
 
 
             Button likeButton = new Button("👍");
@@ -161,7 +151,7 @@ public class ShowWorkouts {
     void submitFeedback(int id_workout) {
         try {
             // Perform action to increment like count for the specified workout ID
-            Feedback feedback = new Feedback();
+            FeedbackWorkout feedback = new FeedbackWorkout();
             bs.incrementLikeCount(id_workout);
            // feedback.setUserid(getCurrentUserId()); // Set the user ID
             feedback.setId_workout(id_workout); // Set the workout ID

@@ -1,18 +1,11 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import tn.esprit.entities.workoutcategory;
-import tn.esprit.entities.workouts;
+import tn.esprit.Entities.workouts;
 import tn.esprit.services.workoutcategoryService;
 import tn.esprit.services.workoutsService;
 import tn.esprit.services.videoService;
@@ -22,7 +15,6 @@ import javafx.scene.media.*;
 
 
 import java.io.File;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -50,8 +42,7 @@ public class AddWorkout {
     @FXML
     private TextField workoutname;
 
-    @FXML
-    private TextField coachid;
+
     private int eventId;
     public void setEventId(int eventId) {
         this.categoryId = eventId;
@@ -150,7 +141,6 @@ public class AddWorkout {
     }*/
     @FXML
     private void initialize() {
-       populateCoachNames();
     }
     @FXML
     void AddWorkout(ActionEvent event) {
@@ -165,17 +155,9 @@ public class AddWorkout {
             // Set the video path in the workoutsService
             newWorkout.setWk_image(cloudinaryUrl);
 
-
-            String CoachName = CoachComboBox.getValue();
-            int coachd = workoutsService.getCoachIdByName(CoachName);
-
-            if (coachd == -1) {
-                showAlert(Alert.AlertType.ERROR, "Error", "Invalid user selected.", "Please select a valid user.");
-                return;
-            }
             String intensity = EasyRadioBtn.isSelected() ? "Easy" : (MediumRadioBtn.isSelected() ? "Medium" : HardRadioBtn.isSelected() ? "Easy" :null);
 
-            workouts newBooking = new workouts(workoutname.getText(), workoutdescription.getText(),intensity,cloudinaryUrl,coachd,categoryId);
+            workouts newBooking = new workouts(workoutname.getText(), workoutdescription.getText(),intensity,cloudinaryUrl,categoryId);
             workoutsService.add(newBooking);
             showAlert(Alert.AlertType.INFORMATION, "Confirmation", "A new workout is added", null);
         } catch (SQLException e) {

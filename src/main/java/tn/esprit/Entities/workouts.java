@@ -1,4 +1,4 @@
-package tn.esprit.entities;
+package tn.esprit.Entities;
 
 public class workouts {
     private int id_workout;
@@ -6,27 +6,10 @@ public class workouts {
     private String wk_description;
     private String wk_intensity;
     private String wk_image;
-    private int coach_id;
     private int id_category;
 
-    public workouts(int id_workout, String workout_name, String wk_description, String wk_intensity, String wk_image, int coach_id, int id_category) {
-        this.id_workout = id_workout;
-        this.workout_name = workout_name;
-        this.wk_description = wk_description;
-        this.wk_intensity = wk_intensity;
-        this.wk_image = wk_image;
-        this.coach_id = coach_id;
-        this.id_category = id_category;
-    }
 
-    public workouts(String workout_name, String wk_description, String wk_intensity, String wk_image, int coach_id, int id_category) {
-        this.workout_name = workout_name;
-        this.wk_description = wk_description;
-        this.wk_intensity = wk_intensity;
-        this.wk_image = wk_image;
-        this.coach_id = coach_id;
-        this.id_category = id_category;
-    }
+
 
     public int getId_workout() {
         return id_workout;
@@ -68,13 +51,7 @@ public class workouts {
         this.wk_image = wk_image;
     }
 
-    public int getCoach_id() {
-        return coach_id;
-    }
 
-    public void setCoach_id(int coach_id) {
-        this.coach_id = coach_id;
-    }
 
     public int getId_category() {
         return id_category;
@@ -91,7 +68,6 @@ public class workouts {
                 ", wk_description='" + wk_description + '\'' +
                 ", wk_intensity='" + wk_intensity + '\'' +
                 ", wk_image='" + wk_image + '\'' +
-                ", coach_id=" + coach_id +
                 ", id_category=" + id_category +
                 '}';
     }
@@ -104,11 +80,20 @@ public class workouts {
         this.wk_image = wk_image;
     }
 
-    public workouts(String workout_name, String wk_description, String wk_intensity, String wk_image, int coach_id) {
+    public workouts(int id_workout, String workout_name, String wk_description, String wk_intensity, String wk_image, int id_category) {
+        this.id_workout = id_workout;
         this.workout_name = workout_name;
         this.wk_description = wk_description;
         this.wk_intensity = wk_intensity;
         this.wk_image = wk_image;
-        this.coach_id = coach_id;
+        this.id_category = id_category;
+    }
+
+    public workouts(String workout_name, String wk_description, String wk_intensity, String wk_image, int id_category) {
+        this.workout_name = workout_name;
+        this.wk_description = wk_description;
+        this.wk_intensity = wk_intensity;
+        this.wk_image = wk_image;
+        this.id_category = id_category;
     }
 }

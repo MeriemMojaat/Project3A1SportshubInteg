@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class myDataBase {
-    private final String URL ="jdbc:mysql://localhost:3306/sportshub";
+    private final String URL ="jdbc:mysql://localhost:3306/sporthub";
     private final String USERNAME = "root";
     private  final String PWD="";
     private Connection con;

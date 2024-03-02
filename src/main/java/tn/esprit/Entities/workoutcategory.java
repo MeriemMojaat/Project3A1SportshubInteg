@@ -1,4 +1,4 @@
-package tn.esprit.entities;
+package tn.esprit.Entities;
 
 public class workoutcategory {
 
@@ -6,18 +6,21 @@ public class workoutcategory {
     private String category_name;
     private  String cat_description;
     private String cat_image;
+    private int coachid;
 
-    public workoutcategory(int id_category, String category_name, String cat_description, String cat_image) {
+    public workoutcategory(int id_category, String category_name, String cat_description, String cat_image, int coachid) {
         this.id_category = id_category;
         this.category_name = category_name;
         this.cat_description = cat_description;
         this.cat_image = cat_image;
+        this.coachid = coachid;
     }
 
-    public workoutcategory(String category_name, String cat_description, String cat_image) {
+    public workoutcategory(String category_name, String cat_description, String cat_image, int coachid) {
         this.category_name = category_name;
         this.cat_description = cat_description;
         this.cat_image = cat_image;
+        this.coachid = coachid;
     }
 
     public int getId_category() {
@@ -52,14 +55,16 @@ public class workoutcategory {
         this.cat_image = cat_image;
     }
 
-    @Override
-    public String toString() {
-        return "workoutcategory{" +
-                "category_name='" + category_name + '\'' +
-                ", cat_description='" + cat_description + '\'' +
-                ", cat_image='" + cat_image + '\'' +
-                '}';
+    public int getCoachid() {
+        return coachid;
     }
+
+    public void setCoachid(int coachid) {
+        this.coachid = coachid;
+    }
+
+
+
     public workoutcategory(){}
 
 }

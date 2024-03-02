@@ -1,7 +1,7 @@
 package tn.esprit.services;
 
 import javafx.scene.control.Alert;
-import tn.esprit.entities.workoutcategory;
+import tn.esprit.Entities.workoutcategory;
 import tn.esprit.utils.myDataBase;
 
 import java.sql.*;
@@ -35,7 +35,7 @@ public class workoutcategoryService implements IService <workoutcategory>{
 
     @Override
         public void add(workoutcategory workoutcategory) throws SQLException {
-            String query = "INSERT INTO `workoutcategory`( `category_name`, `cat_description`, `cat_image`) VALUES (?,?,?)";
+            String query = "INSERT INTO `workoutcategory`( `category_name`, `cat_description`, `cat_image`,`coachid`) VALUES (?,?,?,?)";
 
         if (!isValidCategoryName(workoutcategory.getCategory_name())) {
             throw new IllegalArgumentException("You shouldn't exceed 10 characters .");
@@ -48,13 +48,15 @@ public class workoutcategoryService implements IService <workoutcategory>{
             ps.setString(1, workoutcategory.getCategory_name());
             ps.setString(2, workoutcategory.getCat_description());
             ps.setString(3, workoutcategory.getCat_image());
-            ps.executeUpdate();
+             ps.setInt(4, workoutcategory.getCoachid());
+
+        ps.executeUpdate();
             System.out.println("workout category added!");
         }
 
         @Override
         public void update(workoutcategory workoutcategory) throws SQLException {
-            String query = "UPDATE `workoutcategory` SET category_name = ?, cat_description = ?, cat_image = ? WHERE id_category = ?";
+            String query = "UPDATE `workoutcategory` SET category_name = ?, cat_description = ?, cat_image = ? WHERE id_category = ? AND coachid = ?";
             PreparedStatement ps = con.prepareStatement(query);
 
             if (!isValidCategoryName(workoutcategory.getCategory_name())) {
@@ -63,7 +65,9 @@ public class workoutcategoryService implements IService <workoutcategory>{
             ps.setString(1, workoutcategory.getCategory_name());
             ps.setString(2, workoutcategory.getCat_description());
             ps.setString(3, workoutcategory.getCat_image());
-            ps.setInt(4, workoutcategory.getId_category());
+            ps.setInt(4, workoutcategory.getCoachid());
+
+            ps.setInt(5, workoutcategory.getId_category());
 
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {
@@ -84,7 +88,7 @@ public class workoutcategoryService implements IService <workoutcategory>{
 
         @Override
         public List<workoutcategory> display() throws SQLException {
-            String query = "SELECT id_category, category_name, cat_description, cat_image FROM `workoutcategory`";
+            String query = "SELECT id_category, category_name, cat_description, cat_image,coachid  FROM `workoutcategory`";
 
             stm = con.createStatement();
             ResultSet res = stm.executeQuery(query);
@@ -94,8 +98,10 @@ public class workoutcategoryService implements IService <workoutcategory>{
                         res.getInt("id_category"),
                         res.getString("category_name"),
                         res.getString("cat_description"),
-                        res.getString("cat_image")
-                );
+                        res.getString("cat_image"),
+                        res.getInt("coachid")
+
+                        );
                 workoutcategory.add(e);
             }
             return workoutcategory;
@@ -134,8 +140,11 @@ public class workoutcategoryService implements IService <workoutcategory>{
                     workoutcategory e = new workoutcategory(
                             resultSet.getString("category_name"),
                             resultSet.getString("cat_description"),
-                            resultSet.getString("cat_image")
-                    );
+                            resultSet.getString("cat_image"),
+                            resultSet.getInt("coachid")
+
+
+                            );
                     workoutcategory.add(e);
                 }
             }
@@ -153,8 +162,10 @@ public class workoutcategoryService implements IService <workoutcategory>{
                 workoutcategory cat = new workoutcategory(
                         resultSet.getString("category_name"),
                         resultSet.getString("cat_description"),
-                        resultSet.getString("cat_image")
-                );
+                        resultSet.getString("cat_image"),
+                        resultSet.getInt("coachid")
+
+                        );
                 events.add(cat);
             }
         }
@@ -163,7 +174,7 @@ public class workoutcategoryService implements IService <workoutcategory>{
     }
 
     public List<workoutcategory> displaySorted(String sortBy) throws SQLException {
-            String query = "SELECT category_name, cat_description, cat_image FROM `workoutcategory` ORDER BY ";
+            String query = "SELECT * FROM `workoutcategory` ORDER BY ";
 
             switch (sortBy) {
                 case "category_name":
@@ -183,7 +194,9 @@ public class workoutcategoryService implements IService <workoutcategory>{
                 workoutcategory e = new workoutcategory(
                         res.getString("category_name"),
                         res.getString("cat_description"),
-                        res.getString("cat_image")
+                        res.getString("cat_image"),
+                        res.getInt("coachid")
+
                 );
                 workoutcategory.add(e);
             }

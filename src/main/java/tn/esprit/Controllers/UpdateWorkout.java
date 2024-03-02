@@ -1,4 +1,4 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -6,9 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import tn.esprit.entities.workoutcategory;
-import tn.esprit.entities.workouts;
-import tn.esprit.services.workoutcategoryService;
+import tn.esprit.Entities.workouts;
 import tn.esprit.services.workoutsService;
 
 import java.io.IOException;
@@ -67,11 +65,7 @@ public class UpdateWorkout {
 
     @FXML
     private void initialize() {
-        try {
-            populateCoachNames();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
     }
     private void populateCoachNames() throws SQLException {
         List<String> userNames = es.getCoachNames();
@@ -100,15 +94,14 @@ public class UpdateWorkout {
             String description = workoutdescription.getText();
             String intensity = EasyRadioBtn.isSelected() ? "Easy" : (MediumRadioBtn.isSelected() ? "Medium" : HardRadioBtn.isSelected() ? "Easy" :null);
             String Image = workoutimage.getText();
-            String userName = CoachComboBox.getValue(); // Get selected user name
-            int userId = es.getcatIdByName(userName);
+           // String userName = CoachComboBox.getValue(); // Get selected user name
+          //  int userId = es.getcatIdByName(userName);
 
             // Update the event object with the new data
             workoutsToUpdate.setWorkout_name(name);
             workoutsToUpdate.setWk_description(description);
             workoutsToUpdate.setWk_intensity(intensity);
             workoutsToUpdate.setWk_image(Image);
-            workoutsToUpdate.setCoach_id(userId);
 
             // Update the event in the database
             es.update(workoutsToUpdate);
@@ -139,9 +132,7 @@ public class UpdateWorkout {
 
         workoutimage.setText(workouts.getWk_image());
 
-        if (workouts.getCoach_id() != 0) {
-            CoachComboBox.setValue(String.valueOf(workouts.getCoach_id()));
-        }
+
 
     }
 

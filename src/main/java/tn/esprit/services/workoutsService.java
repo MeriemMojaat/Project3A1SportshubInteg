@@ -1,8 +1,7 @@
 package tn.esprit.services;
 
 import javafx.scene.control.Alert;
-import tn.esprit.entities.workoutcategory;
-import tn.esprit.entities.workouts;
+import tn.esprit.Entities.workouts;
 import tn.esprit.utils.myDataBase;
 
 import java.sql.*;
@@ -26,13 +25,9 @@ public class workoutsService implements IService <workouts> {
     }
 
 
-
-
-
-
     @Override
     public void add(workouts workouts) throws SQLException {
-        String query = "INSERT INTO `workouts`( `workout_name`, `wk_description`, `wk_intensity`, `wk_image`, `coach_id`, `id_category`) VALUES (?,?,?,?,?,?)";
+        String query = "INSERT INTO `workouts`( `workout_name`, `wk_description`, `wk_intensity`, `wk_image` , `id_category`) VALUES (?,?,?,?,?)";
         if (!isValidCategoryName(workouts.getWorkout_name())) {
             throw new IllegalArgumentException("You shouldn't exceed 10 characters .");
         }
@@ -45,8 +40,7 @@ public class workoutsService implements IService <workouts> {
         ps.setString(2, workouts.getWk_description());
         ps.setString(3, workouts.getWk_intensity());
         ps.setString(4, workouts.getWk_image());
-        ps.setInt(5, workouts.getCoach_id());
-        ps.setInt(6, workouts.getId_category());
+        ps.setInt(5, workouts.getId_category());
         ps.executeUpdate();
         System.out.println("workout added!");
     }
@@ -59,15 +53,14 @@ public class workoutsService implements IService <workouts> {
 
     @Override
     public void update(workouts workouts) throws SQLException {
-        String query = "UPDATE `workouts` SET workout_name = ?, wk_description = ?, wk_intensity = ?, wk_image = ?, coach_id = ?, id_category = ? WHERE id_workout = ?";
+        String query = "UPDATE `workouts` SET workout_name = ?, wk_description = ?, wk_intensity = ?, wk_image = ? , id_category = ? WHERE id_workout = ?";
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, workouts.getWorkout_name());
         ps.setString(2, workouts.getWk_description());
         ps.setString(3, workouts.getWk_intensity());
         ps.setString(4, workouts.getWk_image());
-        ps.setInt(5, workouts.getCoach_id());
-        ps.setInt(6, workouts.getId_category());
-        ps.setInt(7, workouts.getId_workout());
+        ps.setInt(5, workouts.getId_category());
+        ps.setInt(6, workouts.getId_workout());
 
         int rowsUpdated = ps.executeUpdate();
         if (rowsUpdated > 0) {
@@ -88,7 +81,7 @@ public class workoutsService implements IService <workouts> {
 
     @Override
     public List<workouts> display() throws SQLException {
-        String query = "SELECT id_workout, workout_name, wk_description , wk_intensity, wk_image, coach_id, id_category  FROM `workouts`";
+        String query = "SELECT id_workout, workout_name, wk_description , wk_intensity, wk_image, id_category  FROM `workouts`";
         stm = con.createStatement();
         ResultSet res = stm.executeQuery(query);
         List<workouts> workouts = new ArrayList<>();
@@ -99,7 +92,6 @@ public class workoutsService implements IService <workouts> {
                     res.getString("wk_description"),
                     res.getString("wk_intensity"),
                     res.getString("wk_image"),
-                    res.getInt("coach_id"),
                     res.getInt("id_category")
             );
             workouts.add(e);
@@ -142,7 +134,6 @@ public class workoutsService implements IService <workouts> {
                         resultSet.getString("wk_description"),
                         resultSet.getString("wk_intensity"),
                         resultSet.getString("wk_image"),
-                        resultSet.getInt("coach_id"),
                         resultSet.getInt("id_category")
                 );
                 workouts.add(e);
@@ -178,7 +169,6 @@ public class workoutsService implements IService <workouts> {
                     res.getString("wk_description"),
                     res.getString("wk_intensity"),
                     res.getString("wk_image"),
-                    res.getInt("coach_id"),
                     res.getInt("id_category")
             );
             workouts.add(e);
@@ -213,11 +203,11 @@ public class workoutsService implements IService <workouts> {
                 String wk_description = resultSet.getString("wk_description");
                 String wk_intensity = resultSet.getString("wk_intensity");
                 String wk_image = resultSet.getString("wk_image");
-                int coach_id = resultSet.getInt("coach_id");
+               // int coach_id = resultSet.getInt("coach_id");
                 // Get other workout attributes as needed
 
                 // Create a new workouts object and add it to the list
-                workouts workout = new workouts(id_workout, workout_name, wk_description, wk_intensity, wk_image, coach_id, id_category);
+                workouts workout = new workouts(id_workout, workout_name, wk_description, wk_intensity, wk_image, id_category);
                 workoutsList.add(workout);
             }
         }
@@ -239,7 +229,6 @@ public class workoutsService implements IService <workouts> {
                     workout.setWk_description(resultSet.getString("wk_description"));
                     workout.setWk_intensity(resultSet.getString("wk_intensity"));
                     workout.setWk_image(resultSet.getString("wk_image"));
-                    workout.setCoach_id(resultSet.getInt("coach_id"));
                     workout.setId_category(resultSet.getInt("id_category"));
                 }
             }
@@ -342,8 +331,7 @@ public class workoutsService implements IService <workouts> {
                         resultSet.getString("workout_name"),
                         resultSet.getString("wk_description"),
                         resultSet.getString("wk_intensity"),
-                        resultSet.getString("wk_image"),
-                        resultSet.getInt("coach_id")
+                        resultSet.getString("wk_image")
 
                 );
                 wk.add(cat);
@@ -353,7 +341,7 @@ public class workoutsService implements IService <workouts> {
     }
 
     public void incrementLikeCount(int id_workout) throws SQLException {
-        String query = "UPDATE feedback SET like_count = like_count + 1 WHERE id_workout = ?";
+        String query = "UPDATE feedbackworkout SET like_count = like_count + 1 WHERE id_workout = ?";
         PreparedStatement ps = con.prepareStatement(query);
         ps.setInt(1, id_workout);
         ps.executeUpdate();
@@ -361,7 +349,7 @@ public class workoutsService implements IService <workouts> {
     }
 
     public void incrementDislikeCount(int id_workout) throws SQLException {
-        String query = "UPDATE feedback SET dislike_count = dislike_count + 1 WHERE id_workout = ?";
+        String query = "UPDATE feedbackworkout SET dislike_count = dislike_count + 1 WHERE id_workout = ?";
         PreparedStatement ps = con.prepareStatement(query);
         ps.setInt(1, id_workout);
         ps.executeUpdate();

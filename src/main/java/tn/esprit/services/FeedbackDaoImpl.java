@@ -1,16 +1,14 @@
 package tn.esprit.services;
 
-import tn.esprit.entities.Feedback;
+import tn.esprit.Entities.FeedbackWorkout;
 import tn.esprit.utils.myDataBase;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class FeedbackDaoImpl implements FeedbackDao {
-    private List<Feedback> feedbackList = new ArrayList<>();
+    private List<FeedbackWorkout> feedbackList = new ArrayList<>();
     Connection con;
 
     public FeedbackDaoImpl() {
@@ -18,8 +16,8 @@ public class FeedbackDaoImpl implements FeedbackDao {
     }
 
     @Override
-    public void saveFeedback(Feedback feedback) {
-        String sql = "INSERT INTO feedback (id_feedback,userid,id_workout,like_count,dislike_count) VALUES (?, ?, ?, ?,?)";
+    public void saveFeedback(FeedbackWorkout feedback) {
+        String sql = "INSERT INTO feedbackworkout (id_feedback,userid,id_workout,like_count,dislike_count) VALUES (?, ?, ?, ?,?)";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             statement.setInt(1, feedback.getId_feedback());
             statement.setInt(2, feedback.getUserid());
@@ -37,13 +35,13 @@ public class FeedbackDaoImpl implements FeedbackDao {
 
 
     @Override
-    public List<Feedback> getAllFeedback() {
-        List<Feedback> feedbackList = new ArrayList<>();
-        String query = "SELECT * FROM feedback";
+    public List<FeedbackWorkout> getAllFeedback() {
+        List<FeedbackWorkout> feedbackList = new ArrayList<>();
+        String query = "SELECT * FROM feedbackworkout";
         try (PreparedStatement statement = con.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
-                Feedback feedback = new Feedback();
+                FeedbackWorkout feedback = new FeedbackWorkout();
                 feedback.setId_feedback(resultSet.getInt("id_feedback"));
                 feedback.setUserid(resultSet.getInt("userid"));
                 feedback.setId_workout(resultSet.getInt("id_workout"));
@@ -59,14 +57,14 @@ public class FeedbackDaoImpl implements FeedbackDao {
         return feedbackList;
     }
     @Override
-    public List<Feedback> getFeedbackForEvent(int eventId) {
-        List<Feedback> feedbackList = new ArrayList<>();
-        String query = "SELECT * FROM feedback WHERE id_workout = ?";
+    public List<FeedbackWorkout> getFeedbackForEvent(int eventId) {
+        List<FeedbackWorkout> feedbackList = new ArrayList<>();
+        String query = "SELECT * FROM feedbackworkout WHERE id_workout = ?";
         try (PreparedStatement statement = con.prepareStatement(query)) {
             statement.setInt(1, eventId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Feedback feedback = new Feedback();
+                FeedbackWorkout feedback = new FeedbackWorkout();
                 feedback.setId_feedback(resultSet.getInt("id_feedback"));
                 feedback.setUserid(resultSet.getInt("userid"));
                 feedback.setId_workout(resultSet.getInt("id_workout"));
@@ -83,7 +81,7 @@ public class FeedbackDaoImpl implements FeedbackDao {
     @Override
     public List<String> getUsernamesForFeedback() throws SQLException {
         List<String> usernames = new ArrayList<>();
-        String sql = "SELECT name_user FROM user"; // Assuming 'users' table contains usernames
+        String sql = "SELECT nameuser FROM user"; // Assuming 'users' table contains usernames
 
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();

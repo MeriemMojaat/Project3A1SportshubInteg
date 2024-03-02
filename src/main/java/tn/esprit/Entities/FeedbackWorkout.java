@@ -1,6 +1,6 @@
-package tn.esprit.entities;
+package tn.esprit.Entities;
 
-public class Feedback {
+public class FeedbackWorkout {
     private int id_feedback;
     private int userid;
     private int id_workout;
@@ -8,10 +8,10 @@ public class Feedback {
     private int dislike_count;
 
 
-    public Feedback() {
+    public FeedbackWorkout() {
     }
 
-    public Feedback(int id_feedback, int userid, int id_workout, int like_count, int dislike_count) {
+    public FeedbackWorkout(int id_feedback, int userid, int id_workout, int like_count, int dislike_count) {
         this.id_feedback = id_feedback;
         this.userid = userid;
         this.id_workout = id_workout;
@@ -19,7 +19,7 @@ public class Feedback {
         this.dislike_count = dislike_count;
     }
 
-    public Feedback(int userid, int id_workout, int like_count, int like_diskount) {
+    public FeedbackWorkout(int userid, int id_workout, int like_count, int like_diskount) {
         this.userid = userid;
         this.id_workout = id_workout;
         this.like_count = like_count;
