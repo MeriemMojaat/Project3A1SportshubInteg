@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="842.0" prefWidth="1082.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.admincontroller">
+   <content>
+      <AnchorPane prefHeight="838.0" prefWidth="1045.0" stylesheets="@newone.css">
+         <children>
+            <Button fx:id="out" layoutX="34.0" layoutY="711.0" mnemonicParsing="false" onAction="#logout" prefHeight="70.0" prefWidth="78.0" stylesheets="@CSS.css" />
+            <ButtonBar layoutX="-5.0" prefHeight="54.0" prefWidth="1105.0" stylesheets="@newone.css">
+              <buttons>
+                  <Button mnemonicParsing="false" onAction="#update" prefHeight="0.0" prefWidth="501.0" text="Workouts" />
+                  <Button mnemonicParsing="false" onAction="#coach" text="Coaches" />
+                <Button mnemonicParsing="false" prefHeight="26.0" text="Events" />
+                  <Button mnemonicParsing="false" onAction="#update" prefHeight="26.0" prefWidth="501.0" text="List of users" />
+                  <Button mnemonicParsing="false" onAction="#coach" prefHeight="36.0" text="Tournements" />
+                  <Button minWidth="43.0" mnemonicParsing="false" prefHeight="26.0" text="Trades" />
+              </buttons>
+            </ButtonBar>
+            <ScrollPane layoutX="123.0" layoutY="280.0" prefHeight="431.0" prefWidth="774.0">
+               <content>
+                  <VBox prefHeight="498.0" prefWidth="813.0">
+                     <children>
+                        <TableView fx:id="usertableid" prefHeight="453.0" prefWidth="814.0" stylesheets="@newone.css">
+                          <columns>
+                              <TableColumn fx:id="usernameid" prefWidth="159.20000153779984" text="nameuser" />
+                              <TableColumn fx:id="phonenumberid" prefWidth="122.39997863769531" text="uphonenumber" />
+                            <TableColumn fx:id="emailid" prefWidth="122.40005493164062" text="useremail" />
+                            <TableColumn fx:id="passwordid" prefWidth="103.2000732421875" text="userpassword" />
+                              <TableColumn fx:id="dateofbirthid" prefWidth="145.60003662109375" text="userdateofbirth" />
+                              <TableColumn fx:id="genderid" prefWidth="107.2000732421875" text="usergender" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <Label fx:id="connected" layoutX="796.0" layoutY="84.0" text="label" textFill="#4cb10d">
+               <font>
+                  <Font name="Bauhaus 93" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="keyword" layoutX="233.0" layoutY="183.0" prefHeight="40.0" prefWidth="538.0" promptText="Search" stylesheets="@newone.css" />
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="682.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@954591.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="74.0" fitWidth="122.0" layoutX="860.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@points.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="54.0" layoutX="51.0" layoutY="724.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@fleche-gauche.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="696.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Online Users:">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

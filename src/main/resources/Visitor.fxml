@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="774.0" prefWidth="1061.0" stylesheets="@newone.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Visitor">
+   <children>
+      <HBox alignment="CENTER" layoutX="-1.0" prefHeight="140.0" prefWidth="1009.0" styleClass="fade-in" stylesheets="@style.css" />
+      <VBox layoutX="193.0" layoutY="271.0" prefHeight="160.0" prefWidth="125.0" />
+      <Button fx:id="signupButton" layoutX="635.0" layoutY="566.0" mnemonicParsing="false" onAction="#gotosignup" prefHeight="74.0" prefWidth="310.0" text="SignUp" />
+      <Button fx:id="loginButton" layoutX="205.0" layoutY="566.0" mnemonicParsing="false" onAction="#gotologin" prefHeight="73.0" prefWidth="325.0" stylesheets="@newone.css" text="Sign In" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#353a56" height="432.0" layoutX="-4.0" layoutY="-1.0" stroke="#4691d7" strokeType="INSIDE" width="1067.0" />
+      <Text fill="WHITE" layoutX="332.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome To Our SportsHub" wrappingWidth="534.2390747070312">
+         <font>
+            <Font name="Century Gothic Bold" size="37.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="200.0" fitWidth="301.0" layoutX="478.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons/logoo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

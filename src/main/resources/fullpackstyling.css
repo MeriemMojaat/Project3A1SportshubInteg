@@ -1,0 +1,40 @@
+/* ScrollPane Style */
+.scroll-pane {
+    -fx-background-color: #1f3a93; /* Dark blue background color */
+}
+
+/* ScrollBar Style */
+.scroll-bar:vertical {
+    -fx-background-color: #1f3a93; /* Dark blue background color */
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color: #1f3a93; /* Dark blue background color */
+}
+
+/* Track Style */
+.scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+/* Thumb Style */
+.scroll-bar .thumb {
+    -fx-background-color: #6185d6; /* Lighter blue color */
+    -fx-background-insets: 0, 0, 0;
+    -fx-background-radius: 0;
+}
+
+/* Hover Effect */
+.scroll-bar .thumb:hover {
+    -fx-background-color: #3358b9; /* Darker shade of blue on hover */
+}
+.menuItem:hover{
+    -fx-border-color: #660099;
+    -fx-border-width: 0px 0px 3px 0px;
+}
+
+.sidebarItem:hover{
+    -fx-background-color: #146886;
+    -fx-border-color: WHITE;
+    -fx-border-width: 0px 0px 0px 3px;
+}

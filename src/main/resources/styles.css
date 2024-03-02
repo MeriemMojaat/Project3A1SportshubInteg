@@ -1,0 +1,137 @@
+/* Root element */
+
+.root {
+    -fx-background-image: url("back.jpg"); /* Add background image */
+    -fx-background-size: cover; /* Ensure background image covers entire area */
+    -fx-background-repeat: no-repeat; /* Prevent background image from repeating */
+}
+
+/* Button style */
+.button {
+
+   /* -fx-background-color:#004AAD; /* Green background
+    -fx-text-fill: white;
+    -fx-font-family: "Arial ";
+    -fx-font-size: 16px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    /* Animation
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-transition: scale 0.3s;*/
+    appearance: button;
+    background-color: #000;
+    background-image: none;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0 5px 10px 0;
+    overflow: visible;
+    padding: 12px 40px;
+    text-align: center;
+    text-transform: none;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+
+.button:hover {
+    /* Hover effect */
+    -fx-background-color: #004AAD; /* Darker green background on hover */
+
+    /* Animation */
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+.button:pressed {
+    /* Pressed effect */
+    -fx-background-color: #004AAD; /* Even darker green background when pressed */
+}
+
+/* Label style */
+.label {
+    -fx-font-size: 18px; /* Increase font size */
+    -fx-font-weight: bold; /* Apply bold font weight */
+}
+
+/* Text field style */
+.text-field {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-font-size: 16px; /* Font size */
+    -fx-padding: 8px; /* Padding */
+    -fx-background-radius: 10px; /* Increase border radius for rounded corners */
+    -fx-border-width: 2px; /* Increase border width */
+}
+
+/* Table view style */
+.table-view {
+    -fx-background-color: grey; /* Set table background to transparent */
+}
+
+/* Table cell style */
+.table-cell {
+    -fx-font-size: 16px; /* Font size */
+}
+
+/* Table row cell style for odd rows */
+.table-row-cell:odd {
+    -fx-background-color: #f8f8f8; /* Light gray background for odd rows */
+}
+
+/* Table view text color */
+.table-view .table-cell {
+    -fx-text-fill: #333333; /* Dark text color */
+    -fx-font-family: "Arial"; /* Change font family */
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    -fx-animation: fadeIn 0.5s;
+
+
+                                                       /* CSS */
+                                                   .button-50 {
+                                                       appearance: button;
+                                                       background-color: #000;
+                                                       background-image: none;
+                                                       border: 1px solid #000;
+                                                       border-radius: 4px;
+                                                       box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+                                                       box-sizing: border-box;
+                                                       color: #fff;
+                                                       cursor: pointer;
+                                                       display: inline-block;
+                                                       font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
+                                                       font-size: 14px;
+                                                       font-weight: 400;
+                                                       line-height: 20px;
+                                                       margin: 0 5px 10px 0;
+                                                       overflow: visible;
+                                                       padding: 12px 40px;
+                                                       text-align: center;
+                                                       text-transform: none;
+                                                       touch-action: manipulation;
+                                                       user-select: none;
+                                                       -webkit-user-select: none;
+                                                       vertical-align: middle;
+                                                       white-space: nowrap;
+                                                   }
+
+}

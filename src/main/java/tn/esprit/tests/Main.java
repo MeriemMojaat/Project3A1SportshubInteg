@@ -1,16 +1,25 @@
 package tn.esprit.tests;
 
-import tn.esprit.entities.*;
+
+import tn.esprit.Entities.Event;
+import tn.esprit.Entities.*;
 import tn.esprit.services.BookingService;
 import tn.esprit.services.EventService;
+
+import tn.esprit.entities.admin;
+import tn.esprit.entities.user;
+import tn.esprit.services.adminservice;
+import tn.esprit.services.userservices;
+
 
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+
 public class Main {
     public static void main(String[] args) {
 
-        Event e1 = new Event("EventCamp", "Cycling", "Non virtual", "Both", LocalDate.of(2024, 7, 21), LocalDate.of(2024, 4, 21), "Ain Drahem", "alalalalal",3,4);
+        Event e1 = new Event("EventCamp", "Cycling", "Non virtual", "Both", LocalDate.of(2024, 7, 21), LocalDate.of(2024, 4, 21), "Ain Drahem", "alalalalal", 3, 4);
 
 
         EventService ps = new EventService();
@@ -35,7 +44,8 @@ public class Main {
         try {
             System.out.println(ps.display());
         } catch (SQLException e) {
-            System.out.println(e.getMessage());;
+            System.out.println(e.getMessage());
+            ;
         }
 
 
@@ -49,5 +59,4 @@ public class Main {
         }catch (SQLException e){
             System.out.println(e.getMessage());
         }*/
-    }
-}
+    }}
