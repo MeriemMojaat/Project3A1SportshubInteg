@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.adminlogin">
+   <children>
+      <AnchorPane prefHeight="742.0" prefWidth="1263.0" stylesheets="@fullpackstyling.css">
+         <children>
+            <ImageView fitHeight="742.0" fitWidth="491.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@téléchargement%20(6)%20(1).jpg" />
+               </image>
+            </ImageView>
+            <VBox layoutX="92.0" layoutY="52.0" spacing="10.0" />
+            <Button fx:id="loginButton" layoutX="584.0" layoutY="465.0" onAction="#authenticateadmin" prefHeight="43.0" prefWidth="103.0" styleClass="#green" stylesheets="@style.css" text="Login" textFill="#004dff" />
+            <PasswordField fx:id="pass" layoutX="538.0" layoutY="327.0" prefHeight="46.0" prefWidth="232.0" promptText="**********" stylesheets="@styles.css" />
+            <TextField fx:id="name" layoutX="538.0" layoutY="259.0" prefHeight="46.0" prefWidth="232.0" promptText="adminname" stylesheets="@styles.css" />
+            <ImageView fitHeight="244.0" fitWidth="243.0" layoutX="100.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true" styleClass="linear-grad">
+               <image>
+                  <Image url="@icons/logooo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="664.0" layoutY="408.0" stylesheets="@styles.css" text="Forget Password?" />
+            <ImageView fitHeight="102.0" fitWidth="103.0" layoutX="591.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@8665983.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="492.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@1077012.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="42.0" fitWidth="53.0" layoutX="492.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@mot-de-passe.png" />
+               </image>
+            </ImageView>
+            <CheckBox fx:id="remember" layoutX="492.0" layoutY="408.0" mnemonicParsing="false" onAction="#handleremember" stylesheets="@styles.css" text="Remember Me">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </CheckBox>
+            <Label layoutX="569.0" layoutY="36.0" prefHeight="102.0" prefWidth="170.0" text="Admin Login" textFill="#ff0505">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <Glow level="0.0" />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>
