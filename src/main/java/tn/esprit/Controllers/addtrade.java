@@ -1,4 +1,4 @@
-package tn.esprit.controllers; // Add the package statement
+package tn.esprit.Controllers; // Add the package statement
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,7 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
-import tn.esprit.entities.trade;
+import tn.esprit.Entities.trade;
 import tn.esprit.services.tradeservice;
 
 
@@ -43,8 +43,7 @@ public class addtrade {
     @FXML
     private TextField TRADESTATUS;
 
-    @FXML
-    private ComboBox<String> Id_UserName;
+
 
     private tradeservice tradeService = new tradeservice();
 
@@ -70,27 +69,13 @@ public class addtrade {
     }
     @FXML
     private void initialize() {
-        populateUserNames();
+
     }
-    private void populateUserNames() {
-        try {
-            List<String> userNames = tradeService.getUserNames();
-            Id_UserName.getItems().addAll(userNames);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
     @FXML
     public void add(ActionEvent event) {
         try {
-            String userName = Id_UserName.getValue();
-            int userId = tradeService.getUserIdByName(userName);
 
-            if (userId == -1) {
-// Adjust the method call with only three parameters
-                showAlert(Alert.AlertType.INFORMATION, "Information", "No products found.");
-                return;
-            }
             String location = LOCATION.getText();
             String name = NAME.getText();
             String tradeStatus = TRADESTATUS.getText();
@@ -102,7 +87,7 @@ public class addtrade {
             }
 
             // Then add trade
-            trade trade = new trade(productId, userId, location, tradeStatus, name);
+            trade trade = new trade(productId, 20, location, tradeStatus, name);
 
             tradeService.add(trade);
             showNotification("Success", "You have added a trade. Please wait for confirmation from the other user.");

@@ -1,4 +1,4 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -8,28 +8,28 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import tn.esprit.entities.product;
+import tn.esprit.Entities.ratingproduct;
+import tn.esprit.Entities.product;
+import tn.esprit.services.ratingservice;
 import tn.esprit.services.productservice;
 import javafx.collections.ObservableList;
 
 
-import java.awt.*;
+
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Showproduct {
      productservice ps = new productservice();
@@ -59,9 +59,12 @@ public class Showproduct {
     private ComboBox<String> sortComboBox;
     @FXML
     private TableView<product> tableView;
+    @FXML
+    private PieChart productPieChart;
 
-    private boolean isLiked = false;
+    private String selectedImagePath;
 
+    ratingservice fs = new ratingservice();
 
     @FXML
     void searchProducts(ActionEvent event) {
@@ -145,6 +148,17 @@ public class Showproduct {
         System.out.println("Next");
 
     }
+    @FXML
+    void showtrade(ActionEvent event) {  Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/showtrade.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        scroll.getScene().setRoot(root);
+        System.out.println("Next");
+
+    }
 
     private void handletrade(ActionEvent event, int eventId) {
         try {
@@ -159,12 +173,13 @@ public class Showproduct {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to load AddBooking page");
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to load Addtrade page");
 
         }
     }
     @FXML
     void initialize() {
+
         ObservableList<String> sortingOptions = FXCollections.observableArrayList(
                  "Type", "DESCRIPTION", "Quantity", "State"
         );
@@ -177,9 +192,41 @@ public class Showproduct {
                 // Trigger the search operation when text changes
                 searchProducts(null); // Pass null or any appropriate event parameter
             }
-        });
-    }
 
+        });
+
+    }
+    @FXML
+    void viewCharts(ActionEvent event) {
+        try {
+            // Retrieve counts of new and used products
+            int newProductCount = ps.countNewProducts();
+            int usedProductCount = ps.countUsedProducts();
+
+            // Create PieChart data
+            PieChart.Data newProductData = new PieChart.Data("New Products", newProductCount);
+            PieChart.Data usedProductData = new PieChart.Data("Used Products", usedProductCount);
+
+            // Create PieChart
+            PieChart productPieChart = new PieChart();
+            productPieChart.getData().addAll(newProductData, usedProductData);
+
+            // Create dialog to display PieChart
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.setTitle("Product Distribution");
+            dialog.setHeaderText("New and Used Products Distribution");
+            dialog.getDialogPane().setContent(productPieChart);
+
+            // Add OK button to close the dialog
+            ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+            dialog.getDialogPane().getButtonTypes().add(okButtonType);
+
+            // Show the dialog and wait for user response
+            dialog.showAndWait();
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
+    }
     private void loadProducts() {
         try {
             List<product> productList = ps.display();
@@ -225,40 +272,9 @@ public class Showproduct {
         }
     }
 
-    private void handleLikeButton(ActionEvent event) {
-        // Retrieve the selected product from the table view
-        product selectedProduct = tableView.getSelectionModel().getSelectedItem();
-        if (selectedProduct != null) {
-            try {
-                // Increment the likes for the selected product
-                ps.likeProduct(selectedProduct.getID_PRODUCT());
-                // Update the display
-                displayProduct();
-            } catch (SQLException e) {
-                showAlert(Alert.AlertType.ERROR, "Error", "Failed to like the product: " + e.getMessage());
-            }
-        } else {
-            showAlert(Alert.AlertType.WARNING, "Warning", "Please select a product to like.");
-        }
-    }
 
-    @FXML
-    private void handleDislikeButton(ActionEvent event) {
-        // Retrieve the selected product from the table view
-        product selectedProduct = tableView.getSelectionModel().getSelectedItem();
-        if (selectedProduct != null) {
-            try {
-                // Increment the dislikes for the selected product
-                ps.dislikeProduct(selectedProduct.getID_PRODUCT());
-                // Update the display
-                displayProduct();
-            } catch (SQLException e) {
-                showAlert(Alert.AlertType.ERROR, "Error", "Failed to dislike the product: " + e.getMessage());
-            }
-        } else {
-            showAlert(Alert.AlertType.WARNING, "Warning", "Please select a product to dislike.");
-        }
-    }
+
+
 
 
     private void showAlert(Alert.AlertType alertType, String title, String content) {
@@ -298,6 +314,7 @@ public class Showproduct {
     }
 
     private VBox createProductBox(product prod) {
+        int ID_PRODUCT=prod.getID_PRODUCT();
         VBox productBox = new VBox();
         productBox.setStyle("-fx-background-color: #AED6F1; -fx-border-color: #94cdf5; -fx-padding: 30px; -fx-spacing: 10px;");
         productBox.setSpacing(10);
@@ -317,10 +334,24 @@ public class Showproduct {
         updateButton.setOnAction(event -> handleUpdateProduct(event, prod.getID_PRODUCT()));
         Button tradeButton = new Button("Trade Now");
         tradeButton.setOnAction(event -> handletrade(event, prod.getID_PRODUCT()));
-        Button LikeButton = new Button("heartlike.png ");
-        LikeButton.setOnAction(event -> handletrade(event, prod.getID_PRODUCT()));
-        Button disLikeButton = new Button("heartdislike.png ");
-        disLikeButton.setOnAction(event -> handletrade(event, prod.getID_PRODUCT()));
+
+
+        Button likeButton = new Button("❤️"); likeButton.setOnAction(event -> handleFeedback(ID_PRODUCT, true));
+        Button dislikeButton = new Button("💔"); dislikeButton.setOnAction(event -> handleFeedback(ID_PRODUCT, false));
+
+        int ratingHeart;
+        int ratingBrokenHeart;
+        try {
+            ratingHeart = ps.getLikeCount(ID_PRODUCT);
+            ratingBrokenHeart = ps.getDislikeCount(ID_PRODUCT);
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle or log the exception appropriately
+            ratingHeart = 0; // Default value if retrieval fails
+            ratingBrokenHeart = 0; // Default value if retrieval fails
+        }
+
+        HBox ratingBox = new HBox(likeButton, new Label("Likes: " + ratingHeart), dislikeButton, new Label("Dislikes: " + ratingBrokenHeart));
+        ratingBox.setAlignment(Pos.CENTER_RIGHT);
 
 
         HBox tradebuttonBox = new HBox(tradeButton);
@@ -335,34 +366,36 @@ public class Showproduct {
         Label STATELabel = new Label("STATE: " + STATE);
         Label QUANTITYLabel = new Label("QUANTITY : " + QUANTITY);
 
-        productBox.getChildren().addAll(TYPELabel, DESCRIPTIONLabel, IMAGELabel, STATELabel, QUANTITYLabel, buttonBox, tradeButton);
+        productBox.getChildren().addAll(TYPELabel, DESCRIPTIONLabel, IMAGELabel, STATELabel, QUANTITYLabel, buttonBox, ratingBox,tradeButton);
 
         return productBox;
     }
 
-
-   /* private void toggleLikeAction() {
+    void handleFeedback(int ID_PRODUCT, boolean isLike) {
         try {
-            if (isLiked) {
-                productservice.unlikePost(userId, postId);
+            ratingproduct feedback = new ratingproduct();
+            if (isLike) {
+                ps.incrementLikeCount(ID_PRODUCT);
+                feedback.setRatingHeart(1);
+                showAlert(Alert.AlertType.INFORMATION, "Liked", "Liked workout with ID: " + ID_PRODUCT);
             } else {
-                productservice.likePost(userId, postId);
+                ps.incrementDislikeCount(ID_PRODUCT);
+                feedback.setRatingBrokenHeart(1);
+                showAlert(Alert.AlertType.INFORMATION, "Dislike", "Liked workout with ID: " + ID_PRODUCT);
             }
-            isLiked = !isLiked;
-            setLikeButtonImage(isLiked ? "heartlike.png" : "heartdislike.png");
-            loadPostInteractions();
+            feedback.setUserid(17); // Set the user ID to 1
+            feedback.setID_PRODUCT(ID_PRODUCT); // Set the workout ID
+            fs.saveFeedback(feedback);
         } catch (SQLException e) {
-            showAlert("Error", "Failed to toggle like: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
+
     }
 
 
-  private void setLikeButtonImage(String imageName) {
-      Image image = new Image(getClass().getResourceAsStream(imageName));
-      likeImageView.setImage(image);
-  }
 
-    */
+
+
 
 
 

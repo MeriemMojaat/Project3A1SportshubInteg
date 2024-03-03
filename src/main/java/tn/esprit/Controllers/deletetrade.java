@@ -1,4 +1,4 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 
 import javafx.event.ActionEvent;
@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import tn.esprit.services.tradeservice;
-import tn.esprit.entities.trade;
 
 import java.sql.SQLException;
 
@@ -19,7 +18,7 @@ public class deletetrade {
     private TextField ID_TRADE;
 
     @FXML
-    private TextField ID_USER;
+    private TextField userid;
 
     @FXML
     private TextField LOCATION;
@@ -29,6 +28,7 @@ public class deletetrade {
 
     @FXML
     private TextField TRADESTATUS;
+
 
     private tradeservice tradeService = new tradeservice();
 

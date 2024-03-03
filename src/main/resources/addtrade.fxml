@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="575.0" prefWidth="815.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.addtrade">
+<AnchorPane prefHeight="575.0" prefWidth="815.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.addtrade">
    <children>
       <TextField fx:id="LOCATION" layoutX="229.0" layoutY="181.0" opacity="0.5" promptText="location" />
       <TextField fx:id="TRADESTATUS" layoutX="227.0" layoutY="279.0" opacity="0.5" promptText="trade status" />
@@ -20,6 +19,5 @@
             <Image url="@icons/logoo.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="Id_UserName" layoutX="250.0" layoutY="134.0" opacity="0.72" prefWidth="150.0" promptText="USER NAMES" />
    </children>
 </AnchorPane>

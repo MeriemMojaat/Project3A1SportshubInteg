@@ -1,4 +1,4 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,19 +12,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import tn.esprit.entities.product;
-import tn.esprit.entities.trade;
+import tn.esprit.Entities.trade;
 import tn.esprit.services.tradeservice;
 import javafx.geometry.Insets;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-
-import java.awt.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -212,7 +206,7 @@ public class showtrade {
         String TRADESTATUS = trade.getTRADESTATUS();
         String LOCATION = trade.getLOCATION();
         int ID_PRODUCT = trade.getID_PRODUCT();
-        int ID_USER = trade.getID_USER();
+        int ID_USER = trade.getuserid();
         int ID_TRADE = trade.getID_TRADE();
 
         // Create delete button
@@ -249,11 +243,11 @@ public class showtrade {
         alert.showAndWait();
     }
 
-    private void  handleUpdateTrade(ActionEvent event, int tradeId) {
+    private void  handleUpdateTrade(ActionEvent event, int userid) {
         try {
-            trade prod = tradeService.getTradeById(tradeId);
+            trade prod = tradeService.getTradeById(userid);
             if (prod == null) {
-                showAlert(Alert.AlertType.ERROR, "Error", "trade not found for ID: " + tradeId);
+                showAlert(Alert.AlertType.ERROR, "Error", "trade not found for ID: " + userid);
                 return;
             }
 
@@ -276,6 +270,17 @@ public class showtrade {
     void addtrade(ActionEvent event) {  Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/addtrade.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        scroll.getScene().setRoot(root);
+        System.out.println("Next");
+
+    }
+    @FXML
+    void showproduct(ActionEvent event) {  Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/showproduct.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

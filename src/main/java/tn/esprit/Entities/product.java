@@ -1,4 +1,6 @@
-package tn.esprit.entities;
+package tn.esprit.Entities;
+
+import javafx.scene.control.TextArea;
 
 public class product {
    private int ID_PRODUCT;
@@ -32,6 +34,9 @@ public class product {
 
     public product() {
 
+    }
+
+    public product(String text, String state, int quantity, String type, TextArea description) {
     }
 
     public int getID_PRODUCT() {

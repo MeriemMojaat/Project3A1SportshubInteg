@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ScrollPane?>
@@ -8,21 +9,26 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="634.0" prefWidth="814.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.Showproduct">
+<AnchorPane fx:id="anchorPane" prefHeight="797.0" prefWidth="1149.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Showproduct">
     <children>
-        <TextField fx:id="searchField" layoutX="355.0" layoutY="30.0" opacity="0.5" promptText="search product" />
-        <ComboBox fx:id="sortComboBox" layoutX="129.0" layoutY="38.0" onAction="#sortTableView" opacity="0.5" prefWidth="150.0" promptText="sort product" />
+        <TextField fx:id="searchField" layoutX="246.0" layoutY="19.0" opacity="0.5" promptText="search product" />
+        <ComboBox fx:id="sortComboBox" layoutX="77.0" layoutY="27.0" onAction="#sortTableView" opacity="0.5" prefHeight="26.0" prefWidth="149.0" promptText="sort product" />
         <ScrollPane fx:id="scroll" layoutX="63.0" layoutY="77.0" prefHeight="528.0" prefWidth="706.0">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="366.0" />
             </content>
         </ScrollPane>
-      <Button layoutX="639.0" layoutY="15.0" mnemonicParsing="false" onAction="#addproduct" text="add product" />
+      <Button layoutX="679.0" layoutY="17.0" mnemonicParsing="false" onAction="#addproduct" text="add product" />
       <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="7.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@icons/logoo.png" />
          </image>
       </ImageView>
+      <Button fx:id="showtrade" layoutX="570.0" layoutY="17.0" mnemonicParsing="false" onAction="#showtrade" text="trade list" />
+        <!-- YourFXMLFile.fxml -->
+
+                    <PieChart fx:id="productPieChart" layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="300.0" />
+      <Button fx:id="viewCharts" layoutX="452.0" layoutY="17.0" mnemonicParsing="false" onAction="#viewCharts" text="view chart" />
 
     </children>
 </AnchorPane>

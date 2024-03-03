@@ -1,4 +1,4 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,7 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
-import tn.esprit.entities.product;
+import tn.esprit.Entities.product;
 import tn.esprit.services.productservice;
 
 import java.sql.SQLException;

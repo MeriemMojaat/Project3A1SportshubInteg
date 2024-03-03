@@ -1,22 +1,16 @@
 package tn.esprit.services;
 
 import javafx.scene.control.Alert;
-import javafx.stage.Stage;
-import tn.esprit.entities.product;
-import tn.esprit.entities.trade;
+import tn.esprit.Entities.trade;
 import tn.esprit.utils.MyDataBase;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
-
-public class tradeservice implements IService<trade> {
+public class tradeservice implements PService<trade> {
     Connection con;
     Statement stm;
 
@@ -36,12 +30,12 @@ public class tradeservice implements IService<trade> {
         }
 
         // Proceed with the insertion if the name length is valid
-        String query = "INSERT INTO `trade`( `ID_TRADE`, `ID_PRODUCT`, `ID_USER` ,`LOCATION`, `TRADESTATUS` , `NAME`) VALUES (?,?,?,?,?,?)";
+        String query = "INSERT INTO `trade`( `ID_TRADE`, `ID_PRODUCT`, `userid` ,`LOCATION`, `TRADESTATUS` , `NAME`) VALUES (?,?,?,?,?,?)";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setInt(1, Trade.getID_TRADE());
             stm.setInt(2, Trade.getID_PRODUCT());
-            stm.setInt(3, Trade.getID_USER());
+            stm.setInt(3, Trade.getuserid());
             stm.setString(4, Trade.getLOCATION());
             stm.setString(5, Trade.getTRADESTATUS());
             stm.setString(6, Trade.getNAME());
@@ -75,12 +69,12 @@ public class tradeservice implements IService<trade> {
 
     public int getUserIdByName(String userName) throws SQLException {
         int userId = -1; // Default value indicating not found
-        String query = "SELECT ID_USER FROM user WHERE name = ?";
+        String query = "SELECT userid FROM user WHERE nameuser = ?";
         try (PreparedStatement ps = con.prepareStatement(query)) {
             ps.setString(1, userName);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    userId = rs.getInt("ID_USER");
+                    userId = rs.getInt("userid");
                 }
             }
         }
@@ -89,17 +83,17 @@ public class tradeservice implements IService<trade> {
 
     public List<String> getUserNames() throws SQLException {
         List<String> userNames = new ArrayList<>();
-        String query = "SELECT name FROM user"; // Corrected column name to 'username'
+        String query = "SELECT nameuser FROM user"; // Corrected column name to 'username'
         try (PreparedStatement ps = con.prepareStatement(query);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                userNames.add(rs.getString("name"));
+                userNames.add(rs.getString("nameuser"));
             }
         }
         return userNames;
     }
     public List<trade> display() throws SQLException {
-        String query = "SELECT ID_TRADE, ID_PRODUCT ,ID_USER ,LOCATION , TRADESTATUS , NAME FROM `trade`";
+        String query = "SELECT ID_TRADE, ID_PRODUCT ,userid ,LOCATION , TRADESTATUS , NAME FROM `trade`";
         stm = con.createStatement();
         ResultSet res = stm.executeQuery(query);
         List<trade> trades= new ArrayList<>();
@@ -107,7 +101,7 @@ public class tradeservice implements IService<trade> {
             trade Trade = new trade(
                     res.getInt("ID_TRADE"),
                     res.getInt("ID_PRODUCT"),
-                    res.getInt("ID_USER"),
+                    res.getInt("userid"),
                     res.getString("LOCATION"),
                     res.getString("TRADESTATUS"),
                     res.getString("NAME")
@@ -126,15 +120,15 @@ public class tradeservice implements IService<trade> {
         }
 
         // Proceed with the update if the name length is valid
-        String query = "UPDATE trade SET ID_PRODUCT = ?, ID_USER = ?, LOCATION = ?, TRADESTATUS = ?, NAME = ? WHERE ID_TRADE = ?";
+        String query = "UPDATE trade SET ID_PRODUCT = ?, LOCATION = ?, TRADESTATUS = ?, NAME = ? WHERE ID_TRADE = ? AND userid = ?";
         try (PreparedStatement stm = con.prepareStatement(query)) {
 
             stm.setInt(1, Trade.getID_PRODUCT());
-            stm.setInt(2, Trade.getID_USER());
-            stm.setString(3, Trade.getLOCATION());
-            stm.setString(4, Trade.getTRADESTATUS());
-            stm.setString(5, Trade.getNAME());
-            stm.setInt(6, Trade.getID_TRADE());
+            stm.setString(2, Trade.getLOCATION());
+            stm.setString(3, Trade.getTRADESTATUS());
+            stm.setString(4, Trade.getNAME());
+            stm.setInt(5, Trade.getID_TRADE());
+            stm.setInt(6, Trade.getuserid());
             // Execute the update
             stm.executeUpdate();
             System.out.println("Trade updated successfully!");
@@ -144,7 +138,7 @@ public class tradeservice implements IService<trade> {
     }
 
  /*   public List<trade> searchTrades(String searchText) throws SQLException {
-        String query = "SELECT * FROM trade WHERE ID_TRADE LIKE ? OR ID_PRODUCT LIKE ? OR ID_USER LIKE ? OR LOCATION LIKE ? OR TRADESTATUS LIKE ? OR NAME LIKE ?";
+        String query = "SELECT * FROM trade WHERE ID_TRADE LIKE ? OR ID_PRODUCT LIKE ? OR userid LIKE ? OR LOCATION LIKE ? OR TRADESTATUS LIKE ? OR NAME LIKE ?";
         List<trade> tradeList = new ArrayList<>();
         try (PreparedStatement pst = con.prepareStatement(query)) {
             pst.setString(1, "%" + searchText + "%");
@@ -159,7 +153,7 @@ public class tradeservice implements IService<trade> {
                 trade trd = new trade();
                 trd.setID_TRADE(rs.getInt("ID_TRADE"));
                 trd.setID_PRODUCT(rs.getInt("ID_PRODUCT"));
-                trd.setID_USER(rs.getInt("ID_USER"));
+                trd.setuserid(rs.getInt("userid"));
                 trd.setLOCATION(rs.getString("LOCATION"));
                 trd.setTRADESTATUS(rs.getString("TRADESTATUS"));
                 trd.setNAME(rs.getString("NAME"));
@@ -180,8 +174,8 @@ public class tradeservice implements IService<trade> {
             case "ID_PRODUCT":
                 tradeList.sort(Comparator.comparingInt(trade::getID_PRODUCT));
                 break;
-            case "ID_USER":
-                tradeList.sort(Comparator.comparingInt(trade::getID_USER));
+            case "userid":
+                tradeList.sort(Comparator.comparingInt(trade::getuserid));
                 break;
             case "LOCATION":
                 tradeList.sort(Comparator.comparing(trade::getLOCATION));
@@ -207,7 +201,7 @@ public class tradeservice implements IService<trade> {
                     prod  = new trade();
                     prod.setID_TRADE(rs.getInt("ID_TRADE"));
                     prod.setID_PRODUCT(rs.getInt("ID_PRODUCT"));
-                    prod.setID_USER(rs.getInt("ID_USER"));
+                    prod.setuserid(rs.getInt("userid"));
                     prod.setLOCATION(rs.getString("LOCATION"));
                     prod.setTRADESTATUS(rs.getString("TRADESTATUS"));
                     prod.setNAME(rs.getString("NAME"));
@@ -218,7 +212,7 @@ public class tradeservice implements IService<trade> {
     }
 
     public List<trade> displaySorted(String sortBy) throws SQLException {
-        String query = "SELECT ID_TRADE, ID_PRODUCT, ID_USER, LOCATION, TRADESTATUS, NAME FROM trade ORDER BY ";
+        String query = "SELECT ID_TRADE, ID_PRODUCT, userid, LOCATION, TRADESTATUS, NAME FROM trade ORDER BY ";
 
         switch (sortBy) {
             case "ID_TRADE":
@@ -227,8 +221,8 @@ public class tradeservice implements IService<trade> {
             case "ID_PRODUCT":
                 query += "ID_PRODUCT";
                 break;
-            case "ID_USER":
-                query += "ID_USER";
+            case "userid":
+                query += "userid";
                 break;
             case "LOCATION":
                 query += "LOCATION";
@@ -250,7 +244,7 @@ public class tradeservice implements IService<trade> {
                 trade t = new trade(
                         res.getInt("ID_TRADE"),
                         res.getInt("ID_PRODUCT"),
-                        res.getInt("ID_USER"),
+                        res.getInt("userid"),
                         res.getString("LOCATION"),
                         res.getString("TRADESTATUS"),
                         res.getString("NAME")
@@ -261,7 +255,7 @@ public class tradeservice implements IService<trade> {
         }
     }
     public List<trade> searchTrades(String searchCriteria) throws SQLException {
-        String query = "SELECT * FROM trade WHERE ID_TRADE LIKE ? OR ID_PRODUCT LIKE ? OR ID_USER LIKE ? OR LOCATION LIKE ? OR TRADESTATUS LIKE ? OR NAME LIKE ?";
+        String query = "SELECT * FROM trade WHERE ID_TRADE LIKE ? OR ID_PRODUCT LIKE ? OR userid LIKE ? OR LOCATION LIKE ? OR TRADESTATUS LIKE ? OR NAME LIKE ?";
         List<trade> tradeList = new ArrayList<>();
         try (PreparedStatement pst = con.prepareStatement(query)) {
             pst.setString(1, "%" + searchCriteria + "%");
@@ -276,7 +270,7 @@ public class tradeservice implements IService<trade> {
                 trade trd = new trade();
                 trd.setID_TRADE(rs.getInt("ID_TRADE"));
                 trd.setID_PRODUCT(rs.getInt("ID_PRODUCT"));
-                trd.setID_USER(rs.getInt("ID_USER"));
+                trd.setuserid(rs.getInt("userid"));
                 trd.setLOCATION(rs.getString("LOCATION"));
                 trd.setTRADESTATUS(rs.getString("TRADESTATUS"));
                 trd.setNAME(rs.getString("NAME"));

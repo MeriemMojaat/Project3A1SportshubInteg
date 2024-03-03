@@ -1,19 +1,17 @@
-package tn.esprit.entities;
-
-import com.sun.jdi.PrimitiveValue;
+package tn.esprit.Entities;
 
 public class trade {
     private int ID_TRADE;
     private int ID_PRODUCT;
-    private int ID_USER;
+    private int userid;
     private String LOCATION;
     private String TRADESTATUS;
     private String NAME;
 
-    public trade(int ID_TRADE, int ID_PRODUCT, int ID_USER, String LOCATION, String TRADESTATUS, String NAME) {
+    public trade(int ID_TRADE, int ID_PRODUCT, int userid, String LOCATION, String TRADESTATUS, String NAME) {
         this.ID_TRADE = ID_TRADE;
         this.ID_PRODUCT = ID_PRODUCT;
-        this.ID_USER = ID_USER;
+        this.userid = userid;
         this.LOCATION = LOCATION;
         this.TRADESTATUS = TRADESTATUS;
         this.NAME = NAME;
@@ -22,9 +20,9 @@ public class trade {
     public trade() {
         // Initialize attributes if necessary
     }
-    public trade(int ID_PRODUCT, int ID_USER, String LOCATION, String TRADESTATUS, String NAME) {
+    public trade(int ID_PRODUCT, int userid, String LOCATION, String TRADESTATUS, String NAME) {
         this.ID_PRODUCT = ID_PRODUCT;
-        this.ID_USER = ID_USER;
+        this.userid = userid;
         this.LOCATION = LOCATION;
         this.TRADESTATUS = TRADESTATUS;
         this.NAME = NAME;
@@ -47,12 +45,12 @@ public class trade {
         this.ID_PRODUCT = ID_PRODUCT;
     }
 
-    public int getID_USER() {
-        return ID_USER;
+    public int getuserid() {
+        return userid;
     }
 
-    public void setID_USER(int ID_USER) {
-        this.ID_USER = ID_USER;
+    public void setuserid(int userid) {
+        this.userid = userid;
     }
 
     public String getLOCATION() {
@@ -84,7 +82,7 @@ public class trade {
         return "trade{" +
                 "ID_TRADE=" + ID_TRADE +
                 ", ID_PRODUCT=" + ID_PRODUCT +
-                ", ID_USER=" + ID_USER +
+                ", userid=" + userid +
                 ", LOCATION='" + LOCATION + '\'' +
                 ", TRADESTATUS='" + TRADESTATUS + '\'' +
                 ", NAME='" + NAME + '\'' +

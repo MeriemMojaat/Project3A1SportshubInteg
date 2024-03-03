@@ -1,11 +1,10 @@
 package tn.esprit.services;
 
 import javafx.scene.control.Alert;
-import tn.esprit.entities.product;
+import tn.esprit.Entities.product;
 import tn.esprit.utils.MyDataBase;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,7 +12,9 @@ import java.util.logging.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-public class productservice implements IService <product> {
+
+
+public class productservice implements PService<product> {
     private Connection con;
     private PreparedStatement stm;
 
@@ -22,11 +23,7 @@ public productservice(){
         con= MyDataBase.getInstance().getCon();
     }
     public void add(product Product) throws SQLException {
-        // Validate DESCRIPTION and quantity
-        if (!isAlphaNumeric(Product.getDESCRIPTION())) {
-            showAlert(Alert.AlertType.ERROR, "Error", "DESCRIPTION must be alphanumeric.");
-            return;
-        }
+        // Validate IMAGE and quantity
         if (Product.getQUANTITY() < 0) {
             showAlert(Alert.AlertType.ERROR, "Error", "Quantity cannot be less than zero.");
             return;
@@ -50,9 +47,56 @@ public productservice(){
     }
 
     // Method to check if a string is alphanumeric
-    private boolean isAlphaNumeric(String str) {
-        return str != null && str.matches("^[a-zA-Z]+$");
+
+
+    public int getLikeCount(int productId) throws SQLException {
+        int ratingHeart = 0;
+
+        // Define SQL query to retrieve the like count for the specified workout
+        String sqlQuery = "SELECT ratingHeart FROM rating WHERE ID_PRODUCT = ?";
+
+        try (PreparedStatement preparedStatement = con.prepareStatement(sqlQuery)) {
+            preparedStatement.setInt(1, productId);
+
+            // Execute the query and get the result set
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                // If there is at least one row in the result set, extract the like count
+                if (resultSet.next()) {
+                    ratingHeart = resultSet.getInt("ratingHeart");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        return ratingHeart;
     }
+
+    public int getDislikeCount(int productId) throws SQLException {
+        int RatingBrokenHeart = 0;
+
+        // Define SQL query to retrieve the dislike count for the specified workout
+        String sqlQuery = "SELECT RatingBrokenHeart FROM rating WHERE ID_PRODUCT = ?";
+
+        try (PreparedStatement preparedStatement = con.prepareStatement(sqlQuery)) {
+            preparedStatement.setInt(1, productId);
+
+            // Execute the query and get the result set
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                // If there is at least one row in the result set, extract the dislike count
+                if (resultSet.next()) {
+                    RatingBrokenHeart = resultSet.getInt("RatingBrokenHeart");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        return RatingBrokenHeart;
+    }
+
 
     private void showAlert(Alert.AlertType alertType, String title, String content) {
         Alert alert = new Alert(alertType);
@@ -151,6 +195,7 @@ public void update(product Product) throws SQLException {
         return products;
     }
 
+
 /*
     public List<product> searchByNumber(String number) throws SQLException {
         List<product> productList = new ArrayList<>();
@@ -173,6 +218,28 @@ public void update(product Product) throws SQLException {
     }
 
  */
+public int countNewProducts() throws SQLException {
+    String query = "SELECT COUNT(*) AS count FROM product WHERE STATE = 'New'";
+    try (PreparedStatement pst = con.prepareStatement(query)) {
+        ResultSet rs = pst.executeQuery();
+        if (rs.next()) {
+            return rs.getInt("count");
+        }
+    }
+    return 0; // Return 0 if no new products found
+}
+
+    // Method to count the number of used products
+    public int countUsedProducts() throws SQLException {
+        String query = "SELECT COUNT(*) AS count FROM product WHERE STATE = 'Used'";
+        try (PreparedStatement pst = con.prepareStatement(query)) {
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("count");
+            }
+        }
+        return 0; // Return 0 if no used products found
+    }
 
 
     public List<product> searchProducts(String searchText) throws SQLException {
@@ -309,26 +376,48 @@ public void update(product Product) throws SQLException {
             return productList;
         }
     }
-    public void likeProduct(int productId) throws SQLException {
-        // Retrieve the product by its ID
-        product prod = getProductById(productId);
-        if (prod != null) {
-            // Increment the likes
-            prod.setLikes(prod.getLikes() + 1);
-            // Update the product in the database
-            update(prod);
-        }
+
+
+    public void incrementLikeCount(int ID_PRODUCT) throws SQLException {
+        String query = "UPDATE rating SET ratingHeart = ratingHeart + 1 WHERE ID_PRODUCT = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setInt(1, ID_PRODUCT);
+        ps.executeUpdate();
+        System.out.println("Liked workout with ID: " + ID_PRODUCT);
     }
 
-    public void dislikeProduct(int productId) throws SQLException {
-        // Retrieve the product by its ID
-        product prod = getProductById(productId);
-        if (prod != null) {
-            // Increment the dislikes
-            prod.setDislikes(prod.getDislikes() + 1);
-            // Update the product in the database
-            update(prod);
+    public void incrementDislikeCount(int ID_PRODUCT) throws SQLException {
+        String query = "UPDATE rating SET ratingBrokenHeart = ratingBrokenHeart + 1 WHERE ID_PRODUCT = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setInt(1, ID_PRODUCT);
+        ps.executeUpdate();
+        System.out.println("Disliked workout with ID: " + ID_PRODUCT);
+    }
+    public int getUserIdByName(String userName) throws SQLException {
+        int userId = -1; // Default value indicating not found
+        String query = "SELECT userid FROM user WHERE nameuser = ?";
+        try (PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setString(1, userName);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    userId = rs.getInt("userid");
+                }
+            }
         }
+        return userId;
+    }
+    public String getUserNameById(int userId) throws SQLException {
+        String userName = null;
+        String query = "SELECT nameuser FROM user WHERE userid = ?";
+        try (PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, userId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    userName = rs.getString("nameuser");
+                }
+            }
+        }
+        return userName;
     }
 
 }
