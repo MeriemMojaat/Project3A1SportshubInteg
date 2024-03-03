@@ -108,6 +108,7 @@ public class LoginService {
             ps.setString(2, coachpassword);
             try (ResultSet resultSet = ps.executeQuery()) {
                 if (resultSet.next()) {
+                    int coachid = resultSet.getInt("coachid");
                     String cname = resultSet.getString("coachname");
                     String coachavailability = resultSet.getString("coachavailability");
                     int userid = resultSet.getInt("userid");
@@ -115,9 +116,9 @@ public class LoginService {
 
                     String coachspeciality = resultSet.getString("coachspeciality");
                     String coachschedule = resultSet.getString("coachschedule");
-                    int workoutid = resultSet.getInt("workoutid");
+
                     displayAlert("Success", "coach found!");
-                    return new coach(cname,coachavailability,userid,cpassword,coachspeciality,coachschedule,workoutid);
+                    return new coach(coachid,cname,coachavailability,userid,cpassword,coachspeciality,coachschedule);
 
                 } else {
                     // Display popup for incorrect credentials

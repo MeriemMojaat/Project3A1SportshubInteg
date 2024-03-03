@@ -32,7 +32,7 @@
                         <Insets left="50.0" />
                      </padding>
                   </Button>
-                      <Button fx:id="btnworkouts" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#workout" prefHeight="78.0" prefWidth="256.0" styleClass="sidebarItem" text="Workout">
+                      <Button fx:id="btnworkouts" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#category" prefHeight="78.0" prefWidth="256.0" styleClass="sidebarItem" text="Workout">
                           <graphic>
                               <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>

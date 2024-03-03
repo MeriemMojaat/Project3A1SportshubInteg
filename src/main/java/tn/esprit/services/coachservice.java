@@ -20,7 +20,7 @@ public class coachservice implements Cservice<coach>{
     @Override
     public void addcoach(coach coach) throws SQLException {
         {
-            String query = "INSERT INTO `coach`( `coachname`, `coachavailability`, `userid`, `coachpassword`,coachspeciality,coachschedule) VALUES ('" + coach.getCoachname() + "','" + coach.getCoachavailabilty() + "','"+ coach.getUserid() +"','" + coach.getCoachpassword() + "','" + coach.getCoachspeciality() + "','" + coach.getCoachschedule() + "','" + coach.getWorkoutid() + "')";
+            String query = "INSERT INTO `coach`( `coachname`, `coachavailability`, `userid`, `coachpassword`,coachspeciality,coachschedule) VALUES ('" + coach.getCoachname() + "','" + coach.getCoachavailabilty() + "','"+ coach.getUserid() +"','" + coach.getCoachpassword() + "','" + coach.getCoachspeciality() + "','" + coach.getCoachschedule() + "')";
 
 
                 stm = con.createStatement();
@@ -31,7 +31,7 @@ public class coachservice implements Cservice<coach>{
 
     @Override
     public void updatecoach(coach coach) throws SQLException {
-           String query = "UPDATE coach SET coachname = ?, coachavailability = ?, userid = ?, coachpassword = ?,coachspeciality = ?,coachschedule = ?,workoutid = ?  WHERE coachname = ?";
+           String query = "UPDATE coach SET coachname = ?, coachavailability = ?, userid = ?, coachpassword = ?,coachspeciality = ?,coachschedule = ?  WHERE coachname = ?";
         try {
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, coach.getCoachname());
@@ -42,8 +42,8 @@ public class coachservice implements Cservice<coach>{
 
             pst.setString(5, coach.getCoachspeciality());
             pst.setString(6, coach.getCoachschedule());
-            pst.setInt(7, coach.getWorkoutid());
-            pst.setString(8, coach.getCoachname());
+
+            pst.setString(7, coach.getCoachname());
 
             pst.executeUpdate();
             System.out.println("coach has ben     successfully updated !");

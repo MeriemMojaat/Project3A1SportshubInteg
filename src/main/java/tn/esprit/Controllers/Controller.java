@@ -287,7 +287,40 @@ public class Controller implements Initializable {
         System.out.println("moved");
     }
 
+    @FXML
+    void category(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ShowCategory.fxml"));
+        Parent root = loader.load();
 
+        // Get the controller of the update page
+
+
+        // Create a new dialog
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.getDialogPane().setContent(root);
+        // dialog.getDialogPane().setStyle("-fx-background-color: #6495ED;");
+        // Set the dialog size
+        dialog.setWidth(600); // Adjust the width as needed
+        dialog.setHeight(400); // Adjust the height as needed
+
+        // Allow the dialog to be resizable
+        dialog.setResizable(true);
+
+        // Add OK and Cancel buttons to the dialog
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        // Show the dialog and wait for user response
+        Optional<ButtonType> result = dialog.showAndWait();
+
+        // Handle the result if OK button is clicked
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Handle OK button action
+        } else {
+            // Handle Cancel button action or dialog closed
+        }
+
+        System.out.println("moved");
+    }
 
 
 
@@ -303,8 +336,5 @@ public class Controller implements Initializable {
 
     }
 
-    @FXML
-    void workout(ActionEvent event) {
 
-    }
 }

@@ -18,8 +18,7 @@
         @FXML
         private Label gender;
 
-        @FXML
-        private Label id;
+
 
         @FXML
         private Button homebutton;
@@ -84,10 +83,10 @@
             name1.setText(authenticatedUser.getUseremail());
             password.setText(authenticatedUser.getUserpassword());
             gender.setText(authenticatedUser.getUsergender());
-            phone.setText(authenticatedUser.getUsergender());
+            phone.setText(authenticatedUser.getUphonenumber());
             dateofbirth.setText(authenticatedUser.getUserdateofbirth().toString());
             qrCodeImage.setImage(displayQRCode(authenticatedUser));
-           id.setText(String.valueOf(authenticatedUser.getUserid()));
+
         }
         private Image displayQRCode(user authenticatedUser) {
             // Assuming you have a method in the Login class to generate QR code for a user

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="593.0" prefWidth="767.0" stylesheets="@newone.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ShowCategoryCoach">
+   <children>
+      <AnchorPane layoutX="5.0" layoutY="14.0" prefHeight="652.0" prefWidth="858.0">
+         <children>
+            <ScrollPane fx:id="scrollpane" layoutX="193.0" layoutY="119.0" prefHeight="438.0" prefWidth="628.0" />
+            <Button layoutX="230.0" layoutY="575.0" mnemonicParsing="false" onAction="#AddCategory" text="Add a category" />
+            <ComboBox fx:id="combosortCategory" layoutX="659.0" layoutY="44.0" onAction="#sortTableView" prefWidth="150.0" promptText="Sort" />
+            <TextField fx:id="SearchCatId" layoutX="331.0" layoutY="36.0" onAction="#SearchCatId" promptText="Search" />
+
+         </children>
+      </AnchorPane>
+
+   </children>
+</AnchorPane>

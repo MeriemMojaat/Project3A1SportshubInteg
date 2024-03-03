@@ -27,11 +27,7 @@ table-view-row{
     -fx-background-color:#EAEEF4;
 
 }
-.label{
-    -fx-background-color:#353a56;
-    -fx-text-fill:#EAEEF4 ;
-    -fx-font-family: "Century Gothic Bold";
-}
+
 .text-area{
     -fx-background-color:#EAEEF4;
     -fx-font-family: "Century Gothic Bold";

@@ -174,9 +174,13 @@ private user currentuser;
 
             return authenticatedAdmin;
         }
+
+        CoachSessionManager CsessionManager = CoachSessionManager.getInstance();
+
         coach authenticatedCoach = loginService.authenticatecoach(username, password);
         if (authenticatedCoach != null) {
             navigateToHomePage2(authenticatedCoach);
+            CsessionManager.setAuthenticatedCoachid(authenticatedCoach.getCoachid());
             return authenticatedCoach;
         }
 
@@ -234,7 +238,7 @@ private user currentuser;
    @FXML
    void navigateToHomePage2(coach authenticatedcoach) {
        try {
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin.fxml"));
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
            Parent root = loader.load();
 
            usernameField.getScene().setRoot(root);
