@@ -238,7 +238,7 @@ private user currentuser;
    @FXML
    void navigateToHomePage2(coach authenticatedcoach) {
        try {
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/ShowCategoryCoach.fxml"));
            Parent root = loader.load();
 
            usernameField.getScene().setRoot(root);

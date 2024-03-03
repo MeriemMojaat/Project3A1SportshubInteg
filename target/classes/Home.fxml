@@ -142,25 +142,22 @@
                               <Image url="@80b91566cac6700fcf4b38b926383244.jpg" />
                            </image>
                         </ImageView>
-                        <Button layoutX="216.0" layoutY="156.0" mnemonicParsing="false" styleClass="button-bar" stylesheets="@newone.css" text="Join" />
                         <ImageView fitHeight="211.0" fitWidth="135.0" layoutX="329.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@0b35ffd072f8040642f72e89accfc31d.jpg" />
                            </image>
                         </ImageView>
-                        <Button layoutX="523.0" layoutY="149.0" mnemonicParsing="false" styleClass="button-bar" text="Join" />
                         <ImageView fitHeight="203.0" fitWidth="146.0" layoutX="644.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@d639287c2668a744b0c6998df6143ce3.jpg" />
                            </image>
                         </ImageView>
-                        <Button layoutX="827.0" layoutY="149.0" mnemonicParsing="false" text="Join" />
                         <Text layoutX="27.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volleyball" />
                         <Text layoutX="329.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hicking" />
                         <Text layoutX="663.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Football" />
-                        <Text layoutX="206.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+30 Participants" />
-                        <Text layoutX="513.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+20 Participants" />
-                        <Text layoutX="863.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+40 Participants" />
+                        <Text layoutX="196.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+30 Participants" />
+                        <Text layoutX="513.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+20 Participants" />
+                        <Text layoutX="861.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+40 Participants" />
                      </children>
                   </AnchorPane>
                </content>
@@ -174,20 +171,20 @@
                               <Image url="@fe15d7d389f40cf922fa68cb0a200794.jpg" />
                            </image>
                         </ImageView>
-                        <Button layoutX="174.0" layoutY="175.0" mnemonicParsing="false" styleClass="button-bar" text="Contact Now" />
+                        <Button layoutX="174.0" layoutY="175.0" mnemonicParsing="false" onAction="#SHOWCOACH" styleClass="button-bar" text="Contact Now" />
                         <ImageView fitHeight="211.0" fitWidth="135.0" layoutX="321.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@0bd2e108cd226e9eb16aeacafde019d7.jpg" />
                            </image>
                         </ImageView>
-                        <Button layoutX="497.0" layoutY="175.0" mnemonicParsing="false" styleClass="button-bar" text="Contact Now" />
-                        <ImageView fitHeight="170.0" fitWidth="180.0" layoutX="639.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                        <Button layoutX="497.0" layoutY="175.0" mnemonicParsing="false" onAction="#SHOWCOACH1" styleClass="button-bar" text="Contact Now" />
+                        <ImageView fitHeight="189.0" fitWidth="180.0" layoutX="638.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@ac4c0064d992db90765d1c02edd2b0f4.jpg" />
                            </image>
                         </ImageView>
-                        <Button layoutX="819.0" layoutY="175.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="136.0" styleClass="button-bar" stylesheets="@newone.css" text="Contact Now" />
-                        <Text layoutX="872.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salah Slimen" />
+                        <Button layoutX="819.0" layoutY="175.0" mnemonicParsing="false" onAction="#Showcoach3" prefHeight="46.0" prefWidth="136.0" styleClass="button-bar" stylesheets="@newone.css" text="Contact Now" />
+                        <Text layoutX="661.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salah Slimen" />
                         <ImageView fitHeight="94.0" fitWidth="103.0" layoutX="170.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@5764085.png" />
@@ -235,9 +232,9 @@
                   <Font size="21.0" />
                </font>
             </Text>
-            <Label fx:id="label1" alignment="CENTER" layoutX="1067.0" layoutY="364.0" prefHeight="90.0" prefWidth="446.0" text="Label" textFill="#ff0101">
+            <Label fx:id="label1" alignment="CENTER" layoutX="1067.0" layoutY="364.0" prefHeight="90.0" prefWidth="446.0" text="Label">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Century Gothic Bold Italic" size="16.0" />
                </font>
             </Label>
             <Button layoutX="1232.0" layoutY="469.0" mnemonicParsing="false" styleClass="button-bar" text="Create Game" />
