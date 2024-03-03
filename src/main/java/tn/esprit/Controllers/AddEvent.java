@@ -7,7 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import tn.esprit.entities.Event;
+import tn.esprit.Entities.Event;
+import tn.esprit.Entities.admin;
 import tn.esprit.services.EventService;
 
 import java.io.IOException;
@@ -178,8 +179,10 @@ public class AddEvent {
             showAlert("Please enter a valid price.");
             return;
         }
+        int authenticatedAdminId = AdminSessionManager.getInstance().getAuthenticatedAdminId();
+        System.out.println(authenticatedAdminId);
         // Then add event
-        es.add(new Event(name,type,Space,gender,startDate,endDate,localization,description,price,1));
+        es.add(new Event(name,type,Space,gender,startDate,endDate,localization,description,price,authenticatedAdminId));
         showAlert("Event added successfully!");
         clearFields();
     }

@@ -1,0 +1,198 @@
+.root{
+    -fx-background-color:#EAEEF4;
+    -fx-font-family: "Century Gothic Bold";
+}
+
+.combo-box{
+    -fx-background-color:#EAEEF4;
+    -fx-font-family: "Century Gothic Bold";
+}
+.text-field{
+    -fx-background-color:#EAEEF4;
+    -fx-font-family: "Century Gothic Bold";
+}
+.date-picker{
+        -fx-background-color:#EAEEF4;
+    -fx-font-family: "Century Gothic Bold";
+}
+.table-view-cell{
+    -fx-font-family: "Century Gothic Bold";
+        -fx-background-color:#353A56;
+}
+table-view-row{
+    -fx-background-color:#EAEEF4;
+
+}
+.button_out{
+    -fx-background-color:#EAEEF4;
+
+}
+.label{
+    -fx-background-color:#353a56;
+    -fx-text-fill:#EAEEF4 ;
+    -fx-font-family: "Century Gothic Bold";
+}
+.text-area{
+    -fx-background-color:#EAEEF4;
+    -fx-font-family: "Century Gothic Bold";
+}
+.side_ankerpane{
+    -fx-background-color:#353A56;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+}
+.inner_pane{
+    -fx-background-color:#748CF1;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #748CF1;
+
+}
+.most_inner_pane{
+    -fx-background-color:#6780E2;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #748CF1;
+}
+
+#btn_workbench{
+    -fx-background-color:#141313;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-border-style: solid;
+    -fx-border-color: #141313;
+}
+.btn_workbench11{
+    -fx-background-color:#353A56;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-border-style: solid;
+    -fx-border-color: #353A56;
+}
+.pane_1{
+    -fx-background-color:#748CF1;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #748CF1;
+}
+.progress{
+    -fx-background-color:#ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #ffffff;
+}
+.pane_11{
+    -fx-background-color:#ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #ffffff;
+}
+.pane_111{
+    -fx-background-color:#FD9999;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #FD9999;
+
+}
+.pane_1111{
+    -fx-background-color:#353A56;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #353A56;
+}
+/* Styling for the root HBox */
+.root {
+    -fx-spacing: 10;
+}
+
+/* Styling for the side AnchorPane */
+.side_ankerpane {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 10;
+}
+
+/* Styling for the main Pane */
+.pane {
+    -fx-background-color: #EAEEF4;
+    -fx-padding: 10;
+}
+
+/* Styling for the labels */
+/*.label {
+    -fx-font-family: "Century Gothic";
+    -fx-text-fill: #333333;
+    -fx-background-color: #EAEEF ;
+}*/
+
+.label.title {
+    -fx-font-size: 34.0;
+    -fx-text-fill: #333333;
+    -fx-background-color:#ffffff ;
+}
+check-box{
+    -fx-background-color: #f0f0f0;
+    -fx-font-family: "Century Gothic";
+
+}
+.label.description {
+    -fx-font-size: 15.0;
+    -fx-text-fill: #666666;
+    -fx-background-color: #ffffff ;
+}
+
+.label.today {
+    -fx-font-size: 15.0;
+    -fx-font-weight: bold;
+    -fx-text-fill: #9a9292;
+    -fx-background-color: #ffffff ;
+
+}
+.button-bar{
+    -fx-background-color: #748CF1;
+
+}
+/* Styling for the buttons */
+.button {
+    -fx-background-color: #748CF1;
+    -fx-padding: 5 10;
+    -fx-font-size: 16px; /* Increase font size */
+    -fx-padding: 10px 20px; /* Increase padding */
+    -fx-background-radius: 25px; /* Increase border radius for rounded corners */
+    -fx-border-radius: 25px; /* Rounded corners */
+}
+
+.button:hover {
+    -fx-background-color: #748CF1;
+}
+
+/* Styling for the panes */
+.pane_1 {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-padding: 10;
+}
+
+.pane_11 {
+    /* Add specific styles for pane_11 if needed */
+}
+
+/* Add more CSS rules for other elements as needed */

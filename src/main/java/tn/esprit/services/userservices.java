@@ -1,8 +1,8 @@
 package tn.esprit.services;
 
-import tn.esprit.entities.admin;
-import tn.esprit.entities.coach;
-import tn.esprit.entities.user;
+import tn.esprit.Entities.admin;
+import tn.esprit.Entities.coach;
+import tn.esprit.Entities.user;
 import tn.esprit.utils.MyDatabase;
 
 import java.sql.*;

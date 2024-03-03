@@ -1,6 +1,6 @@
 package tn.esprit.services;
 
-import tn.esprit.entities.admin;
+import tn.esprit.Entities.admin;
 import tn.esprit.utils.MyDatabase;
 
 import java.sql.*;

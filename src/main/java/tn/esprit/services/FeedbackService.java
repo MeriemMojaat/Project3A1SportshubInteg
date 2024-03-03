@@ -1,7 +1,7 @@
 package tn.esprit.services;
 
 import javafx.scene.control.Alert;
-import tn.esprit.entities.Feedback;
+import tn.esprit.Entities.Feedback;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

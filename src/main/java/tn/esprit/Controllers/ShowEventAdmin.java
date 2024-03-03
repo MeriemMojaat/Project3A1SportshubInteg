@@ -15,8 +15,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import tn.esprit.entities.Booking;
-import tn.esprit.entities.Event;
+import tn.esprit.Entities.Booking;
+import tn.esprit.Entities.Event;
 import tn.esprit.services.*;
 
 import java.io.IOException;
@@ -79,7 +79,7 @@ public class ShowEventAdmin {
         String localisation_event = eventt.getLocalisation_event();
         String description_event = eventt.getDescription_event();
         Float price = eventt.getPrice();
-        int adminid_event= eventt.getAdminid_event();
+        int adminid= eventt.getadminid();
         // Create delete button
         eventBox.getProperties().put("id_event", eventt.getId_event());
 
@@ -230,6 +230,17 @@ public class ShowEventAdmin {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/AddEvent.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        scrollPane.getScene().setRoot(root);
+        System.out.println("Next");
+    }
+    @FXML
+    void GoToAddbookingPage(ActionEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/ShowBooking.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
-import tn.esprit.entities.user;
+import tn.esprit.Entities.user;
 import tn.esprit.services.userservices;
 
 import javax.swing.text.html.ImageView;

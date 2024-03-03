@@ -7,7 +7,7 @@
     import javafx.scene.control.ScrollPane;
     import javafx.scene.image.Image;
     import javafx.scene.image.ImageView;
-    import tn.esprit.entities.user;
+    import tn.esprit.Entities.user;
 
     public class showauthentificateduser {
 
@@ -17,6 +17,9 @@
 
         @FXML
         private Label gender;
+
+        @FXML
+        private Label id;
 
         @FXML
         private Button homebutton;
@@ -34,7 +37,7 @@
         private Label phone;
         @FXML
         private ImageView qrCodeImage;
-
+        int userid;
         @FXML
         private ScrollPane scrollPane;
     private final Login L =new Login();
@@ -76,6 +79,7 @@
 
         public void initData1(user authenticatedUser) {
             // Display user information on the profile page
+
             name.setText(authenticatedUser.getNameuser());
             name1.setText(authenticatedUser.getUseremail());
             password.setText(authenticatedUser.getUserpassword());
@@ -83,7 +87,7 @@
             phone.setText(authenticatedUser.getUsergender());
             dateofbirth.setText(authenticatedUser.getUserdateofbirth().toString());
             qrCodeImage.setImage(displayQRCode(authenticatedUser));
-
+           id.setText(String.valueOf(authenticatedUser.getUserid()));
         }
         private Image displayQRCode(user authenticatedUser) {
             // Assuming you have a method in the Login class to generate QR code for a user

@@ -1,6 +1,6 @@
 package tn.esprit.services;
 
-import tn.esprit.entities.coach;
+import tn.esprit.Entities.coach;
 
 import java.sql.SQLException;
 

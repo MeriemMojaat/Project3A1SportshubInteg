@@ -1,6 +1,6 @@
 package tn.esprit.services;
 
-import tn.esprit.entities.user;
+import tn.esprit.Entities.user;
 
 import java.sql.SQLException;
 import java.util.List;

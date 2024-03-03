@@ -3,7 +3,7 @@ package tn.esprit.Controllers;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import tn.esprit.entities.user;
+import tn.esprit.Entities.user;
 
 public class userutils {
     public static void populateFields(user user, TextField username, TextField phonenumber, TextField email, TextField password, DatePicker date, ComboBox<String> gender) {

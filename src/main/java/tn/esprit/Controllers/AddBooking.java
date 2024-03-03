@@ -23,7 +23,8 @@
         import kong.unirest.Unirest;
         import kong.unirest.UnirestException;
         import org.json.JSONObject;
-        import tn.esprit.entities.Booking;
+        import tn.esprit.Entities.Booking;
+        import tn.esprit.Entities.user;
         import tn.esprit.services.BookingService;
 
         import java.awt.*;
@@ -41,9 +42,12 @@
             private int eventId; // Event ID passed from ShowEvent
             @FXML
             private VBox rootContainer;
+            private user currentuser;
 
             @FXML
             private Button addBookingButton;
+            private Login loginController=new Login();
+
             public void setEventId(int eventId) {
                 this.eventId = eventId;
 
@@ -57,6 +61,7 @@
 
             private final BookingService bs = new BookingService();
             private boolean paymentMade = false;
+            private user AUTH;
 
 
             public void handlePay(Booking booking) throws  UnirestException {
@@ -190,6 +195,9 @@
                     e.printStackTrace();
                     showAlert(Alert.AlertType.ERROR, "Error", "Payment failed", "An error occurred while processing the payment.");
                 }}
+
+
+
             @FXML
             void AddBooking(ActionEvent event) throws IOException {
                 try {
@@ -202,7 +210,11 @@
                         showAlert(Alert.AlertType.ERROR, "Error", "Payment required", "Please make the payment first.");
                         return;
                     }
-                    Booking newBooking = new Booking(eventId, 17, booking_dateId.getValue(), Integer.parseInt(nbr_participantsId.getText()));
+
+                    int authenticatedUserId = SessionManager.getInstance().getAuthenticatedUserId();
+
+
+                    Booking newBooking = new Booking(eventId, authenticatedUserId, booking_dateId.getValue(), Integer.parseInt(nbr_participantsId.getText()));
                     bs.add(newBooking);
                     exportBookingPdf(newBooking);
                     clearfields();

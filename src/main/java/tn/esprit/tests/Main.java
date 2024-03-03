@@ -2,14 +2,9 @@ package tn.esprit.tests;
 
 
 import tn.esprit.Entities.Event;
-import tn.esprit.Entities.*;
-import tn.esprit.services.BookingService;
 import tn.esprit.services.EventService;
 
-import tn.esprit.entities.admin;
-import tn.esprit.entities.user;
-import tn.esprit.services.adminservice;
-import tn.esprit.services.userservices;
+import tn.esprit.Entities.admin;
 
 
 import java.sql.SQLException;

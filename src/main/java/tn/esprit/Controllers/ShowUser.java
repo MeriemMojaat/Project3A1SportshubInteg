@@ -11,7 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DefaultStringConverter;
-import tn.esprit.entities.user;
+import tn.esprit.Entities.user;
 import tn.esprit.services.userservices;
 
 import java.io.IOException;

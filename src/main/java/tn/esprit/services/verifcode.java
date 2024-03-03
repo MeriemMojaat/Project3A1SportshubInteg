@@ -1,6 +1,6 @@
 package tn.esprit.services;
 
-import tn.esprit.entities.user;
+import tn.esprit.Entities.user;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

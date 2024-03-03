@@ -1,21 +1,17 @@
 package tn.esprit.services;
-import tn.esprit.entities.Booking;
-import tn.esprit.entities.Event;
+
+import tn.esprit.Entities.Event;
+import tn.esprit.utils.MyDatabase;
 
 import java.sql.*;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import tn.esprit.utils.myDataBase;
 
 public class EventService implements IService<Event> {
     Connection con;
     Statement stm;
     public EventService() {
-        con = myDataBase.getInstance().getCon();
+        con = MyDatabase.getInstance().getCon();
     }
 
     public static boolean isValidEventName(String eventName) {
@@ -23,7 +19,7 @@ public class EventService implements IService<Event> {
     }
     @Override
     public void add(Event event) throws SQLException {
-        String query = "INSERT INTO `event`(`name_event`, `type_event`, `Space`, `gender_event`, `startDate_event`, `endDate_event`, `localisation_event`, `description_event`, `price`,adminid_event) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO `event`(`name_event`, `type_event`, `Space`, `gender_event`, `startDate_event`, `endDate_event`, `localisation_event`, `description_event`, `price`,adminid) VALUES (?,?,?,?,?,?,?,?,?,?)";
         if (!isValidEventName(event.getName_event())) {
             throw new IllegalArgumentException("You shouldn't exceed 10 characters .");
         }
@@ -41,14 +37,14 @@ public class EventService implements IService<Event> {
         ps.setString(7, event.getLocalisation_event());
         ps.setString(8, event.getDescription_event());
         ps.setFloat(9, event.getPrice());
-        ps.setFloat(10, event.getAdminid_event());
+        ps.setInt(10, event.getadminid());
         ps.executeUpdate();
         System.out.println("Event added!");
     }
 
     @Override
     public void update(Event event) throws SQLException {
-        String query = "UPDATE `event` SET name_event = ?, type_event = ?, Space = ?, gender_event = ?, startDate_event = ?, endDate_event = ?, localisation_event = ?, description_event = ? ,price = ? WHERE id_event = ? AND adminid_event = ? ";
+        String query = "UPDATE `event` SET name_event = ?, type_event = ?, Space = ?, gender_event = ?, startDate_event = ?, endDate_event = ?, localisation_event = ?, description_event = ? ,price = ? WHERE id_event = ? AND adminid = ? ";
         PreparedStatement ps = con.prepareStatement(query);
 
         ps.setString(1, event.getName_event());
@@ -61,7 +57,7 @@ public class EventService implements IService<Event> {
         ps.setString(8, event.getDescription_event());
         ps.setString(9, String.valueOf(event.getPrice()));
         ps.setInt(10, event.getId_event());
-        ps.setInt(11,event.getAdminid_event());
+        ps.setInt(11,event.getadminid());
 
         int rowsUpdated = ps.executeUpdate();
         if (rowsUpdated > 0) {
@@ -82,7 +78,7 @@ public class EventService implements IService<Event> {
 
     @Override
     public List<Event> display() throws SQLException {
-        String query = "SELECT  `id_event`, `name_event`, `type_event`, `Space`, `gender_event`, `startDate_event`, `endDate_event`, `localisation_event`, `description_event`, `price` , `adminid_event`  FROM `event`";
+        String query = "SELECT  `id_event`, `name_event`, `type_event`, `Space`, `gender_event`, `startDate_event`, `endDate_event`, `localisation_event`, `description_event`, `price` , `adminid`  FROM `event`";
         stm = con.createStatement();
         ResultSet res = stm.executeQuery(query);
         List<Event> events = new ArrayList<>();
@@ -98,7 +94,7 @@ public class EventService implements IService<Event> {
                     res.getString("localisation_event"),
                     res.getString("description_event"),
                     res.getFloat("price"),
-                    res.getInt("adminid_event")
+                    res.getInt("adminid")
             );
             events.add(e);
         }
@@ -126,7 +122,7 @@ public class EventService implements IService<Event> {
                         resultSet.getString("localisation_event"),
                         resultSet.getString("description_event"),
                         resultSet.getFloat("price"),
-                        resultSet.getInt("adminid_event")
+                        resultSet.getInt("adminid")
 
                 );
                 events.add(event);
@@ -138,7 +134,7 @@ public class EventService implements IService<Event> {
 
 
     public List<Event> displaySorted(String sortBy) throws SQLException {
-        String query = "SELECT name_event, type_event, Space, gender_event, startDate_event, endDate_event, localisation_event, description_event , price , adminid_event  FROM `event` ORDER BY ";
+        String query = "SELECT name_event, type_event, Space, gender_event, startDate_event, endDate_event, localisation_event, description_event , price , adminid  FROM `event` ORDER BY ";
 
         switch (sortBy) {
             case "startDate":
@@ -168,7 +164,7 @@ public class EventService implements IService<Event> {
                     res.getString("localisation_event"),
                     res.getString("description_event"),
                     res.getFloat("price"),
-                    res.getInt("adminid_event")
+                    res.getInt("adminid")
             );
             events.add(e);
         }
@@ -204,7 +200,7 @@ public class EventService implements IService<Event> {
                     event.setLocalisation_event(resultSet.getString("localisation_event"));
                     event.setDescription_event(resultSet.getString("description_event"));
                     event.setPrice(resultSet.getFloat("price"));
-                    event.setAdminid_event(resultSet.getInt("adminid_event"));
+                    event.setadminid(resultSet.getInt("adminid"));
                 }
             }
         }

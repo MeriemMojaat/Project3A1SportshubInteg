@@ -1,6 +1,6 @@
 package tn.esprit.services;
 
-import tn.esprit.entities.Feedback;
+import tn.esprit.Entities.Feedback;
 
 import java.sql.SQLException;
 import java.util.List;

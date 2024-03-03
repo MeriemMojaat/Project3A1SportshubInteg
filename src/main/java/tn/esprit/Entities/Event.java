@@ -14,8 +14,8 @@ public class Event {
     private String localisation_event;
     private String description_event;
     private float price ;
-    private int adminid_event;
-    public Event(int id_event, String name_event, String type_event, String Space, String gender_event, LocalDate startDate_event, LocalDate endDate_event, String localisation_event, String description_event,float price,int adminid_event) {
+    private int adminid;
+    public Event(int id_event, String name_event, String type_event, String Space, String gender_event, LocalDate startDate_event, LocalDate endDate_event, String localisation_event, String description_event,float price,int adminid) {
         this.id_event = id_event;
         this.name_event = name_event;
         this.type_event = type_event;
@@ -26,10 +26,10 @@ public class Event {
         this.localisation_event = localisation_event;
         this.description_event = description_event;
         this.price=price;
-        this.adminid_event=adminid_event;
+        this.adminid=adminid;
     }
 
-    public Event(String name_event, String type_event, String Space, String gender_event, LocalDate startDate_event, LocalDate endDate_event, String localisation_event, String description_event,float price,int adminid_event) {
+    public Event(String name_event, String type_event, String Space, String gender_event, LocalDate startDate_event, LocalDate endDate_event, String localisation_event, String description_event,float price,int adminid) {
         this.name_event = name_event;
         this.type_event = type_event;
         this.Space = Space;
@@ -39,7 +39,7 @@ public class Event {
         this.localisation_event = localisation_event;
         this.description_event = description_event;
         this.price=price;
-        this.adminid_event=adminid_event;
+        this.adminid=adminid;
     }
 
     public Event() {
@@ -127,12 +127,12 @@ public class Event {
         this.price = price;
     }
 
-    public int getAdminid_event() {
-        return adminid_event;
+    public int getadminid() {
+        return adminid;
     }
 
-    public void setAdminid_event(int adminid_event) {
-        this.adminid_event = adminid_event;
+    public void setadminid(int adminid) {
+        this.adminid = adminid;
     }
 
     @Override
@@ -148,7 +148,7 @@ public class Event {
                 ", localisation_event='" + localisation_event + '\'' +
                 ", description_event='" + description_event + '\'' +
                 ", price=" + price +
-                ", adminid_event=" + adminid_event +
+                ", adminid=" + adminid +
                 '}';
     }
 }

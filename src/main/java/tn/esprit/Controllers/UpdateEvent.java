@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import tn.esprit.entities.Event;
+import tn.esprit.Entities.Event;
 import tn.esprit.services.EventService;
 
 import java.io.IOException;
@@ -178,10 +178,8 @@ public class UpdateEvent {
         eventToUpdate.setLocalisation_event(localization);
         eventToUpdate.setDescription_event(description);
         eventToUpdate.setPrice(price);
-
-
-
-        // Update the event in the database
+        int adminId = AdminSessionManager.getInstance().getAuthenticatedAdminId();
+            // Update the event in the database
         es.update(eventToUpdate);
         clearfields();
         // Show success message

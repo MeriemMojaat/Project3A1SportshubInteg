@@ -1,6 +1,6 @@
 package tn.esprit.Controllers;
 
-import tn.esprit.entities.user;
+import tn.esprit.Entities.user;
 
 public class userinfo {
     static user currentUser;

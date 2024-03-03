@@ -19,9 +19,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import tn.esprit.entities.admin;
-import tn.esprit.entities.coach;
-import tn.esprit.entities.user;
+import tn.esprit.Entities.admin;
+import tn.esprit.Entities.coach;
+import tn.esprit.Entities.user;
 import tn.esprit.services.LoginService;
 import tn.esprit.services.Qrcode;
 import tn.esprit.services.userservices;
@@ -52,7 +52,7 @@ public class Login implements Initializable {
         private TextField usernameField;
     private final LoginService loginService = new LoginService();
     private final userservices us = new userservices();
-    private user authenticatedUser;
+
     private admin authenticatedadmin;
 
     private Object authentificatedobject;
@@ -63,9 +63,18 @@ public class Login implements Initializable {
     private Button refreshCaptchaButton;
 private final Qrcode qr=new Qrcode();
 private user currentuser;
+ //   private int authenticatedUserId = -1; // Default value if no user is authenticated
+
+    // Other existing code...
+
+
+
     @FXML
     private ImageView captchaImage;
     ImageView qrCodeImage = null;
+
+
+
     public TextField getUsername() {
         return usernameField;
     }
@@ -150,15 +159,19 @@ private user currentuser;
         if (authenticatedUser != null) {
             generateQR(authenticatedUser);
             navigateToHomePage(authenticatedUser);
-            currentuser=authenticatedUser;
+            SessionManager.getInstance().setAuthenticatedUserId(authenticatedUser.getUserid());
+
             return authenticatedUser;
         }
 
+        AdminSessionManager sessionManager = AdminSessionManager.getInstance();
 
         // Authenticate admin
         admin authenticatedAdmin = loginService.authenticateadmin(username, password);
         if (authenticatedAdmin != null) {
             navigateToHomePage1(authenticatedAdmin);
+            sessionManager.setAuthenticatedAdminId(authenticatedAdmin.getAdminid());
+
             return authenticatedAdmin;
         }
         coach authenticatedCoach = loginService.authenticatecoach(username, password);
@@ -174,7 +187,14 @@ private user currentuser;
 
 
 
-    public user getAuthentificatedUser() {
+
+
+
+
+
+
+
+    public user getAuthentificatedUser(ActionEvent event) {
         return currentuser;
     }
 

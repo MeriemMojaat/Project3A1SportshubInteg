@@ -1,7 +1,7 @@
 package tn.esprit.services;
 
-import tn.esprit.entities.Feedback;
-import tn.esprit.utils.myDataBase;
+import tn.esprit.Entities.Feedback;
+import tn.esprit.utils.MyDatabase;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class FeedbackDaoImpl implements FeedbackDao {
     Connection con;
 
     public FeedbackDaoImpl() {
-        con = myDataBase.getInstance().getCon();
+        con = MyDatabase.getInstance().getCon();
     }
 
     @Override

@@ -28,7 +28,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import tn.esprit.entities.Booking;
+import tn.esprit.Entities.Booking;
 
 import tn.esprit.services.BookingService;
 
@@ -58,7 +58,7 @@ public class ShowBooking {
 
     @FXML
     public void fileuploader(String filePath) {
-        String accessToken = "cLvAtooLIBjdeqK1Rfcw6Y3n2kpnMBht"; // Replace with your access token
+        String accessToken = "fVGENvl9dlkkzC7AXFS22zKNmlMgRfFG"; // Replace with your access token
         BoxAPIConnection api = new BoxAPIConnection(accessToken);
 
         try {
@@ -224,7 +224,7 @@ public class ShowBooking {
 
     @FXML
     void ViewListEvents(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/ShowEventUser.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/ShowEventAdmin.fxml"));
         scrollPane.getScene().setRoot(root);
         System.out.println("List Event Page");
     }

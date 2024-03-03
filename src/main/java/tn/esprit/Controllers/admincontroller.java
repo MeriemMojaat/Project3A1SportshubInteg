@@ -12,8 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DefaultStringConverter;
-import tn.esprit.entities.admin;
-import tn.esprit.entities.user;
+import tn.esprit.Entities.admin;
+import tn.esprit.Entities.user;
 import tn.esprit.services.userservices;
 
 import java.io.IOException;
@@ -53,12 +53,17 @@ public class admincontroller  {
     private javafx.scene.control.Label name;
     @FXML
     private Button out;
-
-
-
-
-
-
+    @FXML
+    void EventPage(ActionEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/ShowEventAdmin.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        usertableid.getScene().setRoot(root);
+        System.out.println("List Event Page");
+    }
 
     /*public void initdata2(admin authenticatedadmin) {
         this.authenticatedadmin = authenticatedadmin;

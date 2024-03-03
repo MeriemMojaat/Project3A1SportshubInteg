@@ -1,9 +1,9 @@
 package tn.esprit.services;
 
 import javafx.scene.control.Alert;
-import tn.esprit.entities.admin;
-import tn.esprit.entities.coach;
-import tn.esprit.entities.user;
+import tn.esprit.Entities.admin;
+import tn.esprit.Entities.coach;
+import tn.esprit.Entities.user;
 import tn.esprit.utils.MyDatabase;
 
 import java.sql.Connection;
@@ -27,6 +27,7 @@ public class LoginService {
             ps.setString(2, userpassword);
             try (ResultSet resultSet = ps.executeQuery()) {
                 if (resultSet.next()) {
+                    int userid = resultSet.getInt("userid");
                     String name = resultSet.getString("nameuser");
                     String uphonenumber = resultSet.getString("uphonenumber");
                     String useremail = resultSet.getString("useremail");
@@ -34,7 +35,7 @@ public class LoginService {
                     LocalDate userdateofbirth = resultSet.getDate("userdateofbirth").toLocalDate();
                     String usergender = resultSet.getString("usergender");
                     displayAlert("Success", "User found!");
-                    return new user(name,uphonenumber,useremail,password,userdateofbirth,usergender);
+                    return new user(userid,name,uphonenumber,useremail,password,userdateofbirth,usergender);
 
                 } else {
                     // Display popup for incorrect credentials
@@ -50,12 +51,11 @@ public class LoginService {
 
         }
     }
-    public String getAuthenticatedUserName(user authenticatedUser) {
+    public int getAuthenticatedID(user authenticatedUser) {
         if (authenticatedUser != null) {
-            return authenticatedUser.getNameuser();
-        } else {
-            return null;
+            return authenticatedUser.getUserid();
         }
+        return -1;
     }
 
 
@@ -70,20 +70,21 @@ public class LoginService {
         alert.showAndWait();
     }
 
-    public admin authenticateadmin(String adminname , String adminpassword ) {
+    public admin authenticateadmin(String nameuser , String userpassword ) {
         String query = "SELECT * FROM admin WHERE adminname = ? AND adminpassword = ?";
         try (PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setString(1, adminname);
-            ps.setString(2, adminpassword);
+            ps.setString(1, nameuser);
+            ps.setString(2, userpassword);
             try (ResultSet resultSet = ps.executeQuery()) {
                 if (resultSet.next()) {
+                    int adminid = resultSet.getInt("adminid");
                     String aname = resultSet.getString("adminname");
                     String apassword = resultSet.getString("adminpassword");
                     String adminadress = resultSet.getString("adminadress");
                     String adminrole = resultSet.getString("adminrole");
 
                     displayAlert("Success", "Admin found!");
-                    return new admin(aname,apassword,adminadress,adminrole);
+                    return new admin(adminid,aname,apassword,adminadress,adminrole);
 
                 } else {
                     // Display popup for incorrect credentials

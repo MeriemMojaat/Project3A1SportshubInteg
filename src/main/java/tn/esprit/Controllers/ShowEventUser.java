@@ -15,9 +15,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
-import tn.esprit.entities.Booking;
-import tn.esprit.entities.Event;
-import tn.esprit.entities.Feedback;
+import tn.esprit.Entities.Event;
+import tn.esprit.Controllers.Login;
+import tn.esprit.Entities.Feedback;
 import tn.esprit.services.*;
 
 import java.io.IOException;
@@ -218,12 +218,11 @@ public class ShowEventUser {
             Rating starRatingControl = new Rating();
 
             // Create ComboBox for usernames
-            ComboBox<String> usernameComboBox = new ComboBox<>();
-            usernameComboBox.getItems().addAll(usernames);
+
 
             // Create layout for dialog content
             VBox content = new VBox();
-            content.getChildren().addAll(usernameComboBox,starRatingControl);
+            content.getChildren().addAll(starRatingControl);
             dialog.getDialogPane().setContent(content);
 
             // Add OK and Cancel buttons
@@ -236,16 +235,16 @@ public class ShowEventUser {
                 int rating = (int) starRatingControl.getRating();
 
                 // Retrieve selected username from the ComboBox
-                String selectedUsername = usernameComboBox.getValue();
 
-                // Retrieve the user ID associated with the selected username
-                int userId = eventService.getUserIdByName(selectedUsername);
+                int authenticatedUserId = SessionManager.getInstance().getAuthenticatedUserId();
+
+
 
                 // Create a Feedback object
                 Feedback feedback = new Feedback();
                 feedback.setId_event(eventId); // Set the event ID
                 feedback.setRating(rating); // Set the rating
-                feedback.setUserid(userId); // Set the user ID
+                feedback.setUserid(authenticatedUserId); // Set the user ID
 
                 // Submit feedback using FeedbackService
                 feedbackService.submitFeedback(feedback);
@@ -258,6 +257,7 @@ public class ShowEventUser {
     private void handleAddBooking(ActionEvent event, int eventId) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddBooking.fxml"));
+
             Parent root = loader.load();
 
             AddBooking addBookingController = loader.getController();

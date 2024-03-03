@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import tn.esprit.entities.user;
+import tn.esprit.Entities.user;
 import tn.esprit.services.emailservice;
 import tn.esprit.services.userservices;
 import tn.esprit.services.verifcode;

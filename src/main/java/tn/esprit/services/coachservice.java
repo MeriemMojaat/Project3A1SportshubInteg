@@ -1,6 +1,6 @@
 package tn.esprit.services;
 
-import tn.esprit.entities.coach;
+import tn.esprit.Entities.coach;
 import tn.esprit.utils.MyDatabase;
 
 import java.sql.Connection;

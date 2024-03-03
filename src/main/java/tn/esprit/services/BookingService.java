@@ -1,5 +1,5 @@
 package tn.esprit.services;
-import tn.esprit.entities.Booking;
+
 
 import java.sql.*;
 import java.sql.SQLException;
@@ -7,16 +7,22 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import tn.esprit.utils.myDataBase;
+import tn.esprit.utils.MyDatabase;
+import tn.esprit.Entities.Booking;
 
 public class BookingService implements IService<Booking>{
     Connection con;
     Statement stm;
-    public BookingService() { con = myDataBase.getInstance().getCon(); }
+    public BookingService() { con = MyDatabase.getInstance().getCon(); }
 
     @Override
     public void add(Booking booking) throws SQLException {
         String query = "INSERT INTO `booking`(`id_event`, `userid`, `date_booking`, `nbParticipants_event`) VALUES (?,?,?,?)";
+
+        // Check if the user exists before inserting the booking
+        if (!userExists(booking.getUserid())) {
+            throw new SQLException("User with id " + booking.getUserid() + " does not exist.");
+        }
 
         PreparedStatement ps = con.prepareStatement(query);
         ps.setInt(1, booking.getId_event());
@@ -26,6 +32,16 @@ public class BookingService implements IService<Booking>{
         ps.executeUpdate();
         System.out.println("Booking added!");
     }
+
+    // Helper method to check if the user exists
+    private boolean userExists(int userId) throws SQLException {
+        String query = "SELECT * FROM `user` WHERE `userid` = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setInt(1, userId);
+        ResultSet rs = ps.executeQuery();
+        return rs.next(); // Returns true if the user exists, false otherwise
+    }
+
 
     public void update(Booking booking) throws SQLException {
         String query = "UPDATE `booking` SET `id_event`=?,`userid`=?, `date_booking`=?, `nbParticipants_event`=? WHERE `id_booking`=?";
