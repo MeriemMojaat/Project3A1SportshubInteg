@@ -4,22 +4,36 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="559.0" prefWidth="734.0" stylesheets="@newone.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ShowWorkouts">
+<AnchorPane prefHeight="814.0" prefWidth="1092.0" stylesheets="@newone.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ShowWorkouts">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="593.0" prefWidth="767.0" stylesheets="@newone.css">
          <children>
-            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="652.0" prefWidth="858.0">
+            <AnchorPane layoutX="-10.0" layoutY="-11.0" prefHeight="814.0" prefWidth="1092.0">
                <children>
-                  <ScrollPane fx:id="scrollpane" layoutX="151.0" layoutY="113.0" prefHeight="434.0" prefWidth="680.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#353a56" height="111.0" layoutX="-1.0" layoutY="-7.0" stroke="#4691d7" strokeType="INSIDE" width="1095.0" />
+                  <ScrollPane fx:id="scrollpane" layoutX="36.0" layoutY="143.0" prefHeight="579.0" prefWidth="993.0">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                   </ScrollPane>
-                  <TextField fx:id="SearchWKid" layoutX="331.0" layoutY="36.0" onAction="#SearchWKid" promptText="Search" />
-                  <Button layoutX="241.0" layoutY="579.0" mnemonicParsing="false" onAction="#gotocategories" text="Go To Categories" />
+                  <TextField fx:id="SearchWKid" layoutX="632.0" layoutY="26.0" onAction="#SearchWKid" prefHeight="46.0" prefWidth="342.0" promptText="Search" />
+                  <Button layoutX="894.0" layoutY="748.0" mnemonicParsing="false" onAction="#gotocategories" text="Go To Categories" />
                   <PieChart fx:id="productPieChart" layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="300.0" />
+                  <ImageView fitHeight="111.0" fitWidth="129.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/logoo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="35.0" fitWidth="29.0" layoutX="936.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@954591.png" />
+                     </image>
+                  </ImageView>
 
                </children>
             </AnchorPane>

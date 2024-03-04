@@ -4,16 +4,30 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="593.0" prefWidth="767.0" stylesheets="@newone.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ShowCategoryCoach">
+<AnchorPane prefHeight="792.0" prefWidth="999.0" stylesheets="@newone.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ShowCategoryCoach">
    <children>
-      <AnchorPane layoutX="5.0" layoutY="14.0" prefHeight="652.0" prefWidth="858.0">
+      <AnchorPane layoutX="-3.0" layoutY="14.0" prefHeight="779.0" prefWidth="998.0">
          <children>
-            <ScrollPane fx:id="scrollpane" layoutX="193.0" layoutY="119.0" prefHeight="438.0" prefWidth="628.0" />
-            <Button layoutX="230.0" layoutY="575.0" mnemonicParsing="false" onAction="#AddCategory" text="Add a category" />
-            <ComboBox fx:id="combosortCategory" layoutX="659.0" layoutY="44.0" onAction="#sortTableView" prefWidth="150.0" promptText="Sort" />
-            <TextField fx:id="SearchCatId" layoutX="331.0" layoutY="36.0" onAction="#SearchCatId" promptText="Search" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#353a56" height="117.0" layoutY="-17.0" stroke="#4691d7" strokeType="INSIDE" width="998.0" />
+            <ScrollPane fx:id="scrollpane" layoutX="67.0" layoutY="148.0" prefHeight="537.0" prefWidth="886.0" />
+            <Button layoutX="820.0" layoutY="702.0" mnemonicParsing="false" onAction="#AddCategory" text="Add a category" />
+            <ComboBox fx:id="combosortCategory" layoutX="643.0" layoutY="27.0" onAction="#sortTableView" prefHeight="40.0" prefWidth="166.0" promptText="Sort" />
+            <TextField fx:id="SearchCatId" layoutX="283.0" layoutY="23.0" onAction="#SearchCatId" prefHeight="46.0" prefWidth="273.0" promptText="Search" />
+            <ImageView fitHeight="130.0" fitWidth="148.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/logoo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="32.0" layoutX="513.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@954591.png" />
+               </image>
+            </ImageView>
 
          </children>
       </AnchorPane>

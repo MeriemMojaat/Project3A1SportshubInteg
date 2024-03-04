@@ -4,23 +4,32 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="559.0" prefWidth="734.0" stylesheets="@newone.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ShowWorkoutsCoach">
+<AnchorPane prefHeight="786.0" prefWidth="1042.0" stylesheets="@newone.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ShowWorkoutsCoach">
    <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="593.0" prefWidth="767.0">
+      <AnchorPane layoutY="10.0" prefHeight="798.0" prefWidth="1089.0">
          <children>
-            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="652.0" prefWidth="858.0" stylesheets="@newone.css">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#353a56" height="117.0" layoutX="-11.0" layoutY="-12.0" stroke="#4691d7" strokeType="INSIDE" width="1109.0" />
+            <AnchorPane layoutX="10.0" layoutY="-1.0" prefHeight="801.0" prefWidth="1090.0" stylesheets="@newone.css">
                <children>
-                  <ScrollPane fx:id="scrollpane" layoutX="151.0" layoutY="113.0" prefHeight="434.0" prefWidth="680.0">
+                  <ScrollPane fx:id="scrollpane" layoutX="19.0" layoutY="145.0" prefHeight="536.0" prefWidth="1034.0">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                   </ScrollPane>
-                  <TextField fx:id="SearchWKid" layoutX="331.0" layoutY="36.0" onAction="#SearchWKid" promptText="Search" />
-                  <Button layoutX="241.0" layoutY="579.0" mnemonicParsing="false" onAction="#gotocategories" text="Go To Categories" />
-                  <Button fx:id="viewCharts" layoutX="180.0" layoutY="28.0" mnemonicParsing="false" onAction="#viewCharts" text="view chart" />
+                  <TextField fx:id="SearchWKid" layoutX="436.0" layoutY="25.0" onAction="#SearchWKid" prefHeight="46.0" prefWidth="342.0" promptText="Search" />
+                  <Button layoutX="891.0" layoutY="702.0" mnemonicParsing="false" onAction="#gotocategories" text="Go To Categories" />
+                  <Button fx:id="viewCharts" layoutX="227.0" layoutY="21.0" mnemonicParsing="false" onAction="#viewCharts" text="view chart" />
                   <PieChart fx:id="productPieChart" layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="300.0" />
+                  <ImageView fitHeight="33.0" fitWidth="32.0" layoutX="735.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@954591.png" />
+                     </image>
+                  </ImageView>
 
                </children>
             </AnchorPane>

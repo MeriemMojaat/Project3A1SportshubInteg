@@ -270,12 +270,12 @@ public class ShowWorkouts {
     }
 
 
-    @FXML
+  /*  @FXML
     void gotocategories(ActionEvent event) throws IOException {
             Parent root= FXMLLoader.load(getClass().getResource("/ShowCategoryCoach.fxml"));
         scrollpane.getScene().setRoot(root);
             System.out.println("List Event Page");
 
     }
-
+*/
 }
