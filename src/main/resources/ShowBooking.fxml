@@ -13,7 +13,7 @@
         </content>
       </ScrollPane>
       <Button layoutX="270.0" layoutY="623.0" mnemonicParsing="false" onAction="#ViewListEvents" text="View List Event " />
-      <ButtonBar layoutX="20.0" layoutY="20.0" prefHeight="53.0" prefWidth="971.0">
+      <ButtonBar layoutY="-2.0" prefHeight="63.0" prefWidth="1018.0">
          <buttons>
             <Button layoutX="436.0" layoutY="10.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="254.0" text="Home" />
             <Button minWidth="74.0" mnemonicParsing="false" prefHeight="32.0" text="Profile" />

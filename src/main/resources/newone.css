@@ -170,9 +170,9 @@ check-box{
     -fx-background-color: #748CF1;
     -fx-padding: 5 10;
     -fx-font-size: 16px; /* Increase font size */
-    -fx-padding: 10px 20px; /* Increase padding */
-    -fx-background-radius: 25px; /* Increase border radius for rounded corners */
-    -fx-border-radius: 25px; /* Rounded corners */
+    -fx-padding: 5px 10px; /* Increase padding */
+    -fx-background-radius: 15px; /* Increase border radius for rounded corners */
+    -fx-border-radius: 15px; /* Rounded corners */
 }
 
 .button:hover {
