@@ -176,7 +176,8 @@ public class GameUI {
 
             flowpane.getChildren().add(gridPane);
             gamesCountLabel.setText(""+ gamesCount);
-            gamesCountLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 18px;");
+
+            gamesCountLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #748CF1;");
         } catch (SQLException e) {
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace(); // Add this line to print the exception details for debugging
@@ -185,7 +186,7 @@ public class GameUI {
 
     private VBox createCategoryBox(Game game) throws SQLException {
         VBox eventBox = new VBox();
-        eventBox.setStyle("-fx-background-color: #AED6F1; -fx-border-color: #94cdf5; -fx-padding: 10px; -fx-spacing: 15px; -fx-border-radius: 5px;");
+        eventBox.setStyle("-fx-background-color: #353a56; -fx-border-color: #748CF1; -fx-padding: 10px; -fx-spacing: 15px; -fx-border-radius: 5px;");
         // eventBox.setSpacing(5);
         // Create delete button
         eventBox.getProperties().put("gameId", game.getGAME_ID());
@@ -201,13 +202,13 @@ public class GameUI {
         Button listworkoutsButton = new Button("Game participants");
         listworkoutsButton.setOnAction(event -> handlelistparticipants(event, gameid));
 
-        int userid2 = gs.getUserIdByName("azer");
+        //int userid2 = gs.getUserIdByName("azer");
 
         Button addBookingButton = new Button("join game");
         addBookingButton.setOnAction(event -> {
             try {
                 System.out.println("Debug: Game ID: " + gameid); // Print out the gameid value
-                GameList gameList = new GameList(gameid, userid2);
+                GameList gameList = new GameList(gameid, authenticatedUserId);
                 gls.add(gameList);
 
                 showAlert("Success", "You have joined the game successfully!", Alert.AlertType.INFORMATION);
@@ -217,7 +218,7 @@ public class GameUI {
                 showAlert("Error", "Failed to join the game: " + e.getMessage(), Alert.AlertType.ERROR);
                 e.printStackTrace();
                 System.out.println(e.getMessage());
-                System.out.println(userid2);
+                System.out.println(authenticatedUserId);
                 System.out.println(email);
                 System.out.println(gameid);
             } catch (MessagingException e) {
@@ -240,12 +241,19 @@ public class GameUI {
         // Create labels for the game details
 
         Label GameCreator =new Label("Game Creator: " + gs.getUserNameById(game.getCREATOR_ID()));
+        GameCreator.getStyleClass().add("gameLabel");
         Label nameLabel = new Label("Game Name: " + game.getGAME_NAME());
+        nameLabel.getStyleClass().add("gameLabel");
         Label typeLabel = new Label("Type: " + game.getTYPE());
+        typeLabel.getStyleClass().add("gameLabel");
         Label placeLabel =new Label("Place: " + game.getGPLACE());
+        placeLabel.getStyleClass().add("gameLabel");
         Label dateLabel = new Label("start Date: " + game.getDATE_G());
+        dateLabel.getStyleClass().add("gameLabel");
         Label edateLabel = new Label("end Date: " + game.getDATE_EG());
+        edateLabel.getStyleClass().add("gameLabel");
         Label participantsLabel = new Label("Participants: " + game.getNBR_PAR());
+        participantsLabel.getStyleClass().add("gameLabel");
 
         TextField commentTextField = new TextField();
         commentTextField.setPromptText("Add a comment");

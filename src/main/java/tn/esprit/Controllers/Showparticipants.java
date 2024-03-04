@@ -79,7 +79,7 @@ public class Showparticipants {
         System.out.println("Creating booking box for gameList: " + gameList);
 
         VBox bookingBox = new VBox();
-        bookingBox.setStyle("-fx-background-color: #AED6F1; -fx-border-color: #AED6F1; -fx-padding: 20px; -fx-spacing: 10px;");
+        bookingBox.setStyle("-fx-background-color:#748CF1; -fx-border-color: #AED6F1; -fx-padding: 20px; -fx-spacing: 10px;");
         bookingBox.setSpacing(10);
 
         String gamename = null;

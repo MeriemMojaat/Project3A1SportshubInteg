@@ -13,21 +13,22 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchor" prefHeight="635.0" prefWidth="1133.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.GameUI">
+<AnchorPane fx:id="anchor" prefHeight="635.0" prefWidth="1133.0" stylesheets="@newone.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.GameUI">
    <children>
       <BorderPane fx:id="border" layoutX="-1.0" prefHeight="742.0" prefWidth="1190.0">
          <center>
             <VBox prefHeight="581.0" prefWidth="1228.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane prefHeight="64.0" prefWidth="1190.0" stylesheets="@style.css">
+                  <AnchorPane prefHeight="64.0" prefWidth="1190.0" stylesheets="@newone.css">
                      <children>
-                        <Button layoutX="1112.0" layoutY="20.0" mnemonicParsing="false" onAction="#CreateGame" style="-fx-background-color: #0077b6;" text="Create" />
-                        <Text layoutX="983.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE A GAME!" textAlignment="CENTER" wrappingWidth="118.2586669921875" />
-                        <Text layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" />
-                        <TextField fx:id="SearchCatId" layoutX="76.0" layoutY="12.0" onAction="#SearchCatId" promptText="Search for games" style="-fx-border-color: #0077b6;" styleClass="fade-in" stylesheets="@style.css" />
+                        <Button layoutX="1112.0" layoutY="14.0" mnemonicParsing="false" onAction="#CreateGame" stylesheets="@newone.css" text="Create" />
+                        <Text layoutX="982.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE A GAME!" textAlignment="CENTER" wrappingWidth="118.2586669921875" />
+                        <Text layoutX="29.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" />
+                        <TextField fx:id="SearchCatId" layoutX="75.0" layoutY="18.0" onAction="#SearchCatId" promptText="Search for games" stylesheets="@newone.css" />
                         <Button fx:id="myGamesButton" layoutX="547.0" layoutY="14.0" mnemonicParsing="false" onAction="#mygames" text="My games">
                            <font>
                               <Font name="Bodoni MT Bold" size="12.0" />
@@ -37,8 +38,12 @@
                   <Separator prefHeight="30.0" prefWidth="1190.0" />
                   <AnchorPane fx:id="rootAnchorPane" prefHeight="74.0" prefWidth="1190.0">
                      <children>
-                        <Text layoutX="969.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort By :" />
-                        <Text layoutX="14.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AVAILABLE  GAMES :" textAlignment="CENTER" wrappingWidth="203.17056274414062">
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#353a56" height="95.0" layoutX="-4.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" width="1198.0" />
+                        <Text fill="#748cf1" layoutX="969.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort By :">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
+                        <Text fill="#748cf1" layoutX="14.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AVAILABLE  GAMES :" textAlignment="CENTER" wrappingWidth="203.17056274414062">
                            <font>
                               <Font name="Bell MT" size="18.0" />
                            </font>
@@ -57,12 +62,15 @@
             </VBox>
          </center>
          <top>
-            <VBox fx:id="vbox" prefHeight="0.0" prefWidth="1440.0" styleClass="root" stylesheets="@style.css" BorderPane.alignment="CENTER">
+            <VBox fx:id="vbox" prefHeight="0.0" prefWidth="1440.0" styleClass="root" stylesheets="@newone.css" BorderPane.alignment="CENTER">
                <children>
                   <AnchorPane fx:id="ANCHOR" prefHeight="155.0" prefWidth="867.0">
                      <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#353a56" height="103.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" width="1194.0" />
                         <ImageView fitHeight="100.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
-                        </ImageView>
+                           <image>
+                              <Image url="@logooo.png" />
+                           </image></ImageView>
                         <ButtonBar layoutX="327.0" layoutY="23.0" prefHeight="54.0" prefWidth="536.0">
                            <buttons>
                               <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="156.0" text="Profile" />

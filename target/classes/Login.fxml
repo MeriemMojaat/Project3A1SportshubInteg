@@ -54,7 +54,7 @@
             <Image url="@icons/logoo.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="10.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome To Your SportsHub">
+      <Text fill="WHITE" layoutX="10.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome To Your SportsHub">
          <font>
             <Font size="36.0" />
          </font>

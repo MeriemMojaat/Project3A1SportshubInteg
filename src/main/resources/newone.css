@@ -140,7 +140,7 @@ table-view-row{
 
 .label.title {
     -fx-font-size: 34.0;
-    -fx-text-fill: #333333;
+    -fx-text-fill: #353A56;
     -fx-background-color:#ffffff ;
 }
 check-box{
@@ -189,6 +189,20 @@ check-box{
 
 .pane_11 {
     /* Add specific styles for pane_11 if needed */
+}
+
+.gameLabel {
+    -fx-text-fill: #748CF1;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+
+}
+
+.gameLabel2 {
+    -fx-text-fill: #353A56;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+
 }
 
 /* Add more CSS rules for other elements as needed */

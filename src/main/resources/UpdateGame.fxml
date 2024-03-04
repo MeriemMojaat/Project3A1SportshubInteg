@@ -5,25 +5,26 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane fx:id="root" prefHeight="528.0" prefWidth="805.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.UpdateGame">
+<AnchorPane fx:id="root" prefHeight="528.0" prefWidth="805.0" stylesheets="@newone.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.UpdateGame">
     <children>
-        <Button layoutX="348.0" layoutY="467.0" mnemonicParsing="false" onAction="#updateGame" onKeyPressed="#add" prefHeight="42.0" prefWidth="87.0" text="Update" textAlignment="CENTER" underline="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#353a56" height="345.0" layoutX="263.0" layoutY="84.0" stroke="BLACK" strokeType="INSIDE" width="280.0" />
+        <Button layoutX="359.0" layoutY="467.0" mnemonicParsing="false" onAction="#updateGame" onKeyPressed="#add" prefHeight="42.0" prefWidth="87.0" text="Update" textAlignment="CENTER" underline="true">
             <cursor>
                 <Cursor fx:constant="DEFAULT" />
             </cursor>
         </Button>
-        <TextField fx:id="GAME_NAME" layoutX="292.0" layoutY="106.0" onKeyPressed="#addEventFilter" prefHeight="42.0" prefWidth="196.0" promptText="Game name" />
-        <DatePicker fx:id="DATE_EG" layoutX="290.0" layoutY="269.0" onKeyPressed="#addEventFilter" promptText="End Date" />
-        <TextField fx:id="NBR_PAR" layoutX="292.0" layoutY="381.0" onKeyPressed="#addEventFilter" promptText="Capacity" />
-        <ComboBox fx:id="TYPE" layoutX="292.0" layoutY="165.0" onKeyPressed="#addEventFilter" prefHeight="34.0" prefWidth="196.0" promptText="Type" />
-        <ComboBox fx:id="GPLACE" layoutX="292.0" layoutY="325.0" onKeyPressed="#addEventFilter" prefHeight="42.0" prefWidth="196.0" promptText="Place" />
+        <TextField fx:id="GAME_NAME" layoutX="292.0" layoutY="106.0" onKeyPressed="#addEventFilter" prefHeight="42.0" prefWidth="196.0" promptText="Game name" stylesheets="@newone.css" />
+        <DatePicker fx:id="DATE_EG" layoutX="290.0" layoutY="269.0" onKeyPressed="#addEventFilter" promptText="End Date" stylesheets="@newone.css" />
+        <TextField fx:id="NBR_PAR" layoutX="292.0" layoutY="381.0" onKeyPressed="#addEventFilter" promptText="Capacity" stylesheets="@newone.css" />
+        <ComboBox fx:id="TYPE" layoutX="292.0" layoutY="165.0" onKeyPressed="#addEventFilter" prefHeight="34.0" prefWidth="196.0" promptText="Type" stylesheets="@newone.css" />
+        <ComboBox fx:id="GPLACE" layoutX="292.0" layoutY="325.0" onKeyPressed="#addEventFilter" prefHeight="42.0" prefWidth="196.0" promptText="Place" stylesheets="@newone.css" />
         <ImageView fx:id="image" fitHeight="129.0" fitWidth="136.0" layoutX="-10.0" layoutY="-23.0" pickOnBounds="true" preserveRatio="true">
         </ImageView>
         <Button layoutX="14.0" layoutY="467.0" mnemonicParsing="false" onAction="#viewGame" prefHeight="42.0" prefWidth="129.0" text="view Game" />
-        <DatePicker fx:id="DATE_G" layoutX="292.0" layoutY="214.0" onKeyPressed="#addEventFilter" promptText="Start Date" />
+        <DatePicker fx:id="DATE_G" layoutX="292.0" layoutY="214.0" onKeyPressed="#addEventFilter" promptText="Start Date" stylesheets="@newone.css" />
     </children>
 </AnchorPane>

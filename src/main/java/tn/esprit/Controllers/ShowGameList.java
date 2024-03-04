@@ -137,7 +137,7 @@ public class ShowGameList {
 
     private VBox createCategoryBox(Game game , int userdI) throws SQLException {
         VBox eventBox = new VBox();
-        eventBox.setStyle("-fx-background-color: #AED6F1; -fx-border-color: #94cdf5; -fx-padding: 10px; -fx-spacing: 15px; -fx-border-radius: 5px;");
+        eventBox.setStyle("-fx-background-color: #353A56; -fx-border-color:  #748CF1; -fx-padding: 10px; -fx-spacing: 15px; -fx-border-radius: 5px;");
        // eventBox.setSpacing(5);
 
 
@@ -191,6 +191,28 @@ public class ShowGameList {
         listworkoutsButtonBox.setAlignment(Pos.CENTER);
 
 
+        // Create labels for the game details
+
+        Label GameCreator =new Label("Game Creator: " + gs.getUserNameById(game.getCREATOR_ID()));
+        GameCreator.getStyleClass().add("gameLabel");
+        Label nameLabel = new Label("Game Name: " + game.getGAME_NAME());
+        nameLabel.getStyleClass().add("gameLabel");
+        Label typeLabel = new Label("Type: " + game.getTYPE());
+        typeLabel.getStyleClass().add("gameLabel");
+        Label placeLabel =new Label("Place: " + game.getGPLACE());
+        placeLabel.getStyleClass().add("gameLabel");
+        Label dateLabel = new Label("start Date: " + game.getDATE_G());
+        dateLabel.getStyleClass().add("gameLabel");
+        Label edateLabel = new Label("end Date: " + game.getDATE_EG());
+        edateLabel.getStyleClass().add("gameLabel");
+        Label participantsLabel = new Label("Participants: " + game.getNBR_PAR());
+        participantsLabel.getStyleClass().add("gameLabel");
+
+        eventBox.getChildren().addAll(
+                GameCreator, nameLabel, typeLabel, placeLabel,dateLabel,edateLabel,
+                participantsLabel
+                );
+
         if (userid == game.getCREATOR_ID()) {
             // Add buttons for the game creator
             eventBox.getChildren().addAll(buttonBox , listworkoutsButtonBox ,showFeedbackButtonBox,commentbuttonBox);
@@ -198,20 +220,6 @@ public class ShowGameList {
             // Add buttons for participants or other users
             eventBox.getChildren().addAll(submitFeedbackButton , commentbuttonBox);
         }
-        // Create labels for the game details
-
-        Label GameCreator =new Label("Game Creator: " + gs.getUserNameById(game.getCREATOR_ID()));
-        Label nameLabel = new Label("Game Name: " + game.getGAME_NAME());
-        Label typeLabel = new Label("Type: " + game.getTYPE());
-        Label placeLabel =new Label("Place: " + game.getGPLACE());
-        Label dateLabel = new Label("Date: " + game.getDATE_G());
-        Label edateLabel = new Label("Date: " + game.getDATE_EG());
-        Label participantsLabel = new Label("Participants: " + game.getNBR_PAR());
-
-        eventBox.getChildren().addAll(
-                GameCreator, nameLabel, typeLabel, placeLabel,dateLabel,edateLabel,
-                participantsLabel
-                );
         return eventBox;
     }
 

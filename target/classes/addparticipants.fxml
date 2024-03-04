@@ -3,63 +3,32 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="503.0" prefWidth="692.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.addparticipants">
+<AnchorPane prefHeight="503.0" prefWidth="692.0" stylesheets="@newone.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.addparticipants">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="296.0" layoutX="205.0" layoutY="124.0" stroke="BLACK" strokeType="INSIDE" width="283.0">
-         <fill>
-            <LinearGradient cycleMethod="REPEAT" endY="0.779356082280477" startX="0.5037878643382679" startY="1.0">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.08233918249607086" green="0.35830020904541016" blue="0.6736842393875122" />
-                     </color>
-                  </Stop>
-                  <Stop offset="0.006729475100942127">
-                     <color>
-                        <Color red="0.08233918249607086" green="0.35830020904541016" blue="0.6736842393875122" />
-                     </color>
-                  </Stop>
-                  <Stop offset="0.9973082099596231">
-                     <color>
-                        <Color red="0.857787549495697" green="0.8947368264198303" blue="0.15575048327445984" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.857787549495697" green="0.8947368264198303" blue="0.15575048327445984" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </fill>
-      </Rectangle>
-      <Label layoutX="277.0" layoutY="83.0" prefHeight="27.0" prefWidth="140.0" text="Invite someone!" textAlignment="CENTER" textFill="#eaff0a">
-         <font>
-            <Font name="Bookshelf Symbol 7" size="64.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="userName" layoutX="271.0" layoutY="239.0" prefWidth="150.0" promptText="user name" />
-      <Button layoutX="320.0" layoutY="297.0" mnemonicParsing="false" onAction="#add" text="ADD" textFill="#ff058ea3" />
-      <ButtonBar layoutX="35.0" layoutY="10.0" prefHeight="54.0" prefWidth="595.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#353a56" height="111.0" layoutY="-8.0" stroke="BLACK" strokeType="INSIDE" width="692.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#353a56" height="296.0" layoutX="205.0" layoutY="133.0" stroke="BLACK" strokeType="INSIDE" width="283.0" />
+      <ComboBox fx:id="userName" layoutX="271.0" layoutY="248.0" prefWidth="150.0" promptText="user name" />
+      <Button layoutX="320.0" layoutY="306.0" mnemonicParsing="false" onAction="#add" text="Invite" textFill="#000000a3" />
+      <ButtonBar layoutX="86.0" layoutY="20.0" prefHeight="54.0" prefWidth="519.0">
         <buttons>
-            <Button mnemonicParsing="false" text="Profile" />
-            <Button mnemonicParsing="false" text="Event" />
+            <Button mnemonicParsing="false" text="Profile" textAlignment="CENTER" />
             <Button mnemonicParsing="false" text="Workout" />
             <Button mnemonicParsing="false" text="Product" />
           <Button mnemonicParsing="false" onAction="#ViewGameUI" text="Game" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="142.0" text="Event" />
         </buttons>
       </ButtonBar>
       <ImageView fitHeight="103.0" fitWidth="116.0" layoutX="-8.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
+      </ImageView>
+      <ImageView fitHeight="73.0" fitWidth="83.0" layoutX="310.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@10823724.gif" />
+         </image>
       </ImageView>
    </children>
 </AnchorPane>
