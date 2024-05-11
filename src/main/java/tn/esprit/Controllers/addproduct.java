@@ -1,5 +1,8 @@
 package tn.esprit.Controllers;
 
+import com.modernmt.text.profanity.ProfanityFilter;
+import com.modernmt.text.profanity.dictionary.Profanity;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,6 +69,56 @@ public class addproduct {
     private double startAngle = 0;
     private double angle = 0;
     private String fileName;
+    private ProfanityFilter profanityFilter = new ProfanityFilter();
+    @FXML
+    void initialize()
+    {
+        DESCRIPTION.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Call the findAndReplaceProfanity method to detect and replace profanity in TextArea
+            String   text= findProfanity(newValue);
+            deleteString(newValue,text);
+        });
+    }
+    private String findProfanity(String text) {
+        String text1="";
+        // Test if the string contains profanity
+        boolean containsProfanityEn = profanityFilter.test("en", text);
+        boolean containsProfanityFr = profanityFilter.test("fr", text);
+
+        // Check if profanity is found in any language
+        if (containsProfanityEn || containsProfanityFr) {
+            // Show an alert indicating profanity is found
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Profanity Detected");
+            alert.setHeaderText("Profanity has been detected in the text.");
+            alert.setContentText("Please refrain from using offensive language.");
+            alert.showAndWait();
+            Profanity profanityen=profanityFilter.find("en",text);
+            Profanity profanityfr=profanityFilter.find("fr",text);
+            if(containsProfanityEn)
+                text1=profanityen.text();
+            else {
+                text1=profanityfr.text();
+            }
+        }
+        return text1;
+
+    }
+    private void deleteString(String text,String stringToDelete) {
+        // Check if the new text contains the string to delete
+        if (text.contains(stringToDelete)) {
+            // Delete the string from the text
+            Platform.runLater(() -> {
+                // Calculate start and end indices of the string to delete
+                int startIndex = text.indexOf(stringToDelete);
+                int endIndex = startIndex + stringToDelete.length();
+                // Update the text area content with the string deleted
+                DESCRIPTION.replaceText(startIndex, endIndex, "");
+                // Move the caret position to the end of the text area
+                DESCRIPTION.positionCaret(DESCRIPTION.getText().length());
+            });
+        }
+    }
 
     @FXML
     public void imageUpload(ActionEvent event) {

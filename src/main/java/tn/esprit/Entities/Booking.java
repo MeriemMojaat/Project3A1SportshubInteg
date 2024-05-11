@@ -11,6 +11,15 @@ public class Booking {
     private int userid;
     private LocalDate date_booking;
     private int nbParticipants_event;
+    private boolean status;
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
     public Booking(int id_booking, int id_event, int userid, int nbParticipants_event) {
         this.id_booking = id_booking;
@@ -31,6 +40,14 @@ public class Booking {
         this.userid = userid;
         this.date_booking = date_booking;
         this.nbParticipants_event = nbParticipants_event;
+    }
+
+    public Booking(int id_event, int userid, LocalDate date_booking, int nbParticipants_event, boolean status) {
+        this.id_event = id_event;
+        this.userid = userid;
+        this.date_booking = date_booking;
+        this.nbParticipants_event = nbParticipants_event;
+        this.status = status;
     }
 
     public Booking(int userid, LocalDate date_booking, int nbParticipants_event) {

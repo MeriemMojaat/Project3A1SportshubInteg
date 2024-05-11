@@ -21,7 +21,7 @@ public class LoginService {
 
 
     public user authenticate(String nameuser, String userpassword ) {
-        String query = "SELECT * FROM user WHERE nameuser = ? AND userpassword = ?";
+        String query = "SELECT * FROM userjava WHERE nameuser = ? AND userpassword = ?";
         try (PreparedStatement ps = con.prepareStatement(query)) {
             ps.setString(1, nameuser);
             ps.setString(2, userpassword);

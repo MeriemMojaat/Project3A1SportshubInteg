@@ -19,7 +19,7 @@ public class FeedbackDaoImpl implements FeedbackDao {
 
     @Override
     public void saveFeedback(Feedback feedback) {
-        String sql = "INSERT INTO feedback (id_feedback,rating,id_event, userid ) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO feedbacks (id_feedback,rating,id_event, userid ) VALUES (?, ?, ?, ?)";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             statement.setInt(1, feedback.getId_feedback());
             statement.setInt(2, feedback.getRating());
@@ -38,7 +38,7 @@ public class FeedbackDaoImpl implements FeedbackDao {
     @Override
     public List<Feedback> getAllFeedback() {
         List<Feedback> feedbackList = new ArrayList<>();
-        String query = "SELECT * FROM feedback";
+        String query = "SELECT * FROM feedbacks";
         try (PreparedStatement statement = con.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
@@ -57,7 +57,7 @@ public class FeedbackDaoImpl implements FeedbackDao {
     @Override
     public List<Feedback> getFeedbackForEvent(int eventId) {
         List<Feedback> feedbackList = new ArrayList<>();
-        String query = "SELECT * FROM feedback WHERE id_event = ?";
+        String query = "SELECT * FROM feedbacks WHERE id_event = ?";
         try (PreparedStatement statement = con.prepareStatement(query)) {
             statement.setInt(1, eventId);
             ResultSet resultSet = statement.executeQuery();
@@ -78,7 +78,7 @@ public class FeedbackDaoImpl implements FeedbackDao {
     @Override
     public List<String> getUsernamesForFeedback() throws SQLException {
         List<String> usernames = new ArrayList<>();
-        String sql = "SELECT nameuser FROM user"; // Assuming 'users' table contains usernames
+        String sql = "SELECT nameuser FROM userjava"; // Assuming 'users' table contains usernames
 
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();

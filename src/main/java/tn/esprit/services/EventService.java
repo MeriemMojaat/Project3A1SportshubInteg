@@ -236,7 +236,7 @@ public class EventService implements IService<Event> {
     }
     public String getUserNameById(int userId) throws SQLException {
         String userName = null;
-        String query = "SELECT nameuser FROM user WHERE userid = ?";
+        String query = "SELECT nameuser FROM userjava WHERE userid = ?";
         try (PreparedStatement ps = con.prepareStatement(query)) {
             ps.setInt(1, userId);
             try (ResultSet rs = ps.executeQuery()) {
@@ -249,7 +249,7 @@ public class EventService implements IService<Event> {
     }
     public int getUserIdByName(String userName) throws SQLException {
         int userId = -1; // Default value indicating not found
-        String query = "SELECT userid FROM user WHERE nameuser = ?";
+        String query = "SELECT userid FROM userjava WHERE nameuser = ?";
         try (PreparedStatement ps = con.prepareStatement(query)) {
             ps.setString(1, userName);
             try (ResultSet rs = ps.executeQuery()) {

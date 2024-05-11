@@ -46,7 +46,7 @@ public class userservices implements userservice <user> {
             return; // Exit the method if the phone number is not valid
         }
 
-        String query = "INSERT INTO `user`( `nameuser`, `uphonenumber`, `useremail`, `userpassword`, `userdateofbirth`, `usergender`) VALUES ('" + user.getNameuser() + "','" + user.getUphonenumber() + "','" + user.getUseremail() + "','" + user.getUserpassword() + "','" + user.getUserdateofbirth() + "','" + user.getUsergender() + "')";
+        String query = "INSERT INTO `userjava`( `nameuser`, `uphonenumber`, `useremail`, `userpassword`, `userdateofbirth`, `usergender`) VALUES ('" + user.getNameuser() + "','" + user.getUphonenumber() + "','" + user.getUseremail() + "','" + user.getUserpassword() + "','" + user.getUserdateofbirth() + "','" + user.getUsergender() + "')";
         stm = con.createStatement();
         stm.executeUpdate(query);
         System.out.println("User added!");
@@ -62,7 +62,7 @@ public class userservices implements userservice <user> {
 
     public boolean update(user user) throws SQLException {
         boolean valid=false;
-        String query = "UPDATE user SET nameuser = ?, uphonenumber = ?, useremail = ?, userpassword = ?, userdateofbirth = ?, usergender = ?  WHERE userid = ?";
+        String query = "UPDATE userjava SET nameuser = ?, uphonenumber = ?, useremail = ?, userpassword = ?, userdateofbirth = ?, usergender = ?  WHERE userid = ?";
         try {
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, user.getNameuser());
@@ -90,7 +90,7 @@ public class userservices implements userservice <user> {
     }
     public boolean updatebyname(user user) throws SQLException {
         boolean valid=false;
-        String query = "UPDATE user SET nameuser = ?, uphonenumber = ?, useremail = ?, userpassword = ?, userdateofbirth = ?, usergender = ?  WHERE nameuser = ?";
+        String query = "UPDATE userjava SET nameuser = ?, uphonenumber = ?, useremail = ?, userpassword = ?, userdateofbirth = ?, usergender = ?  WHERE nameuser = ?";
         try {
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, user.getNameuser());
@@ -117,7 +117,7 @@ public class userservices implements userservice <user> {
         return valid;
     }
     public user searchByUid(int userid) throws SQLException {
-        String query = "SELECT * FROM user WHERE userid = ?";
+        String query = "SELECT * FROM userjava WHERE userid = ?";
         user ur = null;
 
         try (PreparedStatement statement = con.prepareStatement(query)) {
@@ -157,7 +157,7 @@ public class userservices implements userservice <user> {
         return ur;
     }
     public void updatePassword(int userId, String newPassword) throws SQLException {
-        String query = "UPDATE user SET userpassword = ? WHERE userid = ?";
+        String query = "UPDATE userjava SET userpassword = ? WHERE userid = ?";
         try (PreparedStatement stmt = con.prepareStatement(query)) {
             stmt.setString(1, newPassword);
             stmt.setInt(2, userId);
@@ -165,7 +165,7 @@ public class userservices implements userservice <user> {
         }
     }
     public boolean doesEmailExist(String email) throws SQLException {
-        String query = "SELECT COUNT(*) FROM user WHERE useremail = ?";
+        String query = "SELECT COUNT(*) FROM userjava WHERE useremail = ?";
         try (PreparedStatement ps = con.prepareStatement(query)) {
             ps.setString(1, email);
             try (ResultSet resultSet = ps.executeQuery()) {
@@ -178,7 +178,7 @@ public class userservices implements userservice <user> {
         return false; // Return false if an exception occurs or no rows are found
     }
     public int getUidByEmail(String email) throws SQLException {
-        String query = "SELECT userid FROM user WHERE useremail = ?";
+        String query = "SELECT userid FROM userjava WHERE useremail = ?";
         try (PreparedStatement statement = con.prepareStatement(query)) {
             statement.setString(1, email);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -192,7 +192,7 @@ public class userservices implements userservice <user> {
         }
     }
     public void updateVerificationCode(int userId, String verificationCode) throws SQLException {
-        String query = "UPDATE user SET verifcode = ? WHERE userid = ?";
+        String query = "UPDATE userjava SET verifcode = ? WHERE userid = ?";
         try (PreparedStatement stmt = con.prepareStatement(query)) {
             stmt.setString(1, verificationCode);
             stmt.setInt(2, userId);
@@ -200,7 +200,7 @@ public class userservices implements userservice <user> {
         }
     }
     public String getEmailByUserId(int userId) throws SQLException {
-        String query = "SELECT useremail FROM User WHERE userid = ?";
+        String query = "SELECT useremail FROM Userjava WHERE userid = ?";
         String email = null;
 
         try (PreparedStatement statement = con.prepareStatement(query)) {
@@ -216,7 +216,7 @@ public class userservices implements userservice <user> {
         return email;
     }
     public void update2(user user) throws SQLException {
-        String query = "UPDATE user SET nameuser = ?, uphonenumber = ?, useremail = ?, userdateofbirth = ?, usergender = ?  WHERE userid = ?";
+        String query = "UPDATE userjava SET nameuser = ?, uphonenumber = ?, useremail = ?, userdateofbirth = ?, usergender = ?  WHERE userid = ?";
         try {
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, user.getNameuser());
@@ -235,7 +235,7 @@ public class userservices implements userservice <user> {
         }
     }
     public void delete(int userid) throws SQLException {
-        String query = "DELETE from user where userid= '" + userid + "' ";
+        String query = "DELETE from userjava where userid= '" + userid + "' ";
         try {
             Statement st = con.createStatement();
             st.executeUpdate(query);
@@ -249,7 +249,7 @@ public class userservices implements userservice <user> {
     @Override
     public List<user> diplayList() throws SQLException {
         List<user> users = new ArrayList<>();
-        String query = "select * from user";
+        String query = "select * from userjava";
         try {
             PreparedStatement pst = con.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
@@ -294,7 +294,7 @@ public class userservices implements userservice <user> {
     }
 
     public void insertPst(user user) {
-        String query = "insert into user(nameuser,uphonenumber,useremail,userpassword,userdateofbirth,usergender,ImgUser) values(?,?,?,?,?,?,?)";
+        String query = "insert into userjava(nameuser,uphonenumber,useremail,userpassword,userdateofbirth,usergender,ImgUser) values(?,?,?,?,?,?,?)";
 
         if (!isEmailValid(user.getUseremail())) {
             System.out.println("L'email n'est pas valide.");
@@ -320,7 +320,7 @@ public class userservices implements userservice <user> {
     }
     public List<user> searchUsers(String searchCriteria) throws SQLException {
         List<user> users = new ArrayList<>();
-        String query = "SELECT * FROM user WHERE nameuser LIKE ? OR userdateofbirth LIKE ? OR useremail LIKE ?";
+        String query = "SELECT * FROM userjava WHERE nameuser LIKE ? OR userdateofbirth LIKE ? OR useremail LIKE ?";
 
         try (PreparedStatement statement = con.prepareStatement(query)) {
             statement.setString(1, "%" + searchCriteria + "%");
@@ -346,7 +346,7 @@ public class userservices implements userservice <user> {
     }
     public List<Integer> getAllUserId() throws SQLException {
         List<Integer> userIds = new ArrayList<>();
-        String query = "SELECT userid FROM User";
+        String query = "SELECT userid FROM Userjava";
         try (PreparedStatement statement = con.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
@@ -357,7 +357,7 @@ public class userservices implements userservice <user> {
         return userIds;
     }
     public user getUserById(int userId) throws SQLException {
-        String query = "SELECT * FROM User WHERE userid = ?";
+        String query = "SELECT * FROM Userjava WHERE userid = ?";
         try (PreparedStatement ps = con.prepareStatement(query)) {
             ps.setInt(1, userId);
             try (ResultSet resultSet = ps.executeQuery()) {
@@ -379,7 +379,7 @@ public class userservices implements userservice <user> {
         }
     }
     public user getuserbyname(String nameuser) throws SQLException {
-        String query = "SELECT * FROM user WHERE nameuser = ?";
+        String query = "SELECT * FROM userjava WHERE nameuser = ?";
         try (PreparedStatement ps = con.prepareStatement(query)) {
             ps.setString(1, nameuser);
             try (ResultSet resultSet = ps.executeQuery()) {
@@ -404,12 +404,12 @@ public class userservices implements userservice <user> {
     public void delete1(String nameuser) {
         try {
             con.setAutoCommit(false);
-            String deleteReservationsQuery = "DELETE FROM user WHERE userid = (SELECT userid FROM user WHERE nameuser = ?)";
+            String deleteReservationsQuery = "DELETE FROM userjava WHERE userid = (SELECT userid FROM user WHERE nameuser = ?)";
             PreparedStatement deleteReservationsStatement = con.prepareStatement(deleteReservationsQuery);
             deleteReservationsStatement.setString(1, nameuser);
             deleteReservationsStatement.executeUpdate();
 
-            String deleteEventQuery = "DELETE FROM user WHERE nameuser = ?";
+            String deleteEventQuery = "DELETE FROM userjava WHERE nameuser = ?";
             PreparedStatement deleteEventStatement = con.prepareStatement(deleteEventQuery);
             deleteEventStatement.setString(1, nameuser);
             deleteEventStatement.executeUpdate();
@@ -433,7 +433,7 @@ public class userservices implements userservice <user> {
     }
     public int calculatenumberUsers() {
         int nbuser= 0;
-        String query = "SELECT COUNT(*) FROM user";
+        String query = "SELECT COUNT(*) FROM userjava";
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);

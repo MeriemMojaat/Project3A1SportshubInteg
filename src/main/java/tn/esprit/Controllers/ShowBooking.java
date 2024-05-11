@@ -58,7 +58,7 @@ public class ShowBooking {
 
     @FXML
     public void fileuploader(String filePath) {
-        String accessToken = "fVGENvl9dlkkzC7AXFS22zKNmlMgRfFG"; // Replace with your access token
+        String accessToken = "rfQA8ScAknNmE1kE252UQLmLpqDDl9So"; // Replace with your access token
         BoxAPIConnection api = new BoxAPIConnection(accessToken);
 
         try {

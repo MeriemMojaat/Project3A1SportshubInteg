@@ -40,6 +40,7 @@
         public class AddBooking {
             private final String PDF_OUTPUT_FOLDER = "src/main/java/tn/esprit/PDF";
             private int eventId; // Event ID passed from ShowEvent
+            private boolean status=false;
             @FXML
             private VBox rootContainer;
             private user currentuser;
@@ -212,7 +213,6 @@
                     }
 
                     int authenticatedUserId = SessionManager.getInstance().getAuthenticatedUserId();
-
 
                     Booking newBooking = new Booking(eventId, authenticatedUserId, booking_dateId.getValue(), Integer.parseInt(nbr_participantsId.getText()));
                     bs.add(newBooking);

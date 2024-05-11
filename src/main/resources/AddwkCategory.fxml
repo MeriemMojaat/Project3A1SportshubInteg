@@ -8,15 +8,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="669.0" prefWidth="892.0" stylesheets="@newone.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.AddwkCategory">
+<AnchorPane prefHeight="772.0" prefWidth="885.0" stylesheets="@newone.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.AddwkCategory">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#353a56" height="898.0" layoutX="-5.0" stroke="#4691d7" strokeType="INSIDE" width="495.0" />
-      <Button layoutX="164.0" layoutY="812.0" mnemonicParsing="false" onAction="#AddCategory" text="Add a Category" />
-      <Button layoutX="708.0" layoutY="812.0" mnemonicParsing="false" onAction="#Gotolist" prefHeight="46.0" prefWidth="150.0" text="Go to list" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#353a56" height="807.0" layoutX="-5.0" stroke="#4691d7" strokeType="INSIDE" width="495.0" />
+      <Button layoutX="283.0" layoutY="709.0" mnemonicParsing="false" onAction="#AddCategory" text="Add a Category" />
+      <Button layoutX="688.0" layoutY="721.0" mnemonicParsing="false" onAction="#Gotolist" prefHeight="46.0" prefWidth="150.0" text="Go to list" />
       <TextField fx:id="categoryname" layoutX="119.0" layoutY="137.0" prefHeight="46.0" prefWidth="230.0" promptText="Category Name" />
       <TextArea fx:id="categorydescription" layoutX="120.0" layoutY="234.0" prefHeight="212.0" prefWidth="230.0" promptText="Category Description" />
       <ImageView fx:id="ImageView" fitHeight="179.0" fitWidth="230.0" layoutX="119.0" layoutY="486.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="177.0" layoutY="729.0" mnemonicParsing="false" onAction="#AddPicture" text="Add Image" />
+      <Button layoutX="106.0" layoutY="709.0" mnemonicParsing="false" onAction="#AddPicture" text="Add Image" />
       <ImageView fitHeight="83.0" fitWidth="86.0" layoutX="20.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="60.0" fitWidth="48.0" layoutX="59.0" layoutY="131.0">
          <image>

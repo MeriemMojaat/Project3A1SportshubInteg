@@ -48,7 +48,6 @@ tn\esprit\Entities\coach.class
 tn\esprit\services\tradeservice.class
 tn\esprit\services\CommentDaoImpl.class
 tn\esprit\Controllers\deletetrade.class
-tn\esprit\Controllers\ShowWorkouts.class
 tn\esprit\Entities\user.class
 tn\esprit\Controllers\ShowBooking.class
 tn\esprit\services\GLservice.class

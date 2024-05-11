@@ -79,7 +79,7 @@ private user currentuser;
         return usernameField;
     }
     private void updateCaptcha() {
-        Cage cage = new Cage();
+       /* Cage cage = new Cage();
         String captchaText = cage.getTokenGenerator().next();
 
         // Generate captcha image data
@@ -92,7 +92,7 @@ private user currentuser;
         captchaImage.setImage(captchaImageSrc);
 
         // Store captcha text somewhere to validate later
-        this.captchaText = captchaText;
+        this.captchaText = captchaText;*/
     }
 
     public Image generateQR(user authenticatedUser) {
@@ -153,11 +153,16 @@ private user currentuser;
     Object authenticate(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
-
+        String enteredCaptcha = captchaInputField.getText();
+// Validate captcha
+      /*  if (!enteredCaptcha.equalsIgnoreCase(captchaText)) {
+            showAlert("Invalid Captcha", "Please enter the correct captcha.");
+            return null; // Stop further execution if captcha is invalid
+        }*/
         // Authenticate user
         user authenticatedUser = loginService.authenticate(username, password);
         if (authenticatedUser != null) {
-            generateQR(authenticatedUser);
+           // generateQR(authenticatedUser);
             navigateToHomePage(authenticatedUser);
             SessionManager.getInstance().setAuthenticatedUserId(authenticatedUser.getUserid());
 

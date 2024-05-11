@@ -161,7 +161,7 @@ public class ShowCategory {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert("Error", "Failed to load AddBoo king page", Alert.AlertType.ERROR);
+            showAlert("Error", "Failed to load workouts page", Alert.AlertType.ERROR);
         }
     }
 

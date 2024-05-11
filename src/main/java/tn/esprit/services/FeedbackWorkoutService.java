@@ -95,7 +95,7 @@ public class FeedbackWorkoutService implements FeedbackDaoWorkout<FeedbackWorkou
 
     public List<String> getUsernamesForFeedback() throws SQLException {
         List<String> usernames = new ArrayList<>();
-        String sql = "SELECT nameuser FROM user"; // Assuming 'users' table contains usernames
+        String sql = "SELECT nameuser FROM userjava"; // Assuming 'users' table contains usernames
 
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();

@@ -56,7 +56,7 @@
                               <Insets left="50.0" />
                           </padding>
                       </Button>
-                      <Button fx:id="btntournements" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#tournement" prefHeight="78.0" prefWidth="256.0" styleClass="sidebarItem" stylesheets="@newone.css" text="Tournements">
+                      <Button fx:id="btntournements" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#tournement" prefHeight="78.0" prefWidth="256.0" styleClass="sidebarItem" stylesheets="@newone.css" text="Games">
                           <graphic>
                               <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -237,7 +237,6 @@
                   <Font name="Century Gothic Bold Italic" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="1232.0" layoutY="469.0" mnemonicParsing="false" styleClass="button-bar" text="Create Game" />
           </children>
       </AnchorPane>
    </content>

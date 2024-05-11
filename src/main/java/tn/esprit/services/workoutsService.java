@@ -305,7 +305,7 @@ public class workoutsService implements IServicewk<workouts> {
     }
     public int getUserIdByName(String userName) throws SQLException {
         int userId = -1; // Default value indicating not found
-        String query = "SELECT userid FROM user WHERE name_user = ?";
+        String query = "SELECT userid FROM userjava WHERE name_user = ?";
         try (PreparedStatement ps = con.prepareStatement(query)) {
             ps.setString(1, userName);
             try (ResultSet rs = ps.executeQuery()) {

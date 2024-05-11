@@ -108,10 +108,9 @@ public class ShowEventAdmin {
         Label locationLabel = new Label("Location: " + localisation_event);
         Label descriptionLabel = new Label("Description: " + description_event);
         Label pricelabel = new Label("Price: " + price);
-        Label adminlabel = new Label("Admin "+ 1);
+
 
         eventBox.getChildren().addAll(
-                adminlabel,
                 nameLabel, typeLabel, virtualityLabel, genderLabel,
                 startDateLabel, endDateLabel, locationLabel,
                 descriptionLabel,pricelabel,buttonBox,participantsButtonBox

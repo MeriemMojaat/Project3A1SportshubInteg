@@ -16,11 +16,6 @@
                <content>
                   <AnchorPane prefHeight="797.0" prefWidth="1241.0" stylesheets="@style.css">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="478.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@ben-affleck.png" />
-                           </image>
-                        </ImageView>
                         <ImageView fitHeight="54.0" fitWidth="63.0" layoutX="263.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@1077012.png" />

@@ -17,7 +17,7 @@ public class BookingService implements IService<Booking>{
 
     @Override
     public void add(Booking booking) throws SQLException {
-        String query = "INSERT INTO `booking`(`id_event`, `userid`, `date_booking`, `nbParticipants_event`) VALUES (?,?,?,?)";
+        String query = "INSERT INTO `bookings`(`id_event`, `userid`, `date_booking`, `nbParticipants_event`) VALUES (?,?,?,?)";
 
         // Check if the user exists before inserting the booking
         if (!userExists(booking.getUserid())) {
@@ -29,13 +29,14 @@ public class BookingService implements IService<Booking>{
         ps.setInt(2, booking.getUserid());
         ps.setDate(3, Date.valueOf(booking.getDate_booking()));
         ps.setInt(4, booking.getNbParticipants_event());
+
         ps.executeUpdate();
         System.out.println("Booking added!");
     }
 
     // Helper method to check if the user exists
     private boolean userExists(int userId) throws SQLException {
-        String query = "SELECT * FROM `user` WHERE `userid` = ?";
+        String query = "SELECT * FROM `userjava` WHERE `userid` = ?";
         PreparedStatement ps = con.prepareStatement(query);
         ps.setInt(1, userId);
         ResultSet rs = ps.executeQuery();
@@ -44,7 +45,7 @@ public class BookingService implements IService<Booking>{
 
 
     public void update(Booking booking) throws SQLException {
-        String query = "UPDATE `booking` SET `id_event`=?,`userid`=?, `date_booking`=?, `nbParticipants_event`=? WHERE `id_booking`=?";
+        String query = "UPDATE `bookings` SET `id_event`=?,`userid`=?, `date_booking`=?, `nbParticipants_event`=? WHERE `id_booking`=?";
         try (PreparedStatement ps = con.prepareStatement(query)) {
             ps.setInt(1, booking.getId_event());
             ps.setInt(2, booking.getUserid());
@@ -64,7 +65,7 @@ public class BookingService implements IService<Booking>{
 
     @Override
     public void delete(int id_booking) throws SQLException {
-        String query = "DELETE FROM `booking` WHERE id_booking = ?";
+        String query = "DELETE FROM `bookings` WHERE id_booking = ?";
         PreparedStatement ps = con.prepareStatement(query);
         ps.setInt(1, id_booking);
         ps.executeUpdate();
@@ -73,7 +74,7 @@ public class BookingService implements IService<Booking>{
 
     @Override
     public List<Booking> display() throws SQLException {
-        String query = "SELECT id_booking,id_event, userid, date_booking, nbParticipants_event FROM `booking`";
+        String query = "SELECT id_booking,id_event, userid, date_booking, nbParticipants_event FROM `bookings`";
         stm = con.createStatement();
         ResultSet res = stm.executeQuery(query);
         List<Booking> bookings = new ArrayList<>();
@@ -92,7 +93,7 @@ public class BookingService implements IService<Booking>{
     }
     public List<String> getUserNames() throws SQLException {
         List<String> userNames = new ArrayList<>();
-        String query = "SELECT nameuser FROM user"; // Corrected column name to 'username'
+        String query = "SELECT nameuser FROM userjava"; // Corrected column name to 'username'
         try (PreparedStatement ps = con.prepareStatement(query);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
@@ -104,7 +105,7 @@ public class BookingService implements IService<Booking>{
 
     public String getUserNameById(int userId) throws SQLException {
         String userName = null;
-        String query = "SELECT nameuser FROM user WHERE userid = ?";
+        String query = "SELECT nameuser FROM userjava WHERE userid = ?";
         try (PreparedStatement ps = con.prepareStatement(query)) {
             ps.setInt(1, userId);
             try (ResultSet rs = ps.executeQuery()) {
@@ -131,7 +132,7 @@ public class BookingService implements IService<Booking>{
 
     public int getUserIdByName(String userName) throws SQLException {
         int userId = -1; // Default value indicating not found
-        String query = "SELECT userid FROM user WHERE nameuser = ?";
+        String query = "SELECT userid FROM userjava WHERE nameuser = ?";
         try (PreparedStatement ps = con.prepareStatement(query)) {
             ps.setString(1, userName);
             try (ResultSet rs = ps.executeQuery()) {
@@ -144,7 +145,7 @@ public class BookingService implements IService<Booking>{
     }
     public Booking getBookingById(int bookingId) throws SQLException {
         Booking booking = null;
-        String query = "SELECT * FROM booking WHERE id_booking = ?";
+        String query = "SELECT * FROM bookings WHERE id_booking = ?";
         try (PreparedStatement statement = con.prepareStatement(query)) {
             statement.setInt(1, bookingId);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -163,7 +164,7 @@ public class BookingService implements IService<Booking>{
         List<Booking> bookings = new ArrayList<>();
 
         // SQL query to retrieve bookings for the specified event ID
-        String sql = "SELECT * FROM booking WHERE id_event = ?";
+        String sql = "SELECT * FROM bookings WHERE id_event = ?";
 
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             statement.setInt(1, eventId);
